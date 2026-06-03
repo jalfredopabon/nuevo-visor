@@ -1,0 +1,2 @@
+# Espacio para almacenar scripts de Python (.py) o macros de Excel utilizados para la automatización,
+# limpieza y consolidación de las bases de datos de los 6 municipios.

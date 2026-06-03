@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+
+<html lang="es"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>CARE - Teoría del Cambio</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings:
+            'FILL' 0,
+            'wght' 400,
+            'GRAD' 0,
+            'opsz' 24;
+        }
+    </style>
+<script id="tailwind-config">
+        tailwind.config = {
+          darkMode: "class",
+          theme: {
+            extend: {
+              "colors": {
+                      "tertiary": "#555c6a",
+                      "primary": "#984300",
+                      "inverse-surface": "#2e3132",
+                      "surface-bright": "#f8f9fa",
+                      "on-tertiary-fixed-variant": "#404754",
+                      "on-primary-fixed": "#331200",
+                      "inverse-on-surface": "#f0f1f2",
+                      "secondary-container": "#e2dfde",
+                      "surface-dim": "#d9dadb",
+                      "on-error-container": "#93000a",
+                      "primary-fixed": "#ffdbca",
+                      "on-secondary-fixed": "#1b1c1c",
+                      "on-tertiary-fixed": "#151c27",
+                      "primary-fixed-dim": "#ffb68e",
+                      "primary-container": "#be5600",
+                      "on-tertiary": "#ffffff",
+                      "on-error": "#ffffff",
+                      "surface-variant": "#e1e3e4",
+                      "surface-container-high": "#e7e8e9",
+                      "on-primary": "#ffffff",
+                      "secondary-fixed-dim": "#c8c6c5",
+                      "error-container": "#ffdad6",
+                      "surface-container-low": "#f3f4f5",
+                      "tertiary-fixed": "#dce2f3",
+                      "on-tertiary-container": "#fefcff",
+                      "secondary-fixed": "#e5e2e1",
+                      "on-secondary-fixed-variant": "#474746",
+                      "outline-variant": "#dec1b2",
+                      "secondary": "#5f5e5e",
+                      "surface-container-highest": "#e1e3e4",
+                      "background": "#f8f9fa",
+                      "surface-container-lowest": "#ffffff",
+                      "on-primary-fixed-variant": "#763300",
+                      "tertiary-fixed-dim": "#c0c7d6",
+                      "on-surface-variant": "#574237",
+                      "error": "#ba1a1a",
+                      "surface-tint": "#9b4500",
+                      "on-primary-container": "#fffbff",
+                      "on-secondary-container": "#636262",
+                      "on-surface": "#191c1d",
+                      "tertiary-container": "#6e7583",
+                      "outline": "#8a7265",
+                      "surface": "#f8f9fa",
+                      "inverse-primary": "#ffb68e",
+                      "surface-container": "#edeeef",
+                      "on-background": "#191c1d",
+                      "on-secondary": "#ffffff"
+              },
+              "borderRadius": {
+                      "DEFAULT": "0.25rem",
+                      "lg": "0.5rem",
+                      "xl": "0.75rem",
+                      "full": "9999px"
+              },
+              "spacing": {
+                      "margin-mobile": "16px",
+                      "section-gap": "64px",
+                      "container-max": "1280px",
+                      "unit": "8px",
+                      "margin-desktop": "40px",
+                      "gutter": "24px"
+              },
+              "fontFamily": {
+                      "label-sm": ["Inter"],
+                      "display-lg": ["Inter"],
+                      "headline-lg": ["Inter"],
+                      "headline-md": ["Inter"],
+                      "headline-lg-mobile": ["Inter"],
+                      "body-lg": ["Inter"],
+                      "label-md": ["Inter"],
+                      "body-md": ["Inter"]
+              },
+              "fontSize": {
+                      "label-sm": ["12px", {"lineHeight": "16px", "fontWeight": "500"}],
+                      "display-lg": ["48px", {"lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                      "headline-lg": ["32px", {"lineHeight": "40px", "letterSpacing": "-0.01em", "fontWeight": "600"}],
+                      "headline-md": ["24px", {"lineHeight": "32px", "fontWeight": "600"}],
+                      "headline-lg-mobile": ["24px", {"lineHeight": "32px", "fontWeight": "600"}],
+                      "body-lg": ["18px", {"lineHeight": "28px", "fontWeight": "400"}],
+                      "label-md": ["14px", {"lineHeight": "20px", "letterSpacing": "0.05em", "fontWeight": "500"}],
+                      "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}]
+              }
+            }
+          }
+        }
+    </script>
+</head>
+<body class="bg-surface-container-lowest text-on-background antialiased selection:bg-primary selection:text-on-primary">
+<!-- TopAppBar -->
+<header class="fixed top-0 w-full z-50 bg-surface-container-lowest transition-all duration-300" id="main-header">
+<div class="flex justify-between items-center px-margin-mobile md:px-margin-desktop py-4 max-w-container-max mx-auto">
+<!-- Brand -->
+<div class="flex items-center gap-2 cursor-pointer transition-opacity hover:opacity-80">
+<img alt="CARE Logo" class="h-6 w-auto object-contain" src="data:image/png;base64,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"/>
+</div>
+<!-- Navigation (Desktop) -->
+<nav class="hidden md:flex items-center gap-8">
+<a class="text-primary font-headline-md text-headline-md font-bold border-b-2 border-primary pb-1 transition-all" href="#">
+                    Teoría del Cambio
+                </a>
+<a class="text-secondary font-headline-md text-headline-md font-medium hover:text-primary transition-colors" href="#">
+                    Mapa Operativo
+                </a>
+</nav>
+<!-- Mobile Menu Icon -->
+<button class="md:hidden text-on-surface hover:text-primary transition-colors">
+<span class="material-symbols-outlined">menu</span>
+</button>
+</div>
+</header>
+<!-- Main Content -->
+<main class="pt-[100px] pb-section-gap px-margin-mobile md:px-margin-desktop max-w-container-max mx-auto">
+<!-- Header Text -->
+<div class="mb-12 text-center">
+<h1 class="font-display-lg text-display-lg text-on-background mb-4">Teoría del Cambio</h1>
+<p class="font-body-lg text-body-lg text-secondary max-w-2xl mx-auto">
+                Un flujo estructurado que conecta nuestras intervenciones directas con el impacto sostenible a largo plazo en las comunidades.
+            </p>
+</div>
+<!-- Flow Diagram Container -->
+<div class="relative max-w-3xl mx-auto flex flex-col items-center gap-y-12 pb-16">
+<!-- Connecting Line (Background) -->
+<div class="absolute top-[80px] bottom-[80px] w-0.5 bg-surface-variant z-0"></div>
+<!-- Level 1: Actividades -->
+<div class="relative z-10 w-full max-w-md group">
+<div class="bg-[#FFF5F0] rounded-xl p-8 shadow-[0_4px_20px_rgba(0,0,0,0.04)] hover:shadow-[0_8px_30px_rgba(0,0,0,0.08)] transition-all duration-300 border border-[#FFE4D6]">
+<div class="flex items-center gap-4 mb-4">
+<div class="w-10 h-10 rounded-full bg-[#FFE4D6] flex items-center justify-center text-primary">
+<span class="material-symbols-outlined">directions_run</span>
+</div>
+<h2 class="font-headline-md text-headline-md text-primary-container">ACTIVIDADES</h2>
+</div>
+<p class="font-body-md text-body-md text-on-surface-variant">
+                        Intervenciones directas, capacitaciones y distribución de recursos en las comunidades objetivo.
+                    </p>
+</div>
+<!-- Arrow Down -->
+<div class="absolute -bottom-10 left-1/2 -translate-x-1/2 text-surface-variant bg-surface-container-lowest p-1">
+<span class="material-symbols-outlined">arrow_downward</span>
+</div>
+</div>
+<!-- Level 2: Resultados -->
+<div class="relative z-10 w-full max-w-md group">
+<div class="bg-[#F0FAFA] rounded-xl p-8 shadow-[0_4px_20px_rgba(0,0,0,0.04)] hover:shadow-[0_8px_30px_rgba(0,0,0,0.08)] transition-all duration-300 border border-[#D1F0F0]">
+<div class="flex items-center gap-4 mb-4">
+<div class="w-10 h-10 rounded-full bg-[#D1F0F0] flex items-center justify-center text-[#006666]">
+<span class="material-symbols-outlined">task_alt</span>
+</div>
+<h2 class="font-headline-md text-headline-md text-[#006666]">RESULTADOS</h2>
+</div>
+<p class="font-body-md text-body-md text-on-surface-variant">
+                        Cambios inmediatos en conocimientos, habilidades y acceso a servicios básicos.
+                    </p>
+</div>
+<!-- Arrow Down -->
+<div class="absolute -bottom-10 left-1/2 -translate-x-1/2 text-surface-variant bg-surface-container-lowest p-1">
+<span class="material-symbols-outlined">arrow_downward</span>
+</div>
+</div>
+<!-- Level 3: Propósito -->
+<div class="relative z-10 w-full max-w-md group">
+<div class="bg-[#F0F5FF] rounded-xl p-8 shadow-[0_4px_20px_rgba(0,0,0,0.04)] hover:shadow-[0_8px_30px_rgba(0,0,0,0.08)] transition-all duration-300 border border-[#D6E4FF]">
+<div class="flex items-center gap-4 mb-4">
+<div class="w-10 h-10 rounded-full bg-[#D6E4FF] flex items-center justify-center text-[#0040C1]">
+<span class="material-symbols-outlined">flag</span>
+</div>
+<h2 class="font-headline-md text-headline-md text-[#0040C1]">PROPÓSITO</h2>
+</div>
+<p class="font-body-md text-body-md text-on-surface-variant">
+                        Mejoras sistémicas en la calidad de vida, empoderamiento económico y resiliencia comunitaria.
+                    </p>
+</div>
+<!-- Arrow Down -->
+<div class="absolute -bottom-10 left-1/2 -translate-x-1/2 text-surface-variant bg-surface-container-lowest p-1">
+<span class="material-symbols-outlined">arrow_downward</span>
+</div>
+</div>
+<!-- Level 4: Fin / Impacto -->
+<div class="relative z-10 w-full max-w-md group">
+<div class="bg-[#F8F0FF] rounded-xl p-8 shadow-[0_4px_20px_rgba(0,0,0,0.04)] hover:shadow-[0_8px_30px_rgba(0,0,0,0.08)] transition-all duration-300 border border-[#EED6FF]">
+<div class="flex items-center gap-4 mb-4">
+<div class="w-10 h-10 rounded-full bg-[#EED6FF] flex items-center justify-center text-[#5300B3]">
+<span class="material-symbols-outlined">public</span>
+</div>
+<h2 class="font-headline-md text-headline-md text-[#5300B3]">FIN / IMPACTO</h2>
+</div>
+<p class="font-body-md text-body-md text-on-surface-variant">
+                        Erradicación de la pobreza estructural y logro de la justicia social a largo plazo.
+                    </p>
+</div>
+</div>
+</div>
+</main>
+<script>
+        // Simple script to add slight shadow to header on scroll for better separation
+        window.addEventListener('scroll', () => {
+            const header = document.getElementById('main-header');
+            if (window.scrollY > 10) {
+                header.classList.add('shadow-sm');
+            } else {
+                header.classList.remove('shadow-sm');
+            }
+        });
+    </script>
+</body></html>

@@ -1,0 +1,64 @@
+Marco Lógico						
+						
+						
+Nombre del proyecto	ConEsperanza					
+Fecha inicio	5/15/2026	Fecha fin				11/15/2026
+Responsable	CARE	Socio				NA
+Total participantes directos	28632 (23.251 ÚNICOS)					
+Territorios	Cauca (Buenos Aires y Morales) , Norte de Santander (Ocaña, Abrego, Harací, Teorama, La Playa de Belén, Convención)					
+Presupuesto	2261471 USD					
+						
+Objetivo General	Indicadores	Metas		Responsable	Notas	Medios de verificación
+Respuesta de emergencia para salvar vidas dirigida a comunidades que se enfrentan graves necesidades humanitarias en municipios prioritarios de  Colombia. 	% de participantes que afirman que la ayuda humanitaria se presta de manera segura, accesible, responsable y participativa	80%		CARE		Encuestas de Satisfacción y PDM
+Actividades /productos	Indicadores	Metas doble conteo	Metas únicos	Responsable	Notas	Medios de verificación
+1. Protección						
+" 1.1 Sensibilización comunitaria, difusión de información y campañas de comunicación sobre los mecanismos de protección disponibles para la población destinataria,  para la prevención de riesgos de protección, la violanción de los derechos y  la prevención de la violencia basada en género.
+Actividad estándar OCHA: C-CA19. ACTIVITY. Establishment of protection and prevention mechanisms by identifying high-risk areas and risk factors driving violence against women and girls in the emergency. Strengthen or set up prevention and mitigation strategies, mechanisms and initiatives in support of national and community-based interventions in line with IASC principles and guidelines. Risk mitigation strategies may include the provision of dignity kits and other means of sharing life-saving protection
+ information."	C-CA19. INDICATOR 74: Number of individuals who received life‑saving protection support through newly established or strengthened violence prevention and risk‑mitigation mechanisms.	8000	8000	CARE		"1. Listados de Asistencia
+2. Actas de actividad (espacios masivos)
+3. Registro en CommCare 
+4. BBDD sistema de monitoreo CARE COL
+5. Archivo seguimiento eventos masivos"
+"1.2 Gestión de casos para personas víctimas de conflicto armado, en situación de riesgo o sobrevivientes de violencia de género, incluyendo derivaciones internas y externas
+Actividad estándar OCHA: C-CA11. ACTIVITY: Provision of life-saving support to people with specific needs, survivors of violence against women and girls and/or sexual exploitation and abuse. This includes strengthening psychosocial support (PSS) programming and non- specialized Mental Health and Psychosocial Support Services (MHPSS) to individuals, families, and communities that have been exposed to conflict and displacement, political oppression, torture, and violence against women and girls; and support in promoting community mobilization, activating social networks, and the establishment of community centers and safe spaces."	C-CA11. INDICATOR 65. Number of people receiving violence psycho-social support and/or violence case management 	1152	0	CARE		"1. Registro de todo el ciclo de la Gestión de Caso en el sistema de monitoreo de CARE COL
+2. BBDD sistema de monitoreo CARE COL"
+"1.3 Entrega de cash a personas en situación de riesgo o sobrevivientes de violencia de género priorizadas en el proceso de gestión de casos
+Actividad estándar OCHA: C-CA16. ACTIVITY. Provision of financial, cash or voucher / CVA assistance for protection outcomes"	C-CA16. INDICATOR. Number of people affected benefiting from emergency cash assistance or direct service payments	403	0	CARE		"1. Registro entrega de priorización y entrega de cash en el sistema de monitoreo
+2. Tirillas de entrega del cash - proveedor de servicios financieros (ventanilla) /BBDD proveedor
+3. BBDD sistema de monitoreo CARE COL
+4. BBDD seguimiento coordinación PTM
+"
+"1.4 Entrega de kits  - CARE Package-
+Actividad estándar OCHA: C-CA19. ACTIVITY. Establishment of protection and prevention mechanisms by identifying high-risk areas and risk factors driving violence against women and girls in the emergency. Strengthen or set up prevention and mitigation strategies, mechanisms and initiatives in support of national and community-based interventions in line with IASC principles and guidelines. Risk mitigation strategies may include the provision of dignity kits and other means of sharing life-saving protection
+ information."	C-CA19. INDICATOR 74: Number of individuals who received life‑saving protection support through newly established or strengthened violence prevention and risk‑mitigation mechanisms.	9600	7200	CARE 	*Son 2400 kits entregados a hogares (x 4 miembros)	"1. Registro entrega de kits en el sistema de monitoreo
+2. Listados de distribución de kits
+2. BBDD sistema de monitoreo CARE COL
+"
+"1.5 Fortalecimiento protección en espacios seguros, gestionados por organizaciones de base, institucionalidad del gobierno  y organismos homólogos.
+Actividad estándar OCHA: C-CA11. ACTIVITY: Provision of life-saving support to people with specific needs, survivors of violence against women and girls and/or sexual exploitation and abuse. This includes strengthening psychosocial support (PSS) programming and non- specialized Mental Health and Psychosocial Support Services (MHPSS) to individuals, families, and communities that have been exposed to conflict and displacement, political oppression, torture, and violence against women and girls; and support in promoting community mobilization, activating social networks, and the establishment of community centers and safe spaces."	C-CA11. INDICATOR 65. Number of people receiving violence psycho-social support and/or violence case management 	5400	5400	CARE 		"1. Mapeo y diagnóstico
+2. Plan de trabajo
+3. Acta de entrega (dotación - mejoras)
+4. Actas de seguimiento
+5. Archivo consolidado de seguimiento"
+2. Salud						
+"2.1 Prestación de servicios de atención primaria de salud 
+Actividad estándar OCHA: C-CA1: ACTIVITY. Ensuring equitable and timely access to emergency primary healthcare, including the link with community health systems and outreach activities."	C-CA1. INDICATOR 28: Number of primary healthcare consultations provided	1345	1211	CARE 	*2.690 consultas (en promedio dos por persona)	"1. Voucher de salud en el sistema de monitoreo
+2. BBDD sistema de monitoreo CARE COL
+3. BBDD proveedor de servicios
+"
+"2.2 Entre kits postparto
+Actividad estándar OCHA: C-CA1: ACTIVITY. Ensuring equitable and timely access to emergency primary healthcare, including the link with community health systems and outreach activities."	C-CA1. INDICATOR 28: Number of primary healthcare consultations provided	140	0	CARE 		"1. Registro entrega de kits en el sistema de monitoreo
+2. Listados de distribución de kits
+2. BBDD sistema de monitoreo CARE COL
+"
+"2.3 Prestación de servicios de atención medica a las personas sobrevientes de violencia sexual
+Actividad estándar OCHA: C-CA11: ACTIVITY. Medical (including psychological) support to survivors of sexual violence and other forms of violence against women and girls. This can include Mental Health and Psychosocial Support (MHPSS), refresher training for frontline health staff on clinical management of rape and intimate partner violence (IPV), and supply of drugs, material and equipment including through interagency reproductive health kits."	C-CA11. INDICATOR 43: Number of violence survivors receiving medical assistance, including clinical management of rape	576	0	CARE 		"1. Voucher de salud en el sistema de monitoreo
+2. BBDD sistema de monitoreo CARE COL
+3. BBDD proveedor de servicios"
+3.  Cash multipropósito						
+"3.1 Cash Multipropósito
+Actividad estándar OCHA: C-CA1. ACTIVITY: Provision of multi purpose cash "	C-CA1. INDICATOR 117: Number of households having received Multi-Purpose Cash (MPC)	2016	1440	CARE 	*576 hogares (x 3.5 miembros)	"1. Registro en CommCare 
+2. BBDD entrega Cash
+3. Tirillas entrega del proveedor de serivicio / BBDD proveedor
+4. BBDD seguimiento coordinación PTM"
+Total participantes directos		28632	23251			

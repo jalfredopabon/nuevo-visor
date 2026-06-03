@@ -1,0 +1,2 @@
+# Carpeta destinada para guardar los archivos de proyecto de Power BI (.pbip).
+# Esta carpeta se conectará al repositorio de GitHub para el control de versiones del tablero de control.

@@ -1,0 +1,4 @@
+# Ignore Office temporary lock files
+~$*
+.DS_Store
+Thumbs.db

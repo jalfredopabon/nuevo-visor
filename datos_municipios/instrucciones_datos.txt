@@ -1,0 +1,2 @@
+# Esta carpeta contendrá las plantillas de Excel o bases de datos limpias enviadas por los 6 municipios.
+# Se recomienda mantener un estándar de nombres: "Datos_Municipio_AAAA_MM.xlsx".

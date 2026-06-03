@@ -1,0 +1,1494 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="utf-8"/>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+    <title>CARE Colombia - Visor MEAL</title>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+    <style>
+        /* Global Font Smoothing & Antialiasing */
+        html, body {
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+            text-rendering: optimizeLegibility;
+        }
+
+        /* Prevent tap highlight and outline boxes on click/focus */
+        button, a, select, input {
+            -webkit-tap-highlight-color: transparent !important;
+            -webkit-focus-ring-color: transparent !important;
+            outline: none !important;
+        }
+        button:focus, a:focus, select:focus, input:focus {
+            outline: none !important;
+            box-shadow: none !important;
+        }
+
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        
+        /* Tree Diagram Styles */
+        .tree-line-h {
+            position: absolute;
+            height: 2px;
+            background-color: #e1e3e4;
+            top: 50%;
+            transform: translateY(-50%);
+            z-index: 0;
+        }
+        .tree-line-v {
+            position: absolute;
+            width: 2px;
+            background-color: #e1e3e4;
+            left: 0;
+            z-index: 0;
+        }
+        .tree-node {
+            position: relative;
+            z-index: 10;
+        }
+    </style>
+    <script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "inverse-primary": "#ffb68e",
+                        "primary-container": "#be5600",
+                        "on-error-container": "#93000a",
+                        "on-primary-container": "#fffbff",
+                        "on-background": "#191c1d",
+                        "on-tertiary-fixed-variant": "#404754",
+                        "surface-variant": "#e1e3e4",
+                        "surface": "#ffffff",
+                        "secondary-fixed-dim": "#c8c6c5",
+                        "on-surface-variant": "#574237",
+                        "on-secondary-fixed": "#1b1c1c",
+                        "on-tertiary-container": "#fefcff",
+                        "primary-fixed": "#ffdbca",
+                        "error": "#ba1a1a",
+                        "on-primary-fixed-variant": "#763300",
+                        "outline-variant": "#dec1b2",
+                        "surface-bright": "#FCFAF7",
+                        "on-secondary-container": "#636262",
+                        "secondary-fixed": "#e5e2e1",
+                        "secondary-container": "#e2dfde",
+                        "surface-container-highest": "#e1e3e4",
+                        "on-primary-fixed": "#331200",
+                        "tertiary-fixed": "#dce2f3",
+                        "surface-dim": "#d9dadb",
+                        "surface-container": "#edeeef",
+                        "tertiary": "#555c6a",
+                        "surface-container-high": "#e7e8e9",
+                        "tertiary-fixed-dim": "#c0c7d6",
+                        "on-error": "#ffffff",
+                        "on-secondary": "#ffffff",
+                        "error-container": "#ffdad6",
+                        "on-surface": "#191c1d",
+                        "on-secondary-fixed-variant": "#474746",
+                        "surface-container-low": "#FAF5EE",
+                        "secondary": "#5f5e5e",
+                        "outline": "#e1e3e4",
+                        "inverse-surface": "#2e3132",
+                        "background": "#FAF7F2",
+                        "surface-container-lowest": "#ffffff",
+                        "primary": "#E36F1E", /* CARE Orange */
+                        "on-tertiary-fixed": "#151c27",
+                        "primary-fixed-dim": "#ffb68e",
+                        "surface-tint": "#9b4500",
+                        "tertiary-container": "#6e7583",
+                        "on-primary": "#ffffff",
+                        "inverse-on-surface": "#f0f1f2",
+                        "on-tertiary": "#ffffff",
+                        "diagram-navy": "#090015",
+                        "diagram-blue": "#0052CC"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "margin-desktop": "40px",
+                        "margin-mobile": "16px",
+                        "gutter": "24px",
+                        "unit": "8px",
+                        "container-max": "1280px",
+                        "section-gap": "64px"
+                    },
+                    "fontFamily": {
+                        "headline-md": ["Inter"],
+                        "body-md": ["Inter"],
+                        "headline-lg-mobile": ["Inter"],
+                        "body-lg": ["Inter"],
+                        "label-md": ["Inter"],
+                        "headline-lg": ["Inter"],
+                        "display-lg": ["Inter"],
+                        "label-sm": ["Inter"]
+                    },
+                    "fontSize": {
+                        "headline-md": ["24px", { "lineHeight": "32px", "fontWeight": "600" }],
+                        "body-md": ["16px", { "lineHeight": "24px", "fontWeight": "400" }],
+                        "headline-lg-mobile": ["24px", { "lineHeight": "32px", "fontWeight": "600" }],
+                        "body-lg": ["18px", { "lineHeight": "28px", "fontWeight": "400" }],
+                        "label-md": ["14px", { "lineHeight": "20px", "letterSpacing": "0.05em", "fontWeight": "500" }],
+                        "headline-lg": ["32px", { "lineHeight": "40px", "letterSpacing": "-0.01em", "fontWeight": "600" }],
+                        "display-lg": ["48px", { "lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "700" }],
+                        "label-sm": ["12px", { "lineHeight": "16px", "fontWeight": "500" }]
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="bg-background text-on-background min-h-screen flex flex-col font-body-md antialiased">
+
+<!-- Top Navigation (Seamless, no borders) -->
+<header class="w-full h-16 top-0 sticky bg-surface-bright z-50 transition-all duration-300" id="main-header">
+    <div class="flex justify-between items-center px-margin-mobile md:px-margin-desktop h-full max-w-container-max mx-auto">
+        <!-- Brand Logo -->
+        <div class="flex items-center gap-3 h-full cursor-pointer transition-opacity hover:opacity-80">
+            <img alt="CARE Logo" class="h-10 w-auto object-contain" src="care_horizontal.webp"/>
+        </div>
+        
+        <!-- Navigation Tabs (Always Visible) -->
+        <nav class="flex items-center gap-4 md:gap-8 h-full" id="nav-tabs">
+            <button onclick="switchTab('teoria')" id="tab-teoria" class="text-primary font-bold border-b-2 border-primary h-full flex items-center px-1 text-xs md:text-sm lg:text-base transition-all duration-200 focus:outline-none focus:ring-0">
+                Teoría del Cambio
+            </button>
+            <button onclick="switchTab('mapa')" id="tab-mapa" class="text-secondary font-medium hover:text-primary border-b-2 border-transparent h-full flex items-center px-1 text-xs md:text-sm lg:text-base transition-all duration-200 focus:outline-none focus:ring-0">
+                Mapa Operativo
+            </button>
+            <button onclick="switchTab('evidencias')" id="tab-evidencias" class="text-secondary font-medium hover:text-primary border-b-2 border-transparent h-full flex items-center px-1 text-xs md:text-sm lg:text-base transition-all duration-200 focus:outline-none focus:ring-0">
+                Matriz de Evidencias
+            </button>
+            <button onclick="switchTab('asistente')" id="tab-asistente" class="text-secondary font-medium hover:text-primary border-b-2 border-transparent h-full flex items-center px-1 text-xs md:text-sm lg:text-base transition-all duration-200 focus:outline-none focus:ring-0">
+                Asistente de Carga
+            </button>
+        </nav>
+    </div>
+</header>
+
+<!-- Main Container -->
+<main class="flex-grow px-margin-mobile md:px-margin-desktop py-12 max-w-container-max mx-auto w-full">
+    
+        <!-- ================= TAB: TEORÍA DEL CAMBIO ================= -->
+    <section id="section-teoria" class="block transition-all duration-300">
+        <!-- Header Text -->
+        <div class="mb-16 text-left">
+            <h1 class="font-display-lg text-display-lg text-on-background mb-4">Teoría del Cambio</h1>
+            <p class="font-body-lg text-body-lg text-secondary max-w-2xl">
+                Estructura operativa de <strong class="font-bold">ConEsperanza</strong>: desde la implementación de acciones directas hasta el logro del impacto sostenible en las comunidades.
+            </p>
+        </div>
+        
+        <!-- Horizontal Flow Container -->
+        <div class="flex flex-col gap-10 max-w-6xl mx-auto w-full pb-16">
+            
+            <!-- Level 1: Actividades -->
+            <div class="flex flex-col lg:flex-row items-stretch justify-between gap-4 w-full">
+                <!-- Left: Category -->
+                <div class="w-full lg:w-1/4 flex items-center justify-start">
+                    <div class="flex items-center gap-3 bg-[#FFF5F0] text-primary border-2 border-[#FFE4D6]/70 hover:border-primary px-6 py-5 rounded-xl font-bold w-full transition-all duration-300">
+                        <span class="material-symbols-outlined text-2xl">directions_run</span>
+                        <span class="tracking-wider text-sm">1. Actividades</span>
+                    </div>
+                </div>
+                <!-- Arrow (Desktop vs Mobile) -->
+                <div class="flex items-center justify-center text-secondary py-1 lg:py-0">
+                    <span class="material-symbols-outlined hidden lg:block text-2xl">arrow_forward</span>
+                    <span class="material-symbols-outlined lg:hidden text-2xl">arrow_downward</span>
+                </div>
+                <!-- Middle: Focus (Unified style) -->
+                <div class="w-full lg:w-1/3 bg-surface-container-low border-2 border-outline/40 hover:border-secondary rounded-xl p-6 flex flex-col justify-center transition-all duration-300">
+                    <h3 class="text-xs font-semibold text-secondary tracking-wider mb-2">Enfoque del proyecto</h3>
+                    <p class="text-on-surface font-medium text-sm">Brindar respuesta humanitaria sectorial en salud sexual y reproductiva (SSR) y protección a sobrevivientes de VBG.</p>
+                </div>
+                <!-- Arrow -->
+                <div class="flex items-center justify-center text-secondary py-1 lg:py-0">
+                    <span class="material-symbols-outlined hidden lg:block text-2xl">arrow_forward</span>
+                    <span class="material-symbols-outlined lg:hidden text-2xl">arrow_downward</span>
+                </div>
+                <!-- Right: Concrete Actions (Unified style) -->
+                <div class="w-full lg:w-2/5 bg-surface-container-low border-2 border-outline/40 hover:border-secondary rounded-xl p-6 transition-all duration-300">
+                    <h3 class="text-xs font-semibold text-secondary tracking-wider mb-3">Acciones reales / Indicadores</h3>
+                    <div class="flex flex-wrap gap-2">
+                        <span onclick="linkToMap('proteccion')" class="relative group cursor-pointer bg-[#FFF5F0] text-[#be5600] text-xs font-semibold px-3 py-1.5 rounded-lg border border-[#FFE4D6] hover:bg-[#FFE4D6] transition-colors">Atenciones Psicosociales (APS)<span class="absolute bottom-full left-1/2 -translate-x-1/2 mb-2 hidden group-hover:block w-56 bg-inverse-surface text-inverse-on-surface text-[11px] leading-relaxed p-2 rounded shadow-lg text-center z-30 font-normal">Acompañamiento psicológico individual o en crisis ante vulneraciones de derechos.</span></span>
+                        <span onclick="linkToMap('proteccion')" class="relative group cursor-pointer bg-[#FFF5F0] text-[#be5600] text-xs font-semibold px-3 py-1.5 rounded-lg border border-[#FFE4D6] hover:bg-[#FFE4D6] transition-colors">Gestión de Casos VBG<span class="absolute bottom-full left-1/2 -translate-x-1/2 mb-2 hidden group-hover:block w-56 bg-inverse-surface text-inverse-on-surface text-[11px] leading-relaxed p-2 rounded shadow-lg text-center z-30 font-normal">Acompañamiento continuo y especializado a personas sobrevivientes de violencias basadas en género.</span></span>
+                        <span onclick="linkToMap('salud')" class="relative group cursor-pointer bg-[#FFF5F0] text-[#be5600] text-xs font-semibold px-3 py-1.5 rounded-lg border border-[#FFE4D6] hover:bg-[#FFE4D6] transition-colors">Kits de Dignidad SSR<span class="absolute bottom-full left-1/2 -translate-x-1/2 mb-2 hidden group-hover:block w-56 bg-inverse-surface text-inverse-on-surface text-[11px] leading-relaxed p-2 rounded shadow-lg text-center z-30 font-normal">Suministro de kits de higiene, salud reproductiva u otros insumos esenciales de dignidad.</span></span>
+                        <span onclick="linkToMap('juridico')" class="relative group cursor-pointer bg-[#FFF5F0] text-[#be5600] text-xs font-semibold px-3 py-1.5 rounded-lg border border-[#FFE4D6] hover:bg-[#FFE4D6] transition-colors">Remisiones a Derechos<span class="absolute bottom-full left-1/2 -translate-x-1/2 mb-2 hidden group-hover:block w-56 bg-inverse-surface text-inverse-on-surface text-[11px] leading-relaxed p-2 rounded shadow-lg text-center z-30 font-normal">Enlace efectivo de pacientes a la red de salud local o entidades de protección del Estado.</span></span>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Separator Line -->
+            <div class="hidden lg:flex justify-center my-1 text-surface-variant opacity-60">
+                <div class="w-0.5 h-6 bg-surface-variant"></div>
+            </div>
+
+            <!-- Level 2: Resultados -->
+            <div class="flex flex-col lg:flex-row items-stretch justify-between gap-4 w-full">
+                <!-- Left: Category -->
+                <div class="w-full lg:w-1/4 flex items-center justify-start">
+                    <div class="flex items-center gap-3 bg-[#F0FAFA] text-[#006666] border-2 border-[#D1F0F0]/70 hover:border-[#006666] px-6 py-5 rounded-xl font-bold w-full transition-all duration-300">
+                        <span class="material-symbols-outlined text-2xl">task_alt</span>
+                        <span class="tracking-wider text-sm">2. Resultados</span>
+                    </div>
+                </div>
+                <!-- Arrow -->
+                <div class="flex items-center justify-center text-secondary py-1 lg:py-0">
+                    <span class="material-symbols-outlined hidden lg:block text-2xl">arrow_forward</span>
+                    <span class="material-symbols-outlined lg:hidden text-2xl">arrow_downward</span>
+                </div>
+                <!-- Middle: Focus -->
+                <div class="w-full lg:w-1/3 bg-surface-container-low border-2 border-outline/40 hover:border-secondary rounded-xl p-6 flex flex-col justify-center transition-all duration-300">
+                    <h3 class="text-xs font-semibold text-secondary tracking-wider mb-2">Acceso efectivo</h3>
+                    <p class="text-on-surface font-medium text-sm">Garantizar que las poblaciones vulnerables accedan oportunamente y sin barreras a la red de protección y servicios SSR.</p>
+                </div>
+                <!-- Arrow -->
+                <div class="flex items-center justify-center text-secondary py-1 lg:py-0">
+                    <span class="material-symbols-outlined hidden lg:block text-2xl">arrow_forward</span>
+                    <span class="material-symbols-outlined lg:hidden text-2xl">arrow_downward</span>
+                </div>
+                <!-- Right: Concrete Actions -->
+                <div class="w-full lg:w-2/5 bg-surface-container-low border-2 border-outline/40 hover:border-secondary rounded-xl p-6 transition-all duration-300">
+                    <h3 class="text-xs font-semibold text-secondary tracking-wider mb-3">Logros operativos</h3>
+                    <div class="flex flex-wrap gap-2">
+                        <span onclick="linkToMap('conesperanza')" class="relative group cursor-pointer bg-[#F0FAFA] text-[#006666] text-xs font-semibold px-3 py-1.5 rounded-lg border border-[#D1F0F0] hover:bg-[#D1F0F0] transition-colors">Personas Únicas Atendidas<span class="absolute bottom-full left-1/2 -translate-x-1/2 mb-2 hidden group-hover:block w-56 bg-inverse-surface text-inverse-on-surface text-[11px] leading-relaxed p-2 rounded shadow-lg text-center z-30 font-normal">Número total de beneficiarios únicos atendidos (desduplicados) en el período de reporte.</span></span>
+                        <span onclick="linkToMap('salud')" class="relative group cursor-pointer bg-[#F0FAFA] text-[#006666] text-xs font-semibold px-3 py-1.5 rounded-lg border border-[#D1F0F0] hover:bg-[#D1F0F0] transition-colors">Kits Entregados con Firma<span class="absolute bottom-full left-1/2 -translate-x-1/2 mb-2 hidden group-hover:block w-56 bg-inverse-surface text-inverse-on-surface text-[11px] leading-relaxed p-2 rounded shadow-lg text-center z-30 font-normal">Total de kits de dignidad y SSR distribuidos físicamente con planilla de entrega firmada.</span></span>
+                        <span onclick="linkToMap('proteccion')" class="relative group cursor-pointer bg-[#F0FAFA] text-[#006666] text-xs font-semibold px-3 py-1.5 rounded-lg border border-[#D1F0F0] hover:bg-[#D1F0F0] transition-colors">Casos con Seguimiento Activo<span class="absolute bottom-full left-1/2 -translate-x-1/2 mb-2 hidden group-hover:block w-56 bg-inverse-surface text-inverse-on-surface text-[11px] leading-relaxed p-2 rounded shadow-lg text-center z-30 font-normal">Número de carpetas de gestión de casos abiertas con un plan de seguimiento actualmente activo.</span></span>
+                        <span onclick="linkToMap('juridico')" class="relative group cursor-pointer bg-[#F0FAFA] text-[#006666] text-xs font-semibold px-3 py-1.5 rounded-lg border border-[#D1F0F0] hover:bg-[#D1F0F0] transition-colors">Derivaciones Efectivas<span class="absolute bottom-full left-1/2 -translate-x-1/2 mb-2 hidden group-hover:block w-56 bg-inverse-surface text-inverse-on-surface text-[11px] leading-relaxed p-2 rounded shadow-lg text-center z-30 font-normal">Tasa de efectividad de las derivaciones canalizadas que resultaron en citas confirmadas.</span></span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Separator Line -->
+            <div class="hidden lg:flex justify-center my-1 text-surface-variant opacity-60">
+                <div class="w-0.5 h-6 bg-surface-variant"></div>
+            </div>
+
+            <!-- Level 3: Propósito -->
+            <div class="flex flex-col lg:flex-row items-stretch justify-between gap-4 w-full">
+                <!-- Left: Category -->
+                <div class="w-full lg:w-1/4 flex items-center justify-start">
+                    <div class="flex items-center gap-3 bg-[#F0F5FF] text-[#0040C1] border-2 border-[#D6E4FF]/70 hover:border-[#0040C1] px-6 py-5 rounded-xl font-bold w-full transition-all duration-300">
+                        <span class="material-symbols-outlined text-2xl">flag</span>
+                        <span class="tracking-wider text-sm">3. Propósito</span>
+                    </div>
+                </div>
+                <!-- Arrow -->
+                <div class="flex items-center justify-center text-secondary py-1 lg:py-0">
+                    <span class="material-symbols-outlined hidden lg:block text-2xl">arrow_forward</span>
+                    <span class="material-symbols-outlined lg:hidden text-2xl">arrow_downward</span>
+                </div>
+                <!-- Middle: Focus -->
+                <div class="w-full lg:w-1/3 bg-surface-container-low border-2 border-outline/40 hover:border-secondary rounded-xl p-6 flex flex-col justify-center transition-all duration-300">
+                    <h3 class="text-xs font-semibold text-secondary tracking-wider mb-2">Entornos seguros</h3>
+                    <p class="text-on-surface font-medium text-sm">Fortalecer entornos de protección comunitaria y mitigar riesgos asociados a violencias basadas en género (VBG).</p>
+                </div>
+                <!-- Arrow -->
+                <div class="flex items-center justify-center text-secondary py-1 lg:py-0">
+                    <span class="material-symbols-outlined hidden lg:block text-2xl">arrow_forward</span>
+                    <span class="material-symbols-outlined lg:hidden text-2xl">arrow_downward</span>
+                </div>
+                <!-- Right: Concrete Actions -->
+                <div class="w-full lg:w-2/5 bg-surface-container-low border-2 border-outline/40 hover:border-secondary rounded-xl p-6 transition-all duration-300">
+                    <h3 class="text-xs font-semibold text-secondary tracking-wider mb-3">Cobertura e infraestructura</h3>
+                    <div class="flex flex-wrap gap-2">
+                        <span onclick="linkToMap('conesperanza')" class="relative group cursor-pointer bg-[#F0F5FF] text-[#0040C1] text-xs font-semibold px-3 py-1.5 rounded-lg border border-[#D6E4FF] hover:bg-[#D6E4FF] transition-colors">6 Municipios Clave<span class="absolute bottom-full left-1/2 -translate-x-1/2 mb-2 hidden group-hover:block w-56 bg-inverse-surface text-inverse-on-surface text-[11px] leading-relaxed p-2 rounded shadow-lg text-center z-30 font-normal">Municipios prioritarios del proyecto ConEsperanza en Cauca y Norte de Santander.</span></span>
+                        <span onclick="linkToMap('conesperanza')" class="relative group cursor-pointer bg-[#F0F5FF] text-[#0040C1] text-xs font-semibold px-3 py-1.5 rounded-lg border border-[#D6E4FF] hover:bg-[#D6E4FF] transition-colors">6 Espacios Protectores Activos<span class="absolute bottom-full left-1/2 -translate-x-1/2 mb-2 hidden group-hover:block w-56 bg-inverse-surface text-inverse-on-surface text-[11px] leading-relaxed p-2 rounded shadow-lg text-center z-30 font-normal">Puntos físicos y seguros de atención humanitaria y protección integral en funcionamiento.</span></span>
+                        <span onclick="linkToMap('salud')" class="relative group cursor-pointer bg-[#F0F5FF] text-[#0040C1] text-xs font-semibold px-3 py-1.5 rounded-lg border border-[#D6E4FF] hover:bg-[#D6E4FF] transition-colors">Puntos de Atención SSR<span class="absolute bottom-full left-1/2 -translate-x-1/2 mb-2 hidden group-hover:block w-56 bg-inverse-surface text-inverse-on-surface text-[11px] leading-relaxed p-2 rounded shadow-lg text-center z-30 font-normal">Espacios comunitarios adecuados para la consulta, orientación e insumos de salud sexual y reproductiva.</span></span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Separator Line -->
+            <div class="hidden lg:flex justify-center my-1 text-surface-variant opacity-60">
+                <div class="w-0.5 h-6 bg-surface-variant"></div>
+            </div>
+
+            <!-- Level 4: Fin / Impacto -->
+            <div class="flex flex-col lg:flex-row items-stretch justify-between gap-4 w-full">
+                <!-- Left: Category -->
+                <div class="w-full lg:w-1/4 flex items-center justify-start">
+                    <div class="flex items-center gap-3 bg-[#F8F0FF] text-[#5300B3] border-2 border-[#EED6FF]/70 hover:border-[#5300B3] px-6 py-5 rounded-xl font-bold w-full transition-all duration-300">
+                        <span class="material-symbols-outlined text-2xl">public</span>
+                        <span class="tracking-wider text-sm">4. Fin / Impacto</span>
+                    </div>
+                </div>
+                <!-- Arrow -->
+                <div class="flex items-center justify-center text-secondary py-1 lg:py-0">
+                    <span class="material-symbols-outlined hidden lg:block text-2xl">arrow_forward</span>
+                    <span class="material-symbols-outlined lg:hidden text-2xl">arrow_downward</span>
+                </div>
+                <!-- Middle: Focus -->
+                <div class="w-full lg:w-1/3 bg-surface-container-low border-2 border-outline/40 hover:border-secondary rounded-xl p-6 flex flex-col justify-center transition-all duration-300">
+                    <h3 class="text-xs font-semibold text-secondary tracking-wider mb-2">Garantía de derechos</h3>
+                    <p class="text-on-surface font-medium text-sm">Contribuir a la garantía plena de los derechos humanos y fundamentales de mujeres, jóvenes y personas vulnerables en Colombia.</p>
+                </div>
+                <!-- Arrow -->
+                <div class="flex items-center justify-center text-secondary py-1 lg:py-0">
+                    <span class="material-symbols-outlined hidden lg:block text-2xl">arrow_forward</span>
+                    <span class="material-symbols-outlined lg:hidden text-2xl">arrow_downward</span>
+                </div>
+                <!-- Right: Concrete Actions -->
+                <div class="w-full lg:w-2/5 bg-surface-container-low border-2 border-outline/40 hover:border-secondary rounded-xl p-6 transition-all duration-300">
+                    <h3 class="text-xs font-semibold text-secondary tracking-wider mb-3">Impacto sostenible</h3>
+                    <div class="flex flex-wrap gap-2">
+                        <span class="bg-[#F8F0FF] text-[#5300B3] text-xs font-semibold px-3 py-1.5 rounded-lg border border-[#EED6FF]">Empoderamiento Comunitario</span>
+                        <span onclick="linkToMap('cauca')" class="relative group cursor-pointer bg-[#F8F0FF] text-[#5300B3] text-xs font-semibold px-3 py-1.5 rounded-lg border border-[#EED6FF] hover:bg-[#EED6FF] transition-colors">Incidencia en Cauca<span class="absolute bottom-full left-1/2 -translate-x-1/2 mb-2 hidden group-hover:block w-56 bg-inverse-surface text-inverse-on-surface text-[11px] leading-relaxed p-2 rounded shadow-lg text-center z-30 font-normal">Acciones de articulación e influencia política con autoridades del departamento del Cauca.</span></span>
+                        <span onclick="linkToMap('norte-de-santander')" class="relative group cursor-pointer bg-[#F8F0FF] text-[#5300B3] text-xs font-semibold px-3 py-1.5 rounded-lg border border-[#EED6FF] hover:bg-[#EED6FF] transition-colors">Incidencia en Norte de Santander<span class="absolute bottom-full left-1/2 -translate-x-1/2 mb-2 hidden group-hover:block w-56 bg-inverse-surface text-inverse-on-surface text-[11px] leading-relaxed p-2 rounded shadow-lg text-center z-30 font-normal">Acciones de articulación e influencia política en zonas de frontera en Norte de Santander.</span></span>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </section>
+    <!-- ================= TAB: MAPA OPERATIVO ================= -->
+    <section id="section-mapa" class="hidden transition-all duration-300">
+        <!-- Header Section -->
+        <div class="flex flex-col md:flex-row justify-between items-start gap-6 mb-12">
+            <div>
+                <h1 class="font-display-lg text-display-lg text-on-background mb-2">Mapa Operativo</h1>
+                <p class="text-secondary max-w-xl">Organización estructural y despliegue del proyecto ConEsperanza por zonas geográficas o áreas técnicas.</p>
+            </div>
+            <!-- View Toggle -->
+            <div class="flex bg-surface-bright rounded-full p-1 border border-outline self-start">
+                <button onclick="switchToggleView('geografica')" id="btn-geo" class="flex items-center gap-2 px-6 py-2 rounded-full bg-primary text-on-primary font-label-md text-label-md transition-all focus:outline-none">
+                    <span class="material-symbols-outlined text-lg leading-none">pin_drop</span> Vista geográfica
+                </button>
+                <button onclick="switchToggleView('componente')" id="btn-comp" class="flex items-center gap-2 px-6 py-2 rounded-full text-secondary hover:text-on-surface font-label-md text-label-md transition-all focus:outline-none">
+                    <span class="material-symbols-outlined text-lg leading-none">extension</span> Vista Estratégica
+                </button>
+            </div>
+        </div>
+        
+        <!-- Tree Diagram Canvas -->
+        <div class="min-h-[600px] overflow-x-auto relative w-full pt-8">
+            
+                                                <div id="tree-geografica" class="min-w-[1400px] flex items-center justify-start py-10 px-4">
+<div class="tree-node bg-primary text-on-primary rounded-lg px-8 py-6 border-2 border-transparent hover:border-on-surface transition-colors cursor-pointer w-64 text-center z-10 shrink-0">
+        <span class="font-headline-md text-headline-md block">ConEsperanza</span>
+        <span class="text-xs text-outline-variant block mt-1">CARE Colombia</span>
+    </div>
+<div class="w-12 h-[2px] bg-outline-variant shrink-0"></div>
+<div class="flex flex-col relative shrink-0">
+<div class="flex items-center relative py-8">
+<div class="absolute left-0 top-1/2 bottom-0 w-[2px] bg-outline-variant"></div>
+<div class="absolute left-0 top-1/2 w-12 h-[2px] bg-outline-variant"></div>
+<div class="ml-12 z-10 shrink-0"><div class="tree-node bg-diagram-blue text-on-primary rounded-lg px-6 py-4 border-2 border-transparent hover:border-on-surface transition-colors cursor-pointer w-56 text-center z-10 shrink-0">
+        <span class="font-body-md text-body-md block font-medium leading-tight">Cauca</span>
+        <span class="text-[10px] opacity-80 block mt-1 leading-tight">Departamento</span>
+    </div></div>
+<div class="w-12 h-[2px] bg-outline-variant shrink-0"></div>
+<div class="flex flex-col relative shrink-0">
+<div class="flex items-center relative py-4">
+<div class="absolute left-0 top-1/2 bottom-0 w-[2px] bg-outline-variant"></div>
+<div class="absolute left-0 top-1/2 w-8 h-[2px] bg-outline-variant"></div>
+<div class="ml-8 z-10 shrink-0"><div class="tree-node bg-surface text-on-surface rounded-lg px-6 py-4 border-2 border-outline hover:border-on-surface transition-colors cursor-pointer w-56 text-center z-10 shrink-0">
+        <span class="font-body-md text-body-md block font-medium leading-tight">Buenos Aires</span>
+        <span class="text-[10px] opacity-80 block mt-1 leading-tight">Municipio</span>
+    </div></div>
+<div class="w-8 h-[2px] bg-outline-variant shrink-0"></div>
+<div class="flex flex-col relative shrink-0">
+<div class="flex items-center relative py-2">
+<div class="absolute left-0 top-1/2 bottom-0 w-[2px] bg-outline-variant"></div>
+<div class="absolute left-0 top-1/2 w-6 h-[2px] bg-outline-variant"></div>
+<div class="ml-6 z-10 shrink-0"><div class="tree-node bg-surface-bright text-secondary rounded-lg px-6 py-4 border border-outline-variant hover:border-on-surface transition-colors cursor-pointer w-56 text-center z-10 shrink-0">
+        <span class="font-body-md text-body-md block font-medium leading-tight">Protección</span>
+        
+    </div></div>
+</div>
+<div class="flex items-center relative py-2">
+<div class="absolute left-0 top-0 bottom-0 w-[2px] bg-outline-variant"></div>
+<div class="absolute left-0 top-1/2 w-6 h-[2px] bg-outline-variant"></div>
+<div class="ml-6 z-10 shrink-0"><div class="tree-node bg-surface-bright text-secondary rounded-lg px-6 py-4 border border-outline-variant hover:border-on-surface transition-colors cursor-pointer w-56 text-center z-10 shrink-0">
+        <span class="font-body-md text-body-md block font-medium leading-tight">Salud</span>
+        
+    </div></div>
+</div>
+<div class="flex items-center relative py-2">
+<div class="absolute left-0 top-0 bottom-1/2 w-[2px] bg-outline-variant"></div>
+<div class="absolute left-0 top-1/2 w-6 h-[2px] bg-outline-variant"></div>
+<div class="ml-6 z-10 shrink-0"><div class="tree-node bg-surface-bright text-secondary rounded-lg px-6 py-4 border border-outline-variant hover:border-on-surface transition-colors cursor-pointer w-56 text-center z-10 shrink-0">
+        <span class="font-body-md text-body-md block font-medium leading-tight">Cash Multipropósito</span>
+        
+    </div></div>
+</div>
+</div>
+</div>
+<div class="flex items-center relative py-4">
+<div class="absolute left-0 top-0 bottom-1/2 w-[2px] bg-outline-variant"></div>
+<div class="absolute left-0 top-1/2 w-8 h-[2px] bg-outline-variant"></div>
+<div class="ml-8 z-10 shrink-0"><div class="tree-node bg-surface text-on-surface rounded-lg px-6 py-4 border-2 border-outline hover:border-on-surface transition-colors cursor-pointer w-56 text-center z-10 shrink-0">
+        <span class="font-body-md text-body-md block font-medium leading-tight">Morales</span>
+        <span class="text-[10px] opacity-80 block mt-1 leading-tight">Municipio</span>
+    </div></div>
+<div class="w-8 h-[2px] bg-outline-variant shrink-0"></div>
+<div class="flex flex-col relative shrink-0">
+<div class="flex items-center relative py-2">
+<div class="absolute left-0 top-1/2 bottom-0 w-[2px] bg-outline-variant"></div>
+<div class="absolute left-0 top-1/2 w-6 h-[2px] bg-outline-variant"></div>
+<div class="ml-6 z-10 shrink-0"><div class="tree-node bg-surface-bright text-secondary rounded-lg px-6 py-4 border border-outline-variant hover:border-on-surface transition-colors cursor-pointer w-56 text-center z-10 shrink-0">
+        <span class="font-body-md text-body-md block font-medium leading-tight">Protección</span>
+        
+    </div></div>
+</div>
+<div class="flex items-center relative py-2">
+<div class="absolute left-0 top-0 bottom-0 w-[2px] bg-outline-variant"></div>
+<div class="absolute left-0 top-1/2 w-6 h-[2px] bg-outline-variant"></div>
+<div class="ml-6 z-10 shrink-0"><div class="tree-node bg-surface-bright text-secondary rounded-lg px-6 py-4 border border-outline-variant hover:border-on-surface transition-colors cursor-pointer w-56 text-center z-10 shrink-0">
+        <span class="font-body-md text-body-md block font-medium leading-tight">Salud</span>
+        
+    </div></div>
+</div>
+<div class="flex items-center relative py-2">
+<div class="absolute left-0 top-0 bottom-1/2 w-[2px] bg-outline-variant"></div>
+<div class="absolute left-0 top-1/2 w-6 h-[2px] bg-outline-variant"></div>
+<div class="ml-6 z-10 shrink-0"><div class="tree-node bg-surface-bright text-secondary rounded-lg px-6 py-4 border border-outline-variant hover:border-on-surface transition-colors cursor-pointer w-56 text-center z-10 shrink-0">
+        <span class="font-body-md text-body-md block font-medium leading-tight">Cash Multipropósito</span>
+        
+    </div></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="flex items-center relative py-8">
+<div class="absolute left-0 top-0 bottom-1/2 w-[2px] bg-outline-variant"></div>
+<div class="absolute left-0 top-1/2 w-12 h-[2px] bg-outline-variant"></div>
+<div class="ml-12 z-10 shrink-0"><div class="tree-node bg-diagram-blue text-on-primary rounded-lg px-6 py-4 border-2 border-transparent hover:border-on-surface transition-colors cursor-pointer w-56 text-center z-10 shrink-0">
+        <span class="font-body-md text-body-md block font-medium leading-tight">Norte de Santander</span>
+        <span class="text-[10px] opacity-80 block mt-1 leading-tight">Departamento</span>
+    </div></div>
+<div class="w-12 h-[2px] bg-outline-variant shrink-0"></div>
+<div class="flex flex-col relative shrink-0">
+<div class="flex items-center relative py-4">
+<div class="absolute left-0 top-1/2 bottom-0 w-[2px] bg-outline-variant"></div>
+<div class="absolute left-0 top-1/2 w-8 h-[2px] bg-outline-variant"></div>
+<div class="ml-8 z-10 shrink-0"><div class="tree-node bg-surface text-on-surface rounded-lg px-6 py-4 border-2 border-outline hover:border-on-surface transition-colors cursor-pointer w-56 text-center z-10 shrink-0">
+        <span class="font-body-md text-body-md block font-medium leading-tight">Ocaña</span>
+        <span class="text-[10px] opacity-80 block mt-1 leading-tight">Municipio</span>
+    </div></div>
+<div class="w-8 h-[2px] bg-outline-variant shrink-0"></div>
+<div class="flex flex-col relative shrink-0">
+<div class="flex items-center relative py-2">
+<div class="absolute left-0 top-1/2 bottom-0 w-[2px] bg-outline-variant"></div>
+<div class="absolute left-0 top-1/2 w-6 h-[2px] bg-outline-variant"></div>
+<div class="ml-6 z-10 shrink-0"><div class="tree-node bg-surface-bright text-secondary rounded-lg px-6 py-4 border border-outline-variant hover:border-on-surface transition-colors cursor-pointer w-56 text-center z-10 shrink-0">
+        <span class="font-body-md text-body-md block font-medium leading-tight">Protección</span>
+        
+    </div></div>
+</div>
+<div class="flex items-center relative py-2">
+<div class="absolute left-0 top-0 bottom-0 w-[2px] bg-outline-variant"></div>
+<div class="absolute left-0 top-1/2 w-6 h-[2px] bg-outline-variant"></div>
+<div class="ml-6 z-10 shrink-0"><div class="tree-node bg-surface-bright text-secondary rounded-lg px-6 py-4 border border-outline-variant hover:border-on-surface transition-colors cursor-pointer w-56 text-center z-10 shrink-0">
+        <span class="font-body-md text-body-md block font-medium leading-tight">Salud</span>
+        
+    </div></div>
+</div>
+<div class="flex items-center relative py-2">
+<div class="absolute left-0 top-0 bottom-1/2 w-[2px] bg-outline-variant"></div>
+<div class="absolute left-0 top-1/2 w-6 h-[2px] bg-outline-variant"></div>
+<div class="ml-6 z-10 shrink-0"><div class="tree-node bg-surface-bright text-secondary rounded-lg px-6 py-4 border border-outline-variant hover:border-on-surface transition-colors cursor-pointer w-56 text-center z-10 shrink-0">
+        <span class="font-body-md text-body-md block font-medium leading-tight">Cash Multipropósito</span>
+        
+    </div></div>
+</div>
+</div>
+</div>
+<div class="flex items-center relative py-4">
+<div class="absolute left-0 top-0 bottom-0 w-[2px] bg-outline-variant"></div>
+<div class="absolute left-0 top-1/2 w-8 h-[2px] bg-outline-variant"></div>
+<div class="ml-8 z-10 shrink-0"><div class="tree-node bg-surface text-on-surface rounded-lg px-6 py-4 border-2 border-outline hover:border-on-surface transition-colors cursor-pointer w-56 text-center z-10 shrink-0">
+        <span class="font-body-md text-body-md block font-medium leading-tight">Abrego</span>
+        <span class="text-[10px] opacity-80 block mt-1 leading-tight">Municipio</span>
+    </div></div>
+<div class="w-8 h-[2px] bg-outline-variant shrink-0"></div>
+<div class="flex flex-col relative shrink-0">
+<div class="flex items-center relative py-2">
+<div class="absolute left-0 top-1/2 bottom-0 w-[2px] bg-outline-variant"></div>
+<div class="absolute left-0 top-1/2 w-6 h-[2px] bg-outline-variant"></div>
+<div class="ml-6 z-10 shrink-0"><div class="tree-node bg-surface-bright text-secondary rounded-lg px-6 py-4 border border-outline-variant hover:border-on-surface transition-colors cursor-pointer w-56 text-center z-10 shrink-0">
+        <span class="font-body-md text-body-md block font-medium leading-tight">Protección</span>
+        
+    </div></div>
+</div>
+<div class="flex items-center relative py-2">
+<div class="absolute left-0 top-0 bottom-0 w-[2px] bg-outline-variant"></div>
+<div class="absolute left-0 top-1/2 w-6 h-[2px] bg-outline-variant"></div>
+<div class="ml-6 z-10 shrink-0"><div class="tree-node bg-surface-bright text-secondary rounded-lg px-6 py-4 border border-outline-variant hover:border-on-surface transition-colors cursor-pointer w-56 text-center z-10 shrink-0">
+        <span class="font-body-md text-body-md block font-medium leading-tight">Salud</span>
+        
+    </div></div>
+</div>
+<div class="flex items-center relative py-2">
+<div class="absolute left-0 top-0 bottom-1/2 w-[2px] bg-outline-variant"></div>
+<div class="absolute left-0 top-1/2 w-6 h-[2px] bg-outline-variant"></div>
+<div class="ml-6 z-10 shrink-0"><div class="tree-node bg-surface-bright text-secondary rounded-lg px-6 py-4 border border-outline-variant hover:border-on-surface transition-colors cursor-pointer w-56 text-center z-10 shrink-0">
+        <span class="font-body-md text-body-md block font-medium leading-tight">Cash Multipropósito</span>
+        
+    </div></div>
+</div>
+</div>
+</div>
+<div class="flex items-center relative py-4">
+<div class="absolute left-0 top-0 bottom-0 w-[2px] bg-outline-variant"></div>
+<div class="absolute left-0 top-1/2 w-8 h-[2px] bg-outline-variant"></div>
+<div class="ml-8 z-10 shrink-0"><div class="tree-node bg-surface text-on-surface rounded-lg px-6 py-4 border-2 border-outline hover:border-on-surface transition-colors cursor-pointer w-56 text-center z-10 shrink-0">
+        <span class="font-body-md text-body-md block font-medium leading-tight">Harací</span>
+        <span class="text-[10px] opacity-80 block mt-1 leading-tight">Municipio</span>
+    </div></div>
+<div class="w-8 h-[2px] bg-outline-variant shrink-0"></div>
+<div class="flex flex-col relative shrink-0">
+<div class="flex items-center relative py-2">
+<div class="absolute left-0 top-1/2 bottom-0 w-[2px] bg-outline-variant"></div>
+<div class="absolute left-0 top-1/2 w-6 h-[2px] bg-outline-variant"></div>
+<div class="ml-6 z-10 shrink-0"><div class="tree-node bg-surface-bright text-secondary rounded-lg px-6 py-4 border border-outline-variant hover:border-on-surface transition-colors cursor-pointer w-56 text-center z-10 shrink-0">
+        <span class="font-body-md text-body-md block font-medium leading-tight">Protección</span>
+        
+    </div></div>
+</div>
+<div class="flex items-center relative py-2">
+<div class="absolute left-0 top-0 bottom-0 w-[2px] bg-outline-variant"></div>
+<div class="absolute left-0 top-1/2 w-6 h-[2px] bg-outline-variant"></div>
+<div class="ml-6 z-10 shrink-0"><div class="tree-node bg-surface-bright text-secondary rounded-lg px-6 py-4 border border-outline-variant hover:border-on-surface transition-colors cursor-pointer w-56 text-center z-10 shrink-0">
+        <span class="font-body-md text-body-md block font-medium leading-tight">Salud</span>
+        
+    </div></div>
+</div>
+<div class="flex items-center relative py-2">
+<div class="absolute left-0 top-0 bottom-1/2 w-[2px] bg-outline-variant"></div>
+<div class="absolute left-0 top-1/2 w-6 h-[2px] bg-outline-variant"></div>
+<div class="ml-6 z-10 shrink-0"><div class="tree-node bg-surface-bright text-secondary rounded-lg px-6 py-4 border border-outline-variant hover:border-on-surface transition-colors cursor-pointer w-56 text-center z-10 shrink-0">
+        <span class="font-body-md text-body-md block font-medium leading-tight">Cash Multipropósito</span>
+        
+    </div></div>
+</div>
+</div>
+</div>
+<div class="flex items-center relative py-4">
+<div class="absolute left-0 top-0 bottom-0 w-[2px] bg-outline-variant"></div>
+<div class="absolute left-0 top-1/2 w-8 h-[2px] bg-outline-variant"></div>
+<div class="ml-8 z-10 shrink-0"><div class="tree-node bg-surface text-on-surface rounded-lg px-6 py-4 border-2 border-outline hover:border-on-surface transition-colors cursor-pointer w-56 text-center z-10 shrink-0">
+        <span class="font-body-md text-body-md block font-medium leading-tight">Teorama</span>
+        <span class="text-[10px] opacity-80 block mt-1 leading-tight">Municipio</span>
+    </div></div>
+<div class="w-8 h-[2px] bg-outline-variant shrink-0"></div>
+<div class="flex flex-col relative shrink-0">
+<div class="flex items-center relative py-2">
+<div class="absolute left-0 top-1/2 bottom-0 w-[2px] bg-outline-variant"></div>
+<div class="absolute left-0 top-1/2 w-6 h-[2px] bg-outline-variant"></div>
+<div class="ml-6 z-10 shrink-0"><div class="tree-node bg-surface-bright text-secondary rounded-lg px-6 py-4 border border-outline-variant hover:border-on-surface transition-colors cursor-pointer w-56 text-center z-10 shrink-0">
+        <span class="font-body-md text-body-md block font-medium leading-tight">Protección</span>
+        
+    </div></div>
+</div>
+<div class="flex items-center relative py-2">
+<div class="absolute left-0 top-0 bottom-0 w-[2px] bg-outline-variant"></div>
+<div class="absolute left-0 top-1/2 w-6 h-[2px] bg-outline-variant"></div>
+<div class="ml-6 z-10 shrink-0"><div class="tree-node bg-surface-bright text-secondary rounded-lg px-6 py-4 border border-outline-variant hover:border-on-surface transition-colors cursor-pointer w-56 text-center z-10 shrink-0">
+        <span class="font-body-md text-body-md block font-medium leading-tight">Salud</span>
+        
+    </div></div>
+</div>
+<div class="flex items-center relative py-2">
+<div class="absolute left-0 top-0 bottom-1/2 w-[2px] bg-outline-variant"></div>
+<div class="absolute left-0 top-1/2 w-6 h-[2px] bg-outline-variant"></div>
+<div class="ml-6 z-10 shrink-0"><div class="tree-node bg-surface-bright text-secondary rounded-lg px-6 py-4 border border-outline-variant hover:border-on-surface transition-colors cursor-pointer w-56 text-center z-10 shrink-0">
+        <span class="font-body-md text-body-md block font-medium leading-tight">Cash Multipropósito</span>
+        
+    </div></div>
+</div>
+</div>
+</div>
+<div class="flex items-center relative py-4">
+<div class="absolute left-0 top-0 bottom-0 w-[2px] bg-outline-variant"></div>
+<div class="absolute left-0 top-1/2 w-8 h-[2px] bg-outline-variant"></div>
+<div class="ml-8 z-10 shrink-0"><div class="tree-node bg-surface text-on-surface rounded-lg px-6 py-4 border-2 border-outline hover:border-on-surface transition-colors cursor-pointer w-56 text-center z-10 shrink-0">
+        <span class="font-body-md text-body-md block font-medium leading-tight">La Playa de Belén</span>
+        <span class="text-[10px] opacity-80 block mt-1 leading-tight">Municipio</span>
+    </div></div>
+<div class="w-8 h-[2px] bg-outline-variant shrink-0"></div>
+<div class="flex flex-col relative shrink-0">
+<div class="flex items-center relative py-2">
+<div class="absolute left-0 top-1/2 bottom-0 w-[2px] bg-outline-variant"></div>
+<div class="absolute left-0 top-1/2 w-6 h-[2px] bg-outline-variant"></div>
+<div class="ml-6 z-10 shrink-0"><div class="tree-node bg-surface-bright text-secondary rounded-lg px-6 py-4 border border-outline-variant hover:border-on-surface transition-colors cursor-pointer w-56 text-center z-10 shrink-0">
+        <span class="font-body-md text-body-md block font-medium leading-tight">Protección</span>
+        
+    </div></div>
+</div>
+<div class="flex items-center relative py-2">
+<div class="absolute left-0 top-0 bottom-0 w-[2px] bg-outline-variant"></div>
+<div class="absolute left-0 top-1/2 w-6 h-[2px] bg-outline-variant"></div>
+<div class="ml-6 z-10 shrink-0"><div class="tree-node bg-surface-bright text-secondary rounded-lg px-6 py-4 border border-outline-variant hover:border-on-surface transition-colors cursor-pointer w-56 text-center z-10 shrink-0">
+        <span class="font-body-md text-body-md block font-medium leading-tight">Salud</span>
+        
+    </div></div>
+</div>
+<div class="flex items-center relative py-2">
+<div class="absolute left-0 top-0 bottom-1/2 w-[2px] bg-outline-variant"></div>
+<div class="absolute left-0 top-1/2 w-6 h-[2px] bg-outline-variant"></div>
+<div class="ml-6 z-10 shrink-0"><div class="tree-node bg-surface-bright text-secondary rounded-lg px-6 py-4 border border-outline-variant hover:border-on-surface transition-colors cursor-pointer w-56 text-center z-10 shrink-0">
+        <span class="font-body-md text-body-md block font-medium leading-tight">Cash Multipropósito</span>
+        
+    </div></div>
+</div>
+</div>
+</div>
+<div class="flex items-center relative py-4">
+<div class="absolute left-0 top-0 bottom-1/2 w-[2px] bg-outline-variant"></div>
+<div class="absolute left-0 top-1/2 w-8 h-[2px] bg-outline-variant"></div>
+<div class="ml-8 z-10 shrink-0"><div class="tree-node bg-surface text-on-surface rounded-lg px-6 py-4 border-2 border-outline hover:border-on-surface transition-colors cursor-pointer w-56 text-center z-10 shrink-0">
+        <span class="font-body-md text-body-md block font-medium leading-tight">Convención</span>
+        <span class="text-[10px] opacity-80 block mt-1 leading-tight">Municipio</span>
+    </div></div>
+<div class="w-8 h-[2px] bg-outline-variant shrink-0"></div>
+<div class="flex flex-col relative shrink-0">
+<div class="flex items-center relative py-2">
+<div class="absolute left-0 top-1/2 bottom-0 w-[2px] bg-outline-variant"></div>
+<div class="absolute left-0 top-1/2 w-6 h-[2px] bg-outline-variant"></div>
+<div class="ml-6 z-10 shrink-0"><div class="tree-node bg-surface-bright text-secondary rounded-lg px-6 py-4 border border-outline-variant hover:border-on-surface transition-colors cursor-pointer w-56 text-center z-10 shrink-0">
+        <span class="font-body-md text-body-md block font-medium leading-tight">Protección</span>
+        
+    </div></div>
+</div>
+<div class="flex items-center relative py-2">
+<div class="absolute left-0 top-0 bottom-0 w-[2px] bg-outline-variant"></div>
+<div class="absolute left-0 top-1/2 w-6 h-[2px] bg-outline-variant"></div>
+<div class="ml-6 z-10 shrink-0"><div class="tree-node bg-surface-bright text-secondary rounded-lg px-6 py-4 border border-outline-variant hover:border-on-surface transition-colors cursor-pointer w-56 text-center z-10 shrink-0">
+        <span class="font-body-md text-body-md block font-medium leading-tight">Salud</span>
+        
+    </div></div>
+</div>
+<div class="flex items-center relative py-2">
+<div class="absolute left-0 top-0 bottom-1/2 w-[2px] bg-outline-variant"></div>
+<div class="absolute left-0 top-1/2 w-6 h-[2px] bg-outline-variant"></div>
+<div class="ml-6 z-10 shrink-0"><div class="tree-node bg-surface-bright text-secondary rounded-lg px-6 py-4 border border-outline-variant hover:border-on-surface transition-colors cursor-pointer w-56 text-center z-10 shrink-0">
+        <span class="font-body-md text-body-md block font-medium leading-tight">Cash Multipropósito</span>
+        
+    </div></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+            
+            <div id="tree-componente" class="min-w-[1400px] hidden items-center justify-start py-10 px-4">
+<div class="tree-node bg-primary text-on-primary rounded-lg px-8 py-6 border-2 border-transparent hover:border-on-surface transition-colors cursor-pointer w-72 text-center z-10 shrink-0">
+        <span class="font-headline-md text-headline-md block leading-tight">Proyecto ConEsperanza</span>
+        <span class="text-xs text-outline-variant block mt-1">Resumen Ejecutivo y Contexto</span>
+    </div>
+<div class="w-12 h-[2px] bg-outline-variant shrink-0"></div>
+<div class="flex flex-col relative shrink-0">
+<div class="flex items-center relative py-8">
+<div class="absolute left-0 top-1/2 bottom-0 w-[2px] bg-outline-variant"></div>
+<div class="absolute left-0 top-1/2 w-12 h-[2px] bg-outline-variant"></div>
+<div class="ml-12 z-10 shrink-0"><div class="tree-node bg-diagram-blue text-on-primary rounded-lg px-6 py-4 border-2 border-transparent hover:border-on-surface transition-colors cursor-pointer w-56 text-center z-10 shrink-0">
+        <span class="font-body-md text-body-md block font-medium leading-tight">Protección</span>
+        <span class="text-[10px] opacity-80 block mt-1 leading-tight">Componente</span>
+    </div></div>
+<div class="w-12 h-[2px] bg-outline-variant shrink-0"></div>
+<div class="flex flex-col relative shrink-0">
+<div class="flex items-center relative py-4">
+<div class="absolute left-0 top-1/2 bottom-0 w-[2px] bg-outline-variant"></div>
+<div class="absolute left-0 top-1/2 w-8 h-[2px] bg-outline-variant"></div>
+<div class="ml-8 z-10 shrink-0"><div class="tree-node bg-surface-bright text-on-surface rounded-lg px-6 py-4 border-2 border-outline hover:border-on-surface transition-colors cursor-pointer w-56 text-center z-10 shrink-0">
+        <span class="font-body-md text-body-md block font-medium leading-tight">Prevención y Mitigación de Riesgos</span>
+        <span class="text-[10px] opacity-80 block mt-1 leading-tight">(Ind 74)</span>
+    </div></div>
+<div class="w-8 h-[2px] bg-outline-variant shrink-0"></div>
+<div class="flex flex-col relative shrink-0">
+<div class="flex items-center relative py-2">
+<div class="absolute left-0 top-1/2 bottom-0 w-[2px] bg-outline-variant"></div>
+<div class="absolute left-0 top-1/2 w-6 h-[2px] bg-outline-variant"></div>
+<div class="ml-6 z-10 shrink-0"><div class="tree-node bg-surface text-secondary rounded-lg px-6 py-4 border border-outline hover:border-on-surface transition-colors cursor-pointer w-56 text-center z-10 shrink-0">
+        <span class="font-body-md text-body-md block font-medium leading-tight">Sensibilización comunitaria sobre mecanismos</span>
+        
+    </div></div>
+</div>
+<div class="flex items-center relative py-2">
+<div class="absolute left-0 top-0 bottom-1/2 w-[2px] bg-outline-variant"></div>
+<div class="absolute left-0 top-1/2 w-6 h-[2px] bg-outline-variant"></div>
+<div class="ml-6 z-10 shrink-0"><div class="tree-node bg-surface text-secondary rounded-lg px-6 py-4 border border-outline hover:border-on-surface transition-colors cursor-pointer w-56 text-center z-10 shrink-0">
+        <span class="font-body-md text-body-md block font-medium leading-tight">Entrega de kits CARE Package a hogares</span>
+        
+    </div></div>
+</div>
+</div>
+</div>
+<div class="flex items-center relative py-4">
+<div class="absolute left-0 top-0 bottom-0 w-[2px] bg-outline-variant"></div>
+<div class="absolute left-0 top-1/2 w-8 h-[2px] bg-outline-variant"></div>
+<div class="ml-8 z-10 shrink-0"><div class="tree-node bg-surface-bright text-on-surface rounded-lg px-6 py-4 border-2 border-outline hover:border-on-surface transition-colors cursor-pointer w-56 text-center z-10 shrink-0">
+        <span class="font-body-md text-body-md block font-medium leading-tight">Apoyo Psicosocial y Espacios Seguros</span>
+        <span class="text-[10px] opacity-80 block mt-1 leading-tight">(Ind 65)</span>
+    </div></div>
+<div class="w-8 h-[2px] bg-outline-variant shrink-0"></div>
+<div class="flex flex-col relative shrink-0">
+<div class="flex items-center relative py-2">
+<div class="absolute left-0 top-1/2 bottom-0 w-[2px] bg-outline-variant"></div>
+<div class="absolute left-0 top-1/2 w-6 h-[2px] bg-outline-variant"></div>
+<div class="ml-6 z-10 shrink-0"><div class="tree-node bg-surface text-secondary rounded-lg px-6 py-4 border border-outline hover:border-on-surface transition-colors cursor-pointer w-56 text-center z-10 shrink-0">
+        <span class="font-body-md text-body-md block font-medium leading-tight">Gestión de casos para víctimas de violencia</span>
+        
+    </div></div>
+</div>
+<div class="flex items-center relative py-2">
+<div class="absolute left-0 top-0 bottom-1/2 w-[2px] bg-outline-variant"></div>
+<div class="absolute left-0 top-1/2 w-6 h-[2px] bg-outline-variant"></div>
+<div class="ml-6 z-10 shrink-0"><div class="tree-node bg-surface text-secondary rounded-lg px-6 py-4 border border-outline hover:border-on-surface transition-colors cursor-pointer w-56 text-center z-10 shrink-0">
+        <span class="font-body-md text-body-md block font-medium leading-tight">Fortalecimiento de espacios seguros</span>
+        
+    </div></div>
+</div>
+</div>
+</div>
+<div class="flex items-center relative py-4">
+<div class="absolute left-0 top-0 bottom-1/2 w-[2px] bg-outline-variant"></div>
+<div class="absolute left-0 top-1/2 w-8 h-[2px] bg-outline-variant"></div>
+<div class="ml-8 z-10 shrink-0"><div class="tree-node bg-surface-bright text-on-surface rounded-lg px-6 py-4 border-2 border-outline hover:border-on-surface transition-colors cursor-pointer w-56 text-center z-10 shrink-0">
+        <span class="font-body-md text-body-md block font-medium leading-tight">Asistencia Monetaria</span>
+        <span class="text-[10px] opacity-80 block mt-1 leading-tight">(Ind C-CA16)</span>
+    </div></div>
+<div class="w-8 h-[2px] bg-outline-variant shrink-0"></div>
+<div class="flex flex-col relative shrink-0">
+<div class="flex items-center relative py-2">
+<div class="absolute left-0 top-1/2 w-6 h-[2px] bg-outline-variant"></div>
+<div class="ml-6 z-10 shrink-0"><div class="tree-node bg-surface text-secondary rounded-lg px-6 py-4 border border-outline hover:border-on-surface transition-colors cursor-pointer w-56 text-center z-10 shrink-0">
+        <span class="font-body-md text-body-md block font-medium leading-tight">Entrega de cash a personas en riesgo</span>
+        
+    </div></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="flex items-center relative py-8">
+<div class="absolute left-0 top-0 bottom-0 w-[2px] bg-outline-variant"></div>
+<div class="absolute left-0 top-1/2 w-12 h-[2px] bg-outline-variant"></div>
+<div class="ml-12 z-10 shrink-0"><div class="tree-node bg-diagram-blue text-on-primary rounded-lg px-6 py-4 border-2 border-transparent hover:border-on-surface transition-colors cursor-pointer w-56 text-center z-10 shrink-0">
+        <span class="font-body-md text-body-md block font-medium leading-tight">Salud</span>
+        <span class="text-[10px] opacity-80 block mt-1 leading-tight">Componente</span>
+    </div></div>
+<div class="w-12 h-[2px] bg-outline-variant shrink-0"></div>
+<div class="flex flex-col relative shrink-0">
+<div class="flex items-center relative py-4">
+<div class="absolute left-0 top-1/2 bottom-0 w-[2px] bg-outline-variant"></div>
+<div class="absolute left-0 top-1/2 w-8 h-[2px] bg-outline-variant"></div>
+<div class="ml-8 z-10 shrink-0"><div class="tree-node bg-surface-bright text-on-surface rounded-lg px-6 py-4 border-2 border-outline hover:border-on-surface transition-colors cursor-pointer w-56 text-center z-10 shrink-0">
+        <span class="font-body-md text-body-md block font-medium leading-tight">Acceso a Atención Primaria</span>
+        <span class="text-[10px] opacity-80 block mt-1 leading-tight">(Ind 28)</span>
+    </div></div>
+<div class="w-8 h-[2px] bg-outline-variant shrink-0"></div>
+<div class="flex flex-col relative shrink-0">
+<div class="flex items-center relative py-2">
+<div class="absolute left-0 top-1/2 bottom-0 w-[2px] bg-outline-variant"></div>
+<div class="absolute left-0 top-1/2 w-6 h-[2px] bg-outline-variant"></div>
+<div class="ml-6 z-10 shrink-0"><div class="tree-node bg-surface text-secondary rounded-lg px-6 py-4 border border-outline hover:border-on-surface transition-colors cursor-pointer w-56 text-center z-10 shrink-0">
+        <span class="font-body-md text-body-md block font-medium leading-tight">Prestación de consultas médicas</span>
+        
+    </div></div>
+</div>
+<div class="flex items-center relative py-2">
+<div class="absolute left-0 top-0 bottom-1/2 w-[2px] bg-outline-variant"></div>
+<div class="absolute left-0 top-1/2 w-6 h-[2px] bg-outline-variant"></div>
+<div class="ml-6 z-10 shrink-0"><div class="tree-node bg-surface text-secondary rounded-lg px-6 py-4 border border-outline hover:border-on-surface transition-colors cursor-pointer w-56 text-center z-10 shrink-0">
+        <span class="font-body-md text-body-md block font-medium leading-tight">Entrega de kits postparto</span>
+        
+    </div></div>
+</div>
+</div>
+</div>
+<div class="flex items-center relative py-4">
+<div class="absolute left-0 top-0 bottom-1/2 w-[2px] bg-outline-variant"></div>
+<div class="absolute left-0 top-1/2 w-8 h-[2px] bg-outline-variant"></div>
+<div class="ml-8 z-10 shrink-0"><div class="tree-node bg-surface-bright text-on-surface rounded-lg px-6 py-4 border-2 border-outline hover:border-on-surface transition-colors cursor-pointer w-56 text-center z-10 shrink-0">
+        <span class="font-body-md text-body-md block font-medium leading-tight">Asistencia a Sobrevivientes</span>
+        <span class="text-[10px] opacity-80 block mt-1 leading-tight">(Ind 43)</span>
+    </div></div>
+<div class="w-8 h-[2px] bg-outline-variant shrink-0"></div>
+<div class="flex flex-col relative shrink-0">
+<div class="flex items-center relative py-2">
+<div class="absolute left-0 top-1/2 w-6 h-[2px] bg-outline-variant"></div>
+<div class="ml-6 z-10 shrink-0"><div class="tree-node bg-surface text-secondary rounded-lg px-6 py-4 border border-outline hover:border-on-surface transition-colors cursor-pointer w-56 text-center z-10 shrink-0">
+        <span class="font-body-md text-body-md block font-medium leading-tight">Servicios médicos a víctimas VBG</span>
+        
+    </div></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="flex items-center relative py-8">
+<div class="absolute left-0 top-0 bottom-1/2 w-[2px] bg-outline-variant"></div>
+<div class="absolute left-0 top-1/2 w-12 h-[2px] bg-outline-variant"></div>
+<div class="ml-12 z-10 shrink-0"><div class="tree-node bg-diagram-blue text-on-primary rounded-lg px-6 py-4 border-2 border-transparent hover:border-on-surface transition-colors cursor-pointer w-56 text-center z-10 shrink-0">
+        <span class="font-body-md text-body-md block font-medium leading-tight">Cash Multipropósito</span>
+        <span class="text-[10px] opacity-80 block mt-1 leading-tight">Componente</span>
+    </div></div>
+<div class="w-12 h-[2px] bg-outline-variant shrink-0"></div>
+<div class="flex flex-col relative shrink-0">
+<div class="flex items-center relative py-4">
+<div class="absolute left-0 top-1/2 w-8 h-[2px] bg-outline-variant"></div>
+<div class="ml-8 z-10 shrink-0"><div class="tree-node bg-surface-bright text-on-surface rounded-lg px-6 py-4 border-2 border-outline hover:border-on-surface transition-colors cursor-pointer w-56 text-center z-10 shrink-0">
+        <span class="font-body-md text-body-md block font-medium leading-tight">Transferencias Monetarias</span>
+        <span class="text-[10px] opacity-80 block mt-1 leading-tight">(Ind 117)</span>
+    </div></div>
+<div class="w-8 h-[2px] bg-outline-variant shrink-0"></div>
+<div class="flex flex-col relative shrink-0">
+<div class="flex items-center relative py-2">
+<div class="absolute left-0 top-1/2 w-6 h-[2px] bg-outline-variant"></div>
+<div class="ml-6 z-10 shrink-0"><div class="tree-node bg-surface text-secondary rounded-lg px-6 py-4 border border-outline hover:border-on-surface transition-colors cursor-pointer w-56 text-center z-10 shrink-0">
+        <span class="font-body-md text-body-md block font-medium leading-tight">Provisión y entrega de Cash</span>
+        
+    </div></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+        </div>
+    </section>
+
+    <!-- ================= TAB: MATRIZ DE EVIDENCIAS ================= -->
+    <section id="section-evidencias" class="hidden transition-all duration-300">
+        <!-- Header Text -->
+        <div class="mb-12 text-left">
+            <h1 class="font-display-lg text-display-lg text-on-background mb-4">Matriz de Evidencias</h1>
+            <p class="font-body-lg text-body-lg text-secondary max-w-3xl">
+                Repositorio centralizado para el seguimiento de indicadores, recolección de evidencias y trazabilidad de metas.
+            </p>
+        </div>
+        
+        <!-- Search and Filters (Placeholder) -->
+        <div class="flex flex-col md:flex-row justify-between items-center gap-4 mb-8">
+            <div class="relative w-full md:w-96">
+                <input type="text" placeholder="Buscar por componente o indicador..." class="w-full bg-surface-bright border border-outline px-4 py-3 rounded-full text-on-surface focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition-all">
+                <div class="absolute right-4 top-1/2 transform -translate-y-1/2 text-outline-variant">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+                </div>
+            </div>
+            <div class="flex gap-2">
+                <button class="bg-surface-bright border border-outline text-on-surface px-4 py-2 rounded-full hover:bg-outline-variant hover:text-white transition-colors text-sm font-medium">Filtrar por Componente</button>
+            </div>
+        </div>
+
+        <!-- Table Container -->
+        <div class="bg-surface rounded-2xl shadow-sm border border-outline overflow-hidden">
+            <div class="overflow-x-auto">
+                <table class="w-full text-left border-collapse" id="evidences-table">
+                    <thead>
+                        <tr class="bg-surface-bright border-b border-outline">
+                            <th class="py-4 px-6 font-semibold text-secondary text-sm">Componente / resultado</th>
+                            <th class="py-4 px-6 font-semibold text-secondary text-sm">Indicador</th>
+                            <th class="py-4 px-6 font-semibold text-secondary text-sm text-center">Metas</th>
+                            <th class="py-4 px-6 font-semibold text-secondary text-sm">Medio de verificación</th>
+                            <th class="py-4 px-6 font-semibold text-secondary text-sm text-center">Evidencia / link</th>
+                        </tr>
+                    </thead>
+                    <tbody class="divide-y divide-outline" id="evidences-tbody">
+
+        <tr class="hover:bg-surface-bright/50 transition-colors group">
+            <td class="py-4 px-6 border-b border-outline">
+                <div class="flex flex-col gap-2 items-start">
+                    <span class="px-2 py-1 text-[10px] font-bold uppercase rounded border bg-primary text-on-primary border-transparent">Global</span>
+                    <span class="text-sm font-medium text-on-surface">Objetivo General</span>
+                </div>
+            </td>
+            <td class="py-4 px-6 border-b border-outline">
+                <span class="text-xs text-secondary line-clamp-3" title="% de participantes que afirman que la ayuda humanitaria se presta de manera segura, accesible, responsable y participativa">% de participantes que afirman que la ayuda humanitaria se presta de manera segura, accesible, responsable y participativa</span>
+            </td>
+            <td class="py-4 px-6 border-b border-outline min-w-[120px]">
+                Meta: 80%<br><span class='text-[10px] text-secondary'>(Aplica porcentaje general)</span>
+            </td>
+            <td class="py-4 px-6 border-b border-outline">
+                <span class="text-xs text-secondary">Encuestas de Satisfacción y PDM</span>
+            </td>
+            <td class="py-4 px-6 border-b border-outline text-center">
+                <span class="inline-flex items-center gap-1 bg-[#FFF9F2] border border-[#FFE4D6] text-primary px-3 py-1.5 rounded text-[11px] font-semibold whitespace-nowrap">
+                    <svg class="w-3.5 h-3.5 text-primary" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"></path></svg>
+                    Próximamente links de evidencia
+                </span>
+            </td>
+        </tr>
+
+        <tr class="hover:bg-surface-bright/50 transition-colors group">
+            <td class="py-4 px-6 border-b border-outline">
+                <div class="flex flex-col gap-2 items-start">
+                    <span class="px-2 py-1 text-[10px] font-bold uppercase rounded border bg-[#FFF5F0] text-primary border-[#FFE4D6]">Protección</span>
+                    <span class="text-sm font-medium text-on-surface">1.1 Sensibilización comunitaria y prevención de riesgos</span>
+                </div>
+            </td>
+            <td class="py-4 px-6 border-b border-outline">
+                <span class="text-xs text-secondary line-clamp-3" title="C-CA19. INDICATOR 74: Number of individuals who received life‑saving protection support...">C-CA19. INDICATOR 74: Number of individuals who received life‑saving protection support...</span>
+            </td>
+            <td class="py-4 px-6 border-b border-outline min-w-[120px]">
+                <div class='flex flex-col gap-1'><div class='flex justify-between'><span class='text-xs'>Doble:</span><span class='font-semibold text-primary'>8.000</span></div><div class='flex justify-between'><span class='text-xs'>Únicos:</span><span class='font-semibold text-secondary'>8.000</span></div></div>
+            </td>
+            <td class="py-4 px-6 border-b border-outline">
+                <span class="text-xs text-secondary">Listados de asistencia, actas de actividad masiva, registro en CommCare, BBDD CARE COL, archivo eventos</span>
+            </td>
+            <td class="py-4 px-6 border-b border-outline text-center">
+                <span class="inline-flex items-center gap-1 bg-[#FFF9F2] border border-[#FFE4D6] text-primary px-3 py-1.5 rounded text-[11px] font-semibold whitespace-nowrap">
+                    <svg class="w-3.5 h-3.5 text-primary" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"></path></svg>
+                    Próximamente links de evidencia
+                </span>
+            </td>
+        </tr>
+
+        <tr class="hover:bg-surface-bright/50 transition-colors group">
+            <td class="py-4 px-6 border-b border-outline">
+                <div class="flex flex-col gap-2 items-start">
+                    <span class="px-2 py-1 text-[10px] font-bold uppercase rounded border bg-[#FFF5F0] text-primary border-[#FFE4D6]">Protección</span>
+                    <span class="text-sm font-medium text-on-surface">1.2 Gestión de casos para víctimas de violencia</span>
+                </div>
+            </td>
+            <td class="py-4 px-6 border-b border-outline">
+                <span class="text-xs text-secondary line-clamp-3" title="C-CA11. INDICATOR 65. Number of people receiving violence psycho-social support and/or violence case management">C-CA11. INDICATOR 65. Number of people receiving violence psycho-social support and/or violence case management</span>
+            </td>
+            <td class="py-4 px-6 border-b border-outline min-w-[120px]">
+                <div class='flex flex-col gap-1'><div class='flex justify-between'><span class='text-xs'>Doble:</span><span class='font-semibold text-primary'>1.152</span></div><div class='flex justify-between'><span class='text-xs'>Únicos:</span><span class='font-semibold text-secondary'>0</span></div></div>
+            </td>
+            <td class="py-4 px-6 border-b border-outline">
+                <span class="text-xs text-secondary">Registro de ciclo de gestión de caso y BBDD monitoreo CARE COL</span>
+            </td>
+            <td class="py-4 px-6 border-b border-outline text-center">
+                <span class="inline-flex items-center gap-1 bg-[#FFF9F2] border border-[#FFE4D6] text-primary px-3 py-1.5 rounded text-[11px] font-semibold whitespace-nowrap">
+                    <svg class="w-3.5 h-3.5 text-primary" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"></path></svg>
+                    Próximamente links de evidencia
+                </span>
+            </td>
+        </tr>
+
+        <tr class="hover:bg-surface-bright/50 transition-colors group">
+            <td class="py-4 px-6 border-b border-outline">
+                <div class="flex flex-col gap-2 items-start">
+                    <span class="px-2 py-1 text-[10px] font-bold uppercase rounded border bg-[#FFF5F0] text-primary border-[#FFE4D6]">Protección</span>
+                    <span class="text-sm font-medium text-on-surface">1.3 Asistencia monetaria (Cash de protección)</span>
+                </div>
+            </td>
+            <td class="py-4 px-6 border-b border-outline">
+                <span class="text-xs text-secondary line-clamp-3" title="C-CA16. INDICATOR. Number of people affected benefiting from emergency cash assistance...">C-CA16. INDICATOR. Number of people affected benefiting from emergency cash assistance...</span>
+            </td>
+            <td class="py-4 px-6 border-b border-outline min-w-[120px]">
+                <div class='flex flex-col gap-1'><div class='flex justify-between'><span class='text-xs'>Doble:</span><span class='font-semibold text-primary'>403</span></div><div class='flex justify-between'><span class='text-xs'>Únicos:</span><span class='font-semibold text-secondary'>0</span></div></div>
+            </td>
+            <td class="py-4 px-6 border-b border-outline">
+                <span class="text-xs text-secondary">Registro de priorización, tirillas de proveedor financiero, BBDD monitoreo y coordinación PTM</span>
+            </td>
+            <td class="py-4 px-6 border-b border-outline text-center">
+                <span class="inline-flex items-center gap-1 bg-[#FFF9F2] border border-[#FFE4D6] text-primary px-3 py-1.5 rounded text-[11px] font-semibold whitespace-nowrap">
+                    <svg class="w-3.5 h-3.5 text-primary" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"></path></svg>
+                    Próximamente links de evidencia
+                </span>
+            </td>
+        </tr>
+
+        <tr class="hover:bg-surface-bright/50 transition-colors group">
+            <td class="py-4 px-6 border-b border-outline">
+                <div class="flex flex-col gap-2 items-start">
+                    <span class="px-2 py-1 text-[10px] font-bold uppercase rounded border bg-[#FFF5F0] text-primary border-[#FFE4D6]">Protección</span>
+                    <span class="text-sm font-medium text-on-surface">1.4 Entrega de kits CARE Package</span>
+                </div>
+            </td>
+            <td class="py-4 px-6 border-b border-outline">
+                <span class="text-xs text-secondary line-clamp-3" title="C-CA19. INDICATOR 74: Number of individuals who received life‑saving protection support...">C-CA19. INDICATOR 74: Number of individuals who received life‑saving protection support...</span>
+            </td>
+            <td class="py-4 px-6 border-b border-outline min-w-[120px]">
+                <div class='flex flex-col gap-1'><div class='flex justify-between'><span class='text-xs'>Doble:</span><span class='font-semibold text-primary'>9.600</span></div><div class='flex justify-between'><span class='text-xs'>Únicos:</span><span class='font-semibold text-secondary'>7.200</span></div></div>
+            </td>
+            <td class="py-4 px-6 border-b border-outline">
+                <span class="text-xs text-secondary">Registro en sistema, listados de distribución de kits, BBDD CARE COL</span>
+            </td>
+            <td class="py-4 px-6 border-b border-outline text-center">
+                <span class="inline-flex items-center gap-1 bg-[#FFF9F2] border border-[#FFE4D6] text-primary px-3 py-1.5 rounded text-[11px] font-semibold whitespace-nowrap">
+                    <svg class="w-3.5 h-3.5 text-primary" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"></path></svg>
+                    Próximamente links de evidencia
+                </span>
+            </td>
+        </tr>
+
+        <tr class="hover:bg-surface-bright/50 transition-colors group">
+            <td class="py-4 px-6 border-b border-outline">
+                <div class="flex flex-col gap-2 items-start">
+                    <span class="px-2 py-1 text-[10px] font-bold uppercase rounded border bg-[#FFF5F0] text-primary border-[#FFE4D6]">Protección</span>
+                    <span class="text-sm font-medium text-on-surface">1.5 Fortalecimiento de espacios seguros</span>
+                </div>
+            </td>
+            <td class="py-4 px-6 border-b border-outline">
+                <span class="text-xs text-secondary line-clamp-3" title="C-CA11. INDICATOR 65. Number of people receiving violence psycho-social support and/or violence case management">C-CA11. INDICATOR 65. Number of people receiving violence psycho-social support and/or violence case management</span>
+            </td>
+            <td class="py-4 px-6 border-b border-outline min-w-[120px]">
+                <div class='flex flex-col gap-1'><div class='flex justify-between'><span class='text-xs'>Doble:</span><span class='font-semibold text-primary'>5.400</span></div><div class='flex justify-between'><span class='text-xs'>Únicos:</span><span class='font-semibold text-secondary'>5.400</span></div></div>
+            </td>
+            <td class="py-4 px-6 border-b border-outline">
+                <span class="text-xs text-secondary">Mapeo/diagnóstico, plan de trabajo, actas de entrega (dotación/mejoras), actas de seguimiento</span>
+            </td>
+            <td class="py-4 px-6 border-b border-outline text-center">
+                <span class="inline-flex items-center gap-1 bg-[#FFF9F2] border border-[#FFE4D6] text-primary px-3 py-1.5 rounded text-[11px] font-semibold whitespace-nowrap">
+                    <svg class="w-3.5 h-3.5 text-primary" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"></path></svg>
+                    Próximamente links de evidencia
+                </span>
+            </td>
+        </tr>
+
+        <tr class="hover:bg-surface-bright/50 transition-colors group">
+            <td class="py-4 px-6 border-b border-outline">
+                <div class="flex flex-col gap-2 items-start">
+                    <span class="px-2 py-1 text-[10px] font-bold uppercase rounded border bg-[#EFF6FF] text-[#1D4ED8] border-[#BFDBFE]">Salud</span>
+                    <span class="text-sm font-medium text-on-surface">2.1 Prestación de atención primaria en salud</span>
+                </div>
+            </td>
+            <td class="py-4 px-6 border-b border-outline">
+                <span class="text-xs text-secondary line-clamp-3" title="C-CA1. INDICATOR 28: Number of primary healthcare consultations provided">C-CA1. INDICATOR 28: Number of primary healthcare consultations provided</span>
+            </td>
+            <td class="py-4 px-6 border-b border-outline min-w-[120px]">
+                <div class='flex flex-col gap-1'><div class='flex justify-between'><span class='text-xs'>Doble:</span><span class='font-semibold text-primary'>1.345</span></div><div class='flex justify-between'><span class='text-xs'>Únicos:</span><span class='font-semibold text-secondary'>1.211</span></div></div>
+            </td>
+            <td class="py-4 px-6 border-b border-outline">
+                <span class="text-xs text-secondary">Voucher de salud, BBDD CARE COL, BBDD proveedor de servicios</span>
+            </td>
+            <td class="py-4 px-6 border-b border-outline text-center">
+                <span class="inline-flex items-center gap-1 bg-[#FFF9F2] border border-[#FFE4D6] text-primary px-3 py-1.5 rounded text-[11px] font-semibold whitespace-nowrap">
+                    <svg class="w-3.5 h-3.5 text-primary" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"></path></svg>
+                    Próximamente links de evidencia
+                </span>
+            </td>
+        </tr>
+
+        <tr class="hover:bg-surface-bright/50 transition-colors group">
+            <td class="py-4 px-6 border-b border-outline">
+                <div class="flex flex-col gap-2 items-start">
+                    <span class="px-2 py-1 text-[10px] font-bold uppercase rounded border bg-[#EFF6FF] text-[#1D4ED8] border-[#BFDBFE]">Salud</span>
+                    <span class="text-sm font-medium text-on-surface">2.2 Entrega de kits postparto</span>
+                </div>
+            </td>
+            <td class="py-4 px-6 border-b border-outline">
+                <span class="text-xs text-secondary line-clamp-3" title="C-CA1. INDICATOR 28: Number of primary healthcare consultations provided">C-CA1. INDICATOR 28: Number of primary healthcare consultations provided</span>
+            </td>
+            <td class="py-4 px-6 border-b border-outline min-w-[120px]">
+                <div class='flex flex-col gap-1'><div class='flex justify-between'><span class='text-xs'>Doble:</span><span class='font-semibold text-primary'>140</span></div><div class='flex justify-between'><span class='text-xs'>Únicos:</span><span class='font-semibold text-secondary'>0</span></div></div>
+            </td>
+            <td class="py-4 px-6 border-b border-outline">
+                <span class="text-xs text-secondary">Registro entrega de kits, listados de distribución, BBDD CARE COL</span>
+            </td>
+            <td class="py-4 px-6 border-b border-outline text-center">
+                <span class="inline-flex items-center gap-1 bg-[#FFF9F2] border border-[#FFE4D6] text-primary px-3 py-1.5 rounded text-[11px] font-semibold whitespace-nowrap">
+                    <svg class="w-3.5 h-3.5 text-primary" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"></path></svg>
+                    Próximamente links de evidencia
+                </span>
+            </td>
+        </tr>
+
+        <tr class="hover:bg-surface-bright/50 transition-colors group">
+            <td class="py-4 px-6 border-b border-outline">
+                <div class="flex flex-col gap-2 items-start">
+                    <span class="px-2 py-1 text-[10px] font-bold uppercase rounded border bg-[#EFF6FF] text-[#1D4ED8] border-[#BFDBFE]">Salud</span>
+                    <span class="text-sm font-medium text-on-surface">2.3 Atención médica a sobrevivientes de violencia</span>
+                </div>
+            </td>
+            <td class="py-4 px-6 border-b border-outline">
+                <span class="text-xs text-secondary line-clamp-3" title="C-CA11. INDICATOR 43: Number of violence survivors receiving medical assistance...">C-CA11. INDICATOR 43: Number of violence survivors receiving medical assistance...</span>
+            </td>
+            <td class="py-4 px-6 border-b border-outline min-w-[120px]">
+                <div class='flex flex-col gap-1'><div class='flex justify-between'><span class='text-xs'>Doble:</span><span class='font-semibold text-primary'>576</span></div><div class='flex justify-between'><span class='text-xs'>Únicos:</span><span class='font-semibold text-secondary'>0</span></div></div>
+            </td>
+            <td class="py-4 px-6 border-b border-outline">
+                <span class="text-xs text-secondary">Voucher de salud, BBDD CARE COL, BBDD proveedor de servicios</span>
+            </td>
+            <td class="py-4 px-6 border-b border-outline text-center">
+                <span class="inline-flex items-center gap-1 bg-[#FFF9F2] border border-[#FFE4D6] text-primary px-3 py-1.5 rounded text-[11px] font-semibold whitespace-nowrap">
+                    <svg class="w-3.5 h-3.5 text-primary" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"></path></svg>
+                    Próximamente links de evidencia
+                </span>
+            </td>
+        </tr>
+
+        <tr class="hover:bg-surface-bright/50 transition-colors group">
+            <td class="py-4 px-6 border-b border-outline">
+                <div class="flex flex-col gap-2 items-start">
+                    <span class="px-2 py-1 text-[10px] font-bold uppercase rounded border bg-[#F0FDF4] text-[#166534] border-[#DCFCE7]">Cash Multipropósito</span>
+                    <span class="text-sm font-medium text-on-surface">3.1 Entrega de Cash Multipropósito</span>
+                </div>
+            </td>
+            <td class="py-4 px-6 border-b border-outline">
+                <span class="text-xs text-secondary line-clamp-3" title="C-CA1. INDICATOR 117: Number of households having received Multi-Purpose Cash (MPC)">C-CA1. INDICATOR 117: Number of households having received Multi-Purpose Cash (MPC)</span>
+            </td>
+            <td class="py-4 px-6 border-b border-outline min-w-[120px]">
+                <div class='flex flex-col gap-1'><div class='flex justify-between'><span class='text-xs'>Doble:</span><span class='font-semibold text-primary'>2.016</span></div><div class='flex justify-between'><span class='text-xs'>Únicos:</span><span class='font-semibold text-secondary'>1.440</span></div></div>
+            </td>
+            <td class="py-4 px-6 border-b border-outline">
+                <span class="text-xs text-secondary">Registro en CommCare, tirillas del proveedor, BBDD entrega de Cash y seguimiento PTM</span>
+            </td>
+            <td class="py-4 px-6 border-b border-outline text-center">
+                <span class="inline-flex items-center gap-1 bg-[#FFF9F2] border border-[#FFE4D6] text-primary px-3 py-1.5 rounded text-[11px] font-semibold whitespace-nowrap">
+                    <svg class="w-3.5 h-3.5 text-primary" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"></path></svg>
+                    Próximamente links de evidencia
+                </span>
+            </td>
+        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </section>
+
+    <!-- ================= TAB: ASISTENTE DE CARGA ================= -->
+    <section id="section-asistente" class="hidden transition-all duration-300">
+        <!-- Header Text -->
+        <div class="mb-12 text-left">
+            <h1 class="font-display-lg text-display-lg text-on-background mb-4">Asistente de Carga</h1>
+            <p class="font-body-lg text-body-lg text-secondary max-w-3xl">
+                Flujo paso a paso para localizar tu actividad y subir las evidencias requeridas al repositorio correspondiente.
+            </p>
+        </div>
+        
+        <div class="flex flex-col md:flex-row gap-8 max-w-6xl mx-auto w-full">
+            <!-- Left: Sidebar Progress -->
+            <div class="w-full md:w-1/4">
+                <div class="bg-surface rounded-2xl p-6 shadow-sm border border-outline sticky top-24">
+                    <h3 class="font-bold text-on-surface mb-6 text-xs tracking-wider">Tu progreso</h3>
+                    <ol class="relative border-l border-outline ml-3" id="wizard-steps">
+                        <!-- Steps injected by JS -->
+                    </ol>
+                    <button onclick="resetWizard()" class="mt-8 text-secondary hover:text-primary text-sm font-medium flex items-center gap-2 transition-colors">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8"></path><path d="M3 3v5h5"></path></svg>
+                        Reiniciar asistente
+                    </button>
+                </div>
+            </div>
+            
+            <!-- Right: Content Area -->
+            <div class="w-full md:w-3/4">
+                <div class="bg-surface rounded-2xl p-8 shadow-sm border border-outline min-h-[500px]" id="wizard-content">
+                    <!-- Dynamic content injected here -->
+                </div>
+            </div>
+        </div>
+    </section>
+</main>
+
+<footer class="w-full bg-surface-bright border-t border-outline py-6 text-center text-xs text-secondary mt-12">
+    <div class="max-w-container-max mx-auto px-margin-mobile">
+        <span>© 2026 CARE Colombia - Plataforma MEAL ConEsperanza. Todos los derechos reservados.</span>
+    </div>
+</footer>
+
+<script>
+    // Link from Theory of Change to Map nodes
+    function linkToMap(target) {
+        // Switch to the Mapa Operativo tab
+        switchTab('mapa');
+        
+        // Normalize target name to search text
+        let searchText = "";
+        const t = target.toLowerCase();
+        if (t === 'proteccion') searchText = "Protección";
+        else if (t === 'salud') searchText = "Salud";
+        else if (t === 'cash' || t === 'multipropósito') searchText = "Cash Multipropósito";
+        else if (t === 'conesperanza') searchText = "ConEsperanza";
+        else if (t === 'cauca') searchText = "Cauca";
+        else if (t === 'norte-de-santander' || t === 'norte de santander') searchText = "Norte de Santander";
+        else if (t === 'juridico') searchText = "Protección"; // Map Jurídico to Protection
+        
+        if (!searchText) return;
+        
+        // Wait a small bit to allow tab render and then highlight matching nodes
+        setTimeout(() => {
+            const nodes = document.querySelectorAll('.tree-node');
+            let highlightedAny = false;
+            
+            nodes.forEach(node => {
+                const text = node.textContent || node.innerText;
+                if (text.includes(searchText)) {
+                    // Apply visual ring highlight and scale with smooth transition classes
+                    node.classList.add('ring-4', 'ring-primary', 'ring-offset-2', 'scale-105', 'z-50');
+                    
+                    // Scroll the first matched node into view smoothly
+                    if (!highlightedAny) {
+                        node.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                        highlightedAny = true;
+                    }
+                    
+                    // Remove highlight after 3 seconds
+                    setTimeout(() => {
+                        node.classList.remove('ring-4', 'ring-primary', 'ring-offset-2', 'scale-105', 'z-50');
+                    }, 3000);
+                }
+            });
+        }, 150);
+    }
+
+    // Tab switching logic
+    function switchTab(tabName) {
+        const secTeoria = document.getElementById('section-teoria');
+        const secMapa = document.getElementById('section-mapa');
+        const secEvidencias = document.getElementById('section-evidencias');
+        const secAsistente = document.getElementById('section-asistente');
+        
+        const tabTeoria = document.getElementById('tab-teoria');
+        const tabMapa = document.getElementById('tab-mapa');
+        const tabEvidencias = document.getElementById('tab-evidencias');
+        const tabAsistente = document.getElementById('tab-asistente');
+        
+        // Reset all sections
+        secTeoria.classList.add('hidden');
+        secMapa.classList.add('hidden');
+        secEvidencias.classList.add('hidden');
+        if(secAsistente) secAsistente.classList.add('hidden');
+        
+        // Reset all tabs
+        const inactiveTabClass = "text-secondary font-medium hover:text-primary border-b-2 border-transparent h-full flex items-center px-1 text-xs md:text-sm lg:text-base transition-all duration-200 focus:outline-none";
+        tabTeoria.className = inactiveTabClass;
+        tabMapa.className = inactiveTabClass;
+        tabEvidencias.className = inactiveTabClass;
+        if(tabAsistente) tabAsistente.className = inactiveTabClass;
+        
+        const activeTabClass = "text-primary font-bold border-b-2 border-primary h-full flex items-center px-1 text-xs md:text-sm lg:text-base transition-all duration-200 focus:outline-none";
+        
+        if (tabName === 'teoria') {
+            secTeoria.classList.remove('hidden');
+            tabTeoria.className = activeTabClass;
+        } else if (tabName === 'mapa') {
+            secMapa.classList.remove('hidden');
+            tabMapa.className = activeTabClass;
+        } else if (tabName === 'evidencias') {
+            secEvidencias.classList.remove('hidden');
+            tabEvidencias.className = activeTabClass;
+        } else if (tabName === 'asistente') {
+            secAsistente.classList.remove('hidden');
+            tabAsistente.className = activeTabClass;
+            // Initialize wizard if not started
+            if (wizardState.step === 0) startWizard();
+        }
+    }
+
+    // Toggle view between Geográfica and Componente
+    function switchToggleView(viewName) {
+        const btnGeo = document.getElementById('btn-geo');
+        const btnComp = document.getElementById('btn-comp');
+        const treeGeo = document.getElementById('tree-geografica');
+        const treeComp = document.getElementById('tree-componente');
+        
+        if (viewName === 'geografica') {
+            treeGeo.classList.remove('hidden');
+            treeGeo.classList.add('flex');
+            treeComp.classList.add('hidden');
+            treeComp.classList.remove('flex');
+            
+            btnGeo.className = "flex items-center gap-2 px-6 py-2 rounded-full bg-primary text-on-primary font-label-md text-label-md transition-all focus:outline-none";
+            btnComp.className = "flex items-center gap-2 px-6 py-2 rounded-full text-secondary hover:text-on-surface font-label-md text-label-md transition-all focus:outline-none";
+        } else {
+            treeGeo.classList.add('hidden');
+            treeGeo.classList.remove('flex');
+            treeComp.classList.remove('hidden');
+            treeComp.classList.add('flex');
+            
+            btnGeo.className = "flex items-center gap-2 px-6 py-2 rounded-full text-secondary hover:text-on-surface font-label-md text-label-md transition-all focus:outline-none";
+            btnComp.className = "flex items-center gap-2 px-6 py-2 rounded-full bg-primary text-on-primary font-label-md text-label-md transition-all focus:outline-none";
+        }
+    }
+
+    // Simple scroll effect on header
+    window.addEventListener('scroll', () => {
+        const header = document.getElementById('main-header');
+        if (window.scrollY > 10) {
+            header.classList.add('shadow-md');
+        } else {
+            header.classList.remove('shadow-md');
+        }
+    });
+
+    // ==========================================
+    // LOGICA DEL ASISTENTE DE CARGA (WIZARD)
+    // ==========================================
+    const wizardData = {
+        "departamentos": {
+            "Cauca": ["Buenos Aires", "Morales"],
+            "Norte de Santander": ["Ocaña", "Abrego", "Hacarí", "Teorama", "La Playa de Belén", "Convención"]
+        },
+        "componentes": ["Protección", "Salud", "Cash Multipropósito"],
+        "actividades": {
+            "Protección": [
+                { "cat": "Prevención y mitigación de riesgos", "id": "1.1 Sensibilización comunitaria y campañas de comunicación", "doble": 8000, "unica": 8000, "medios": ["Listados de Asistencia", "Actas de actividad (espacios masivos)", "Registro en CommCare", "BBDD sistema de monitoreo CARE COL", "Archivo seguimiento eventos masivos"] },
+                { "cat": "Prevención y mitigación de riesgos", "id": "1.4 Entrega de kits CARE Package", "doble": 9600, "unica": 7200, "medios": ["Registro entrega de kits en el sistema de monitoreo", "Listados de distribución de kits", "BBDD sistema de monitoreo CARE COL"] },
+                { "cat": "Prevención y mitigación de riesgos", "id": "1.5 Fortalecimiento protección en espacios seguros", "doble": 5400, "unica": 5400, "medios": ["Mapeo y diagnóstico", "Plan de trabajo", "Acta de entrega (dotación - mejoras)", "Actas de seguimiento", "Archivo consolidado de seguimiento"] },
+                { "cat": "Apoyo psicosocial y gestión de casos", "id": "1.2 Gestión de casos para víctimas de violencia", "doble": 1152, "unica": 0, "medios": ["Registro de todo el ciclo de la Gestión de Caso en el sistema de monitoreo de CARE COL", "BBDD sistema de monitoreo CARE COL"] },
+                { "cat": "Apoyo psicosocial y gestión de casos", "id": "1.3 Entrega de cash a personas en situación de riesgo", "doble": 403, "unica": 0, "medios": ["Registro entrega de priorización y entrega de cash en el sistema de monitoreo", "Tirillas de entrega del cash - proveedor de servicios financieros / BBDD proveedor", "BBDD sistema de monitoreo CARE COL", "BBDD seguimiento coordinación PTM"] }
+            ],
+            "Salud": [
+                { "cat": "Acceso a atención primaria en salud", "id": "2.1 Prestación de servicios de atención primaria de salud", "doble": 1345, "unica": 1211, "medios": ["Voucher de salud en el sistema de monitoreo", "BBDD sistema de monitoreo CARE COL", "BBDD proveedor de servicios"] },
+                { "cat": "Acceso a atención primaria en salud", "id": "2.2 Entrega de kits postparto", "doble": 140, "unica": 0, "medios": ["Registro entrega de kits en el sistema de monitoreo", "Listados de distribución de kits", "BBDD sistema de monitoreo CARE COL"] },
+                { "cat": "Asistencia a sobrevivientes de violencia", "id": "2.3 Prestación de servicios de atención medica a sobrevivientes", "doble": 576, "unica": 0, "medios": ["Voucher de salud en el sistema de monitoreo", "BBDD sistema de monitoreo CARE COL", "BBDD proveedor de servicios"] }
+            ],
+            "Cash Multipropósito": [
+                { "cat": "Transferencias monetarias de emergencia", "id": "3.1 Cash Multipropósito", "doble": 2016, "unica": 1440, "medios": ["Registro en CommCare", "BBDD entrega Cash", "Tirillas entrega del proveedor de serivicio / BBDD proveedor", "BBDD seguimiento coordinación PTM"] }
+            ]
+        }
+    };
+
+    let wizardState = { step: 0, depto: null, mun: null, comp: null, actIndex: null };
+    const stepNames = ["Departamento", "Municipio", "Componente", "Actividad", "Carga Evidencia"];
+
+    function renderWizardSidebar() {
+        const sidebar = document.getElementById('wizard-steps');
+        if(!sidebar) return;
+        let html = '';
+        for(let i=0; i<stepNames.length; i++){
+            let statusClass = "text-outline-variant";
+            let dotClass = "bg-outline-variant";
+            let lineClass = "";
+            let checkmark = "";
+            let title = stepNames[i];
+            
+            if (i < wizardState.step) {
+                statusClass = "text-primary font-medium";
+                dotClass = "bg-primary";
+                checkmark = `<svg class="w-3 h-3 text-white absolute top-1 left-1" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="3"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"></path></svg>`;
+            } else if (i === wizardState.step) {
+                statusClass = "text-on-surface font-bold";
+                dotClass = "bg-surface border-2 border-primary";
+            }
+            
+            // Subtitles based on choices
+            let subtitle = "";
+            if(i==0 && wizardState.depto) subtitle = wizardState.depto;
+            if(i==1 && wizardState.mun) subtitle = wizardState.mun;
+            if(i==2 && wizardState.comp) subtitle = wizardState.comp;
+            
+            html += `
+            <li class="mb-8 ml-6">
+                <span class="absolute flex items-center justify-center w-5 h-5 rounded-full -left-2.5 ring-4 ring-background ${dotClass}">${checkmark}</span>
+                <h4 class="leading-tight text-sm ${statusClass}">${title}</h4>
+                ${subtitle ? `<p class="text-xs text-secondary mt-1">${subtitle}</p>` : ''}
+            </li>`;
+        }
+        sidebar.innerHTML = html;
+    }
+
+    function startWizard() {
+        wizardState = { step: 0, depto: null, mun: null, comp: null, actIndex: null };
+        renderWizardSidebar();
+        renderWizardStep();
+    }
+    
+    function resetWizard() {
+        startWizard();
+    }
+
+    function renderWizardStep() {
+        const content = document.getElementById('wizard-content');
+        if(!content) return;
+        
+        let html = '';
+        if (wizardState.step === 0) {
+            html += `<h2 class="text-2xl font-bold mb-2">Selecciona un Departamento</h2>`;
+            html += `<p class="text-secondary mb-8">Indica el territorio donde realizaste la actividad.</p>`;
+            html += `<div class="grid grid-cols-1 md:grid-cols-2 gap-4">`;
+            for(let d in wizardData.departamentos) {
+                html += `<button onclick="wizardSelect('depto', '${d}')" class="text-left p-6 rounded-xl border-2 border-outline hover:border-primary hover:bg-surface-bright transition-all group">
+                    <span class="block font-bold text-lg text-on-surface group-hover:text-primary">${d}</span>
+                </button>`;
+            }
+            html += `</div>`;
+        } 
+        else if (wizardState.step === 1) {
+            html += `<h2 class="text-2xl font-bold mb-2">Selecciona el Municipio</h2>`;
+            html += `<p class="text-secondary mb-8">Municipios de ${wizardState.depto}.</p>`;
+            html += `<div class="grid grid-cols-1 md:grid-cols-2 gap-4">`;
+            wizardData.departamentos[wizardState.depto].forEach(m => {
+                html += `<button onclick="wizardSelect('mun', '${m}')" class="text-left p-5 rounded-xl border border-outline hover:border-primary hover:bg-surface-bright transition-all group">
+                    <span class="block font-semibold text-on-surface group-hover:text-primary">${m}</span>
+                </button>`;
+            });
+            html += `</div>`;
+            html += `<button onclick="wizardBack()" class="mt-8 text-secondary hover:text-on-surface text-sm underline flex items-center gap-1"><span class="material-symbols-outlined text-sm">arrow_back</span>Volver a departamento</button>`;
+        }
+        else if (wizardState.step === 2) {
+            html += `<h2 class="text-2xl font-bold mb-2">Selecciona el Componente</h2>`;
+            html += `<p class="text-secondary mb-8">¿De qué área es la actividad que deseas reportar?</p>`;
+            html += `<div class="grid grid-cols-1 gap-4">`;
+            wizardData.componentes.forEach(c => {
+                html += `<button onclick="wizardSelect('comp', '${c}')" class="flex justify-between items-center p-5 rounded-xl border border-outline hover:border-primary hover:bg-surface-bright transition-all group">
+                    <span class="block font-semibold text-on-surface group-hover:text-primary">${c}</span>
+                    <svg class="w-5 h-5 text-outline-variant group-hover:text-primary" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"></path></svg>
+                </button>`;
+            });
+            html += `</div>`;
+            html += `<button onclick="wizardBack()" class="mt-8 text-secondary hover:text-on-surface text-sm underline flex items-center gap-1"><span class="material-symbols-outlined text-sm">arrow_back</span>Volver a municipio</button>`;
+        }
+        else if (wizardState.step === 3) {
+            html += `<h2 class="text-2xl font-bold mb-2">Selecciona la Actividad</h2>`;
+            html += `<p class="text-secondary mb-8">Actividades de ${wizardState.comp}.</p>`;
+            html += `<div class="flex flex-col gap-3">`;
+            wizardData.actividades[wizardState.comp].forEach((a, index) => {
+                html += `<button onclick="wizardSelect('actIndex', ${index})" class="text-left p-5 rounded-xl border border-outline hover:border-primary hover:bg-surface-bright transition-all group">
+                    <span class="text-[10px] uppercase font-bold text-secondary mb-1 block">${a.cat}</span>
+                    <span class="block font-medium text-on-surface group-hover:text-primary">${a.id}</span>
+                </button>`;
+            });
+            html += `</div>`;
+            html += `<button onclick="wizardBack()" class="mt-8 text-secondary hover:text-on-surface text-sm underline flex items-center gap-1"><span class="material-symbols-outlined text-sm">arrow_back</span>Volver a componente</button>`;
+        }
+        else if (wizardState.step === 4) {
+            const act = wizardData.actividades[wizardState.comp][wizardState.actIndex];
+            html += `<div class="bg-surface-bright border border-outline rounded-xl p-6 mb-8">
+                <span class="text-[10px] uppercase font-bold text-secondary mb-1 block">Actividad Seleccionada</span>
+                <h2 class="text-xl font-bold text-on-surface mb-4">${act.id}</h2>
+                <div class="flex gap-6">
+                    <div><span class="text-xs text-secondary block">Lugar</span><span class="font-semibold text-sm text-on-surface">${wizardState.mun}, ${wizardState.depto}</span></div>
+                    <div><span class="text-xs text-secondary block">Meta Doble</span><span class="font-bold text-sm text-primary">${act.doble}</span></div>
+                    <div><span class="text-xs text-secondary block">Meta Única</span><span class="font-bold text-sm text-secondary">${act.unica}</span></div>
+                </div>
+            </div>`;
+            
+            html += `<h3 class="font-bold text-on-surface mb-4">Medios de Verificación Requeridos</h3>`;
+            html += `<div class="flex flex-col gap-4">`;
+            act.medios.forEach(m => {
+                html += `<div class="flex justify-between items-center p-4 border-b border-outline hover:bg-surface-bright transition-colors">
+                    <span class="text-sm font-medium text-on-surface w-2/3">${m}</span>
+                    <span class="inline-flex items-center gap-1 bg-[#FFF9F2] border border-[#FFE4D6] text-primary px-3 py-1.5 rounded text-[11px] font-semibold">
+                        <svg class="w-3.5 h-3.5 text-primary" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"></path></svg>
+                        Próximamente links de evidencia
+                    </span>
+                </div>`;
+            });
+            html += `</div>`;
+            html += `<div class="mt-10 flex justify-between">
+                <button onclick="wizardBack()" class="text-secondary hover:text-on-surface text-sm underline flex items-center gap-1"><span class="material-symbols-outlined text-sm">arrow_back</span>Volver a actividad</button>
+                <button onclick="resetWizard()" class="bg-primary text-on-primary px-6 py-2 rounded-full font-bold text-sm hover:opacity-90">Terminar y Cargar Otra</button>
+            </div>`;
+        }
+        
+        content.innerHTML = html;
+    }
+    
+    function wizardSelect(key, val) {
+        wizardState[key] = val;
+        wizardState.step++;
+        renderWizardSidebar();
+        renderWizardStep();
+    }
+    
+    function wizardBack() {
+        if(wizardState.step > 0) {
+            wizardState.step--;
+            renderWizardSidebar();
+            renderWizardStep();
+        }
+    }
+</script>
+</body>
+</html>

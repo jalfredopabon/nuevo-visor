@@ -158,10 +158,7 @@
         
         <!-- Navigation Tabs (Always Visible) -->
         <nav class="flex items-center gap-4 md:gap-8 h-full" id="nav-tabs">
-            <button onclick="switchTab('teoria')" id="tab-teoria" class="text-primary font-bold border-b-2 border-primary h-full flex items-center px-1 text-xs md:text-sm lg:text-base transition-all duration-200 focus:outline-none focus:ring-0">
-                Teoría del Cambio
-            </button>
-            <button onclick="switchTab('mapa')" id="tab-mapa" class="text-secondary font-medium hover:text-primary border-b-2 border-transparent h-full flex items-center px-1 text-xs md:text-sm lg:text-base transition-all duration-200 focus:outline-none focus:ring-0">
+            <button onclick="switchTab('mapa')" id="tab-mapa" class="text-primary font-bold border-b-2 border-primary h-full flex items-center px-1 text-xs md:text-sm lg:text-base transition-all duration-200 focus:outline-none focus:ring-0">
                 Mapa Operativo
             </button>
             <button onclick="switchTab('asistente')" id="tab-asistente" class="text-secondary font-medium hover:text-primary border-b-2 border-transparent h-full flex items-center px-1 text-xs md:text-sm lg:text-base transition-all duration-200 focus:outline-none focus:ring-0">
@@ -173,181 +170,8 @@
 
 <!-- Main Container -->
 <main class="flex-grow px-margin-mobile md:px-margin-desktop py-12 max-w-container-max mx-auto w-full">
-    
-        <!-- ================= TAB: TEORÍA DEL CAMBIO ================= -->
-    <section id="section-teoria" class="block transition-all duration-300">
-        <!-- Header Text -->
-        <div class="mb-16 text-left">
-            <h1 class="font-display-lg text-display-lg text-on-background mb-4">Teoría del Cambio</h1>
-            <p class="font-body-lg text-body-lg text-secondary max-w-2xl">
-                Estructura operativa de <strong class="font-bold">ConEsperanza</strong>: desde la implementación de acciones directas hasta el logro del impacto sostenible en las comunidades.
-            </p>
-        </div>
-        
-        <!-- Horizontal Flow Container -->
-        <div class="flex flex-col gap-10 max-w-6xl mx-auto w-full pb-16">
-            
-            <!-- Level 1: Actividades -->
-            <div class="flex flex-col lg:flex-row items-stretch justify-between gap-4 w-full">
-                <!-- Left: Category -->
-                <div class="w-full lg:w-1/4 flex items-center justify-start">
-                    <div class="flex items-center gap-3 bg-[#FFF5F0] text-primary border-2 border-[#FFE4D6]/70 hover:border-primary px-6 py-5 rounded-xl font-bold w-full transition-all duration-300">
-                        <span class="material-symbols-outlined text-2xl">directions_run</span>
-                        <span class="tracking-wider text-sm">1. Actividades</span>
-                    </div>
-                </div>
-                <!-- Arrow (Desktop vs Mobile) -->
-                <div class="flex items-center justify-center text-secondary py-1 lg:py-0">
-                    <span class="material-symbols-outlined hidden lg:block text-2xl">arrow_forward</span>
-                    <span class="material-symbols-outlined lg:hidden text-2xl">arrow_downward</span>
-                </div>
-                <!-- Middle: Focus (Unified style) -->
-                <div class="w-full lg:w-1/3 bg-surface-container-low border-2 border-outline/40 hover:border-secondary rounded-xl p-6 flex flex-col justify-center transition-all duration-300">
-                    <h3 class="text-xs font-semibold text-secondary tracking-wider mb-2">Enfoque del proyecto</h3>
-                    <p class="text-on-surface font-medium text-sm">Brindar respuesta humanitaria sectorial en salud sexual y reproductiva (SSR) y protección a sobrevivientes de VBG.</p>
-                </div>
-                <!-- Arrow -->
-                <div class="flex items-center justify-center text-secondary py-1 lg:py-0">
-                    <span class="material-symbols-outlined hidden lg:block text-2xl">arrow_forward</span>
-                    <span class="material-symbols-outlined lg:hidden text-2xl">arrow_downward</span>
-                </div>
-                <!-- Right: Concrete Actions (Unified style) -->
-                <div class="w-full lg:w-2/5 bg-surface-container-low border-2 border-outline/40 hover:border-secondary rounded-xl p-6 transition-all duration-300">
-                    <h3 class="text-xs font-semibold text-secondary tracking-wider mb-3">Acciones reales / Indicadores</h3>
-                    <div class="flex flex-wrap gap-2">
-                        <span onclick="linkToMap('proteccion')" class="relative group cursor-pointer bg-[#FFF5F0] text-[#be5600] text-xs font-semibold px-3 py-1.5 rounded-lg border border-[#FFE4D6] hover:bg-[#FFE4D6] transition-colors">Atenciones Psicosociales (APS)<span class="absolute bottom-full left-1/2 -translate-x-1/2 mb-2 hidden group-hover:block w-56 bg-inverse-surface text-inverse-on-surface text-[11px] leading-relaxed p-2 rounded shadow-lg text-center z-30 font-normal">Acompañamiento psicológico individual o en crisis ante vulneraciones de derechos.</span></span>
-                        <span onclick="linkToMap('proteccion')" class="relative group cursor-pointer bg-[#FFF5F0] text-[#be5600] text-xs font-semibold px-3 py-1.5 rounded-lg border border-[#FFE4D6] hover:bg-[#FFE4D6] transition-colors">Gestión de Casos VBG<span class="absolute bottom-full left-1/2 -translate-x-1/2 mb-2 hidden group-hover:block w-56 bg-inverse-surface text-inverse-on-surface text-[11px] leading-relaxed p-2 rounded shadow-lg text-center z-30 font-normal">Acompañamiento continuo y especializado a personas sobrevivientes de violencias basadas en género.</span></span>
-                        <span onclick="linkToMap('salud')" class="relative group cursor-pointer bg-[#FFF5F0] text-[#be5600] text-xs font-semibold px-3 py-1.5 rounded-lg border border-[#FFE4D6] hover:bg-[#FFE4D6] transition-colors">Kits de Dignidad SSR<span class="absolute bottom-full left-1/2 -translate-x-1/2 mb-2 hidden group-hover:block w-56 bg-inverse-surface text-inverse-on-surface text-[11px] leading-relaxed p-2 rounded shadow-lg text-center z-30 font-normal">Suministro de kits de higiene, salud reproductiva u otros insumos esenciales de dignidad.</span></span>
-                        <span onclick="linkToMap('juridico')" class="relative group cursor-pointer bg-[#FFF5F0] text-[#be5600] text-xs font-semibold px-3 py-1.5 rounded-lg border border-[#FFE4D6] hover:bg-[#FFE4D6] transition-colors">Remisiones a Derechos<span class="absolute bottom-full left-1/2 -translate-x-1/2 mb-2 hidden group-hover:block w-56 bg-inverse-surface text-inverse-on-surface text-[11px] leading-relaxed p-2 rounded shadow-lg text-center z-30 font-normal">Enlace efectivo de pacientes a la red de salud local o entidades de protección del Estado.</span></span>
-                    </div>
-                </div>
-            </div>
-            
-            <!-- Separator Line -->
-            <div class="hidden lg:flex justify-center my-1 text-surface-variant opacity-60">
-                <div class="w-0.5 h-6 bg-surface-variant"></div>
-            </div>
-
-            <!-- Level 2: Resultados -->
-            <div class="flex flex-col lg:flex-row items-stretch justify-between gap-4 w-full">
-                <!-- Left: Category -->
-                <div class="w-full lg:w-1/4 flex items-center justify-start">
-                    <div class="flex items-center gap-3 bg-[#F0FAFA] text-[#006666] border-2 border-[#D1F0F0]/70 hover:border-[#006666] px-6 py-5 rounded-xl font-bold w-full transition-all duration-300">
-                        <span class="material-symbols-outlined text-2xl">task_alt</span>
-                        <span class="tracking-wider text-sm">2. Resultados</span>
-                    </div>
-                </div>
-                <!-- Arrow -->
-                <div class="flex items-center justify-center text-secondary py-1 lg:py-0">
-                    <span class="material-symbols-outlined hidden lg:block text-2xl">arrow_forward</span>
-                    <span class="material-symbols-outlined lg:hidden text-2xl">arrow_downward</span>
-                </div>
-                <!-- Middle: Focus -->
-                <div class="w-full lg:w-1/3 bg-surface-container-low border-2 border-outline/40 hover:border-secondary rounded-xl p-6 flex flex-col justify-center transition-all duration-300">
-                    <h3 class="text-xs font-semibold text-secondary tracking-wider mb-2">Acceso efectivo</h3>
-                    <p class="text-on-surface font-medium text-sm">Garantizar que las poblaciones vulnerables accedan oportunamente y sin barreras a la red de protección y servicios SSR.</p>
-                </div>
-                <!-- Arrow -->
-                <div class="flex items-center justify-center text-secondary py-1 lg:py-0">
-                    <span class="material-symbols-outlined hidden lg:block text-2xl">arrow_forward</span>
-                    <span class="material-symbols-outlined lg:hidden text-2xl">arrow_downward</span>
-                </div>
-                <!-- Right: Concrete Actions -->
-                <div class="w-full lg:w-2/5 bg-surface-container-low border-2 border-outline/40 hover:border-secondary rounded-xl p-6 transition-all duration-300">
-                    <h3 class="text-xs font-semibold text-secondary tracking-wider mb-3">Logros operativos</h3>
-                    <div class="flex flex-wrap gap-2">
-                        <span onclick="linkToMap('conesperanza')" class="relative group cursor-pointer bg-[#F0FAFA] text-[#006666] text-xs font-semibold px-3 py-1.5 rounded-lg border border-[#D1F0F0] hover:bg-[#D1F0F0] transition-colors">Personas Únicas Atendidas<span class="absolute bottom-full left-1/2 -translate-x-1/2 mb-2 hidden group-hover:block w-56 bg-inverse-surface text-inverse-on-surface text-[11px] leading-relaxed p-2 rounded shadow-lg text-center z-30 font-normal">Número total de beneficiarios únicos atendidos (desduplicados) en el período de reporte.</span></span>
-                        <span onclick="linkToMap('salud')" class="relative group cursor-pointer bg-[#F0FAFA] text-[#006666] text-xs font-semibold px-3 py-1.5 rounded-lg border border-[#D1F0F0] hover:bg-[#D1F0F0] transition-colors">Kits Entregados con Firma<span class="absolute bottom-full left-1/2 -translate-x-1/2 mb-2 hidden group-hover:block w-56 bg-inverse-surface text-inverse-on-surface text-[11px] leading-relaxed p-2 rounded shadow-lg text-center z-30 font-normal">Total de kits de dignidad y SSR distribuidos físicamente con planilla de entrega firmada.</span></span>
-                        <span onclick="linkToMap('proteccion')" class="relative group cursor-pointer bg-[#F0FAFA] text-[#006666] text-xs font-semibold px-3 py-1.5 rounded-lg border border-[#D1F0F0] hover:bg-[#D1F0F0] transition-colors">Casos con Seguimiento Activo<span class="absolute bottom-full left-1/2 -translate-x-1/2 mb-2 hidden group-hover:block w-56 bg-inverse-surface text-inverse-on-surface text-[11px] leading-relaxed p-2 rounded shadow-lg text-center z-30 font-normal">Número de carpetas de gestión de casos abiertas con un plan de seguimiento actualmente activo.</span></span>
-                        <span onclick="linkToMap('juridico')" class="relative group cursor-pointer bg-[#F0FAFA] text-[#006666] text-xs font-semibold px-3 py-1.5 rounded-lg border border-[#D1F0F0] hover:bg-[#D1F0F0] transition-colors">Derivaciones Efectivas<span class="absolute bottom-full left-1/2 -translate-x-1/2 mb-2 hidden group-hover:block w-56 bg-inverse-surface text-inverse-on-surface text-[11px] leading-relaxed p-2 rounded shadow-lg text-center z-30 font-normal">Tasa de efectividad de las derivaciones canalizadas que resultaron en citas confirmadas.</span></span>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Separator Line -->
-            <div class="hidden lg:flex justify-center my-1 text-surface-variant opacity-60">
-                <div class="w-0.5 h-6 bg-surface-variant"></div>
-            </div>
-
-            <!-- Level 3: Propósito -->
-            <div class="flex flex-col lg:flex-row items-stretch justify-between gap-4 w-full">
-                <!-- Left: Category -->
-                <div class="w-full lg:w-1/4 flex items-center justify-start">
-                    <div class="flex items-center gap-3 bg-[#F0F5FF] text-[#0040C1] border-2 border-[#D6E4FF]/70 hover:border-[#0040C1] px-6 py-5 rounded-xl font-bold w-full transition-all duration-300">
-                        <span class="material-symbols-outlined text-2xl">flag</span>
-                        <span class="tracking-wider text-sm">3. Propósito</span>
-                    </div>
-                </div>
-                <!-- Arrow -->
-                <div class="flex items-center justify-center text-secondary py-1 lg:py-0">
-                    <span class="material-symbols-outlined hidden lg:block text-2xl">arrow_forward</span>
-                    <span class="material-symbols-outlined lg:hidden text-2xl">arrow_downward</span>
-                </div>
-                <!-- Middle: Focus -->
-                <div class="w-full lg:w-1/3 bg-surface-container-low border-2 border-outline/40 hover:border-secondary rounded-xl p-6 flex flex-col justify-center transition-all duration-300">
-                    <h3 class="text-xs font-semibold text-secondary tracking-wider mb-2">Entornos seguros</h3>
-                    <p class="text-on-surface font-medium text-sm">Fortalecer entornos de protección comunitaria y mitigar riesgos asociados a violencias basadas en género (VBG).</p>
-                </div>
-                <!-- Arrow -->
-                <div class="flex items-center justify-center text-secondary py-1 lg:py-0">
-                    <span class="material-symbols-outlined hidden lg:block text-2xl">arrow_forward</span>
-                    <span class="material-symbols-outlined lg:hidden text-2xl">arrow_downward</span>
-                </div>
-                <!-- Right: Concrete Actions -->
-                <div class="w-full lg:w-2/5 bg-surface-container-low border-2 border-outline/40 hover:border-secondary rounded-xl p-6 transition-all duration-300">
-                    <h3 class="text-xs font-semibold text-secondary tracking-wider mb-3">Cobertura e infraestructura</h3>
-                    <div class="flex flex-wrap gap-2">
-                        <span onclick="linkToMap('conesperanza')" class="relative group cursor-pointer bg-[#F0F5FF] text-[#0040C1] text-xs font-semibold px-3 py-1.5 rounded-lg border border-[#D6E4FF] hover:bg-[#D6E4FF] transition-colors">6 Municipios Clave<span class="absolute bottom-full left-1/2 -translate-x-1/2 mb-2 hidden group-hover:block w-56 bg-inverse-surface text-inverse-on-surface text-[11px] leading-relaxed p-2 rounded shadow-lg text-center z-30 font-normal">Municipios prioritarios del proyecto ConEsperanza en Cauca y Norte de Santander.</span></span>
-                        <span onclick="linkToMap('conesperanza')" class="relative group cursor-pointer bg-[#F0F5FF] text-[#0040C1] text-xs font-semibold px-3 py-1.5 rounded-lg border border-[#D6E4FF] hover:bg-[#D6E4FF] transition-colors">6 Espacios Protectores Activos<span class="absolute bottom-full left-1/2 -translate-x-1/2 mb-2 hidden group-hover:block w-56 bg-inverse-surface text-inverse-on-surface text-[11px] leading-relaxed p-2 rounded shadow-lg text-center z-30 font-normal">Puntos físicos y seguros de atención humanitaria y protección integral en funcionamiento.</span></span>
-                        <span onclick="linkToMap('salud')" class="relative group cursor-pointer bg-[#F0F5FF] text-[#0040C1] text-xs font-semibold px-3 py-1.5 rounded-lg border border-[#D6E4FF] hover:bg-[#D6E4FF] transition-colors">Puntos de Atención SSR<span class="absolute bottom-full left-1/2 -translate-x-1/2 mb-2 hidden group-hover:block w-56 bg-inverse-surface text-inverse-on-surface text-[11px] leading-relaxed p-2 rounded shadow-lg text-center z-30 font-normal">Espacios comunitarios adecuados para la consulta, orientación e insumos de salud sexual y reproductiva.</span></span>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Separator Line -->
-            <div class="hidden lg:flex justify-center my-1 text-surface-variant opacity-60">
-                <div class="w-0.5 h-6 bg-surface-variant"></div>
-            </div>
-
-            <!-- Level 4: Fin / Impacto -->
-            <div class="flex flex-col lg:flex-row items-stretch justify-between gap-4 w-full">
-                <!-- Left: Category -->
-                <div class="w-full lg:w-1/4 flex items-center justify-start">
-                    <div class="flex items-center gap-3 bg-[#F8F0FF] text-[#5300B3] border-2 border-[#EED6FF]/70 hover:border-[#5300B3] px-6 py-5 rounded-xl font-bold w-full transition-all duration-300">
-                        <span class="material-symbols-outlined text-2xl">public</span>
-                        <span class="tracking-wider text-sm">4. Fin / Impacto</span>
-                    </div>
-                </div>
-                <!-- Arrow -->
-                <div class="flex items-center justify-center text-secondary py-1 lg:py-0">
-                    <span class="material-symbols-outlined hidden lg:block text-2xl">arrow_forward</span>
-                    <span class="material-symbols-outlined lg:hidden text-2xl">arrow_downward</span>
-                </div>
-                <!-- Middle: Focus -->
-                <div class="w-full lg:w-1/3 bg-surface-container-low border-2 border-outline/40 hover:border-secondary rounded-xl p-6 flex flex-col justify-center transition-all duration-300">
-                    <h3 class="text-xs font-semibold text-secondary tracking-wider mb-2">Garantía de derechos</h3>
-                    <p class="text-on-surface font-medium text-sm">Contribuir a la garantía plena de los derechos humanos y fundamentales de mujeres, jóvenes y personas vulnerables en Colombia.</p>
-                </div>
-                <!-- Arrow -->
-                <div class="flex items-center justify-center text-secondary py-1 lg:py-0">
-                    <span class="material-symbols-outlined hidden lg:block text-2xl">arrow_forward</span>
-                    <span class="material-symbols-outlined lg:hidden text-2xl">arrow_downward</span>
-                </div>
-                <!-- Right: Concrete Actions -->
-                <div class="w-full lg:w-2/5 bg-surface-container-low border-2 border-outline/40 hover:border-secondary rounded-xl p-6 transition-all duration-300">
-                    <h3 class="text-xs font-semibold text-secondary tracking-wider mb-3">Impacto sostenible</h3>
-                    <div class="flex flex-wrap gap-2">
-                        <span class="bg-[#F8F0FF] text-[#5300B3] text-xs font-semibold px-3 py-1.5 rounded-lg border border-[#EED6FF]">Empoderamiento Comunitario</span>
-                        <span onclick="linkToMap('cauca')" class="relative group cursor-pointer bg-[#F8F0FF] text-[#5300B3] text-xs font-semibold px-3 py-1.5 rounded-lg border border-[#EED6FF] hover:bg-[#EED6FF] transition-colors">Incidencia en Cauca<span class="absolute bottom-full left-1/2 -translate-x-1/2 mb-2 hidden group-hover:block w-56 bg-inverse-surface text-inverse-on-surface text-[11px] leading-relaxed p-2 rounded shadow-lg text-center z-30 font-normal">Acciones de articulación e influencia política con autoridades del departamento del Cauca.</span></span>
-                        <span onclick="linkToMap('norte-de-santander')" class="relative group cursor-pointer bg-[#F8F0FF] text-[#5300B3] text-xs font-semibold px-3 py-1.5 rounded-lg border border-[#EED6FF] hover:bg-[#EED6FF] transition-colors">Incidencia en Norte de Santander<span class="absolute bottom-full left-1/2 -translate-x-1/2 mb-2 hidden group-hover:block w-56 bg-inverse-surface text-inverse-on-surface text-[11px] leading-relaxed p-2 rounded shadow-lg text-center z-30 font-normal">Acciones de articulación e influencia política en zonas de frontera en Norte de Santander.</span></span>
-                    </div>
-                </div>
-            </div>
-
-        </div>
-    </section>
     <!-- ================= TAB: MAPA OPERATIVO ================= -->
-    <section id="section-mapa" class="hidden transition-all duration-300">
+    <section id="section-mapa" class="block transition-all duration-300">
         <!-- Header Section -->
         <div class="flex flex-col md:flex-row justify-between items-start gap-6 mb-12">
             <div>
@@ -419,77 +243,26 @@
 </footer>
 
 <script>
-    // Link from Theory of Change to Map nodes
-    function linkToMap(target) {
-        // Switch to the Mapa Operativo tab
-        switchTab('mapa');
-        
-        // Normalize target name to search text
-        let searchText = "";
-        const t = target.toLowerCase();
-        if (t === 'proteccion') searchText = "Protección";
-        else if (t === 'salud') searchText = "Salud";
-        else if (t === 'cash' || t === 'multipropósito') searchText = "Cash Multipropósito";
-        else if (t === 'conesperanza') searchText = "ConEsperanza";
-        else if (t === 'cauca') searchText = "Cauca";
-        else if (t === 'norte-de-santander' || t === 'norte de santander') searchText = "Norte de Santander";
-        else if (t === 'juridico') searchText = "Protección"; // Map Jurídico to Protection
-        
-        if (!searchText) return;
-        
-        // Wait a small bit to allow tab render and then highlight matching nodes
-        setTimeout(() => {
-            const nodes = document.querySelectorAll('.tree-node');
-            let highlightedAny = false;
-            
-            nodes.forEach(node => {
-                const text = node.textContent || node.innerText;
-                if (text.includes(searchText)) {
-                    // Apply visual ring highlight and scale with smooth transition classes
-                    node.classList.add('ring-4', 'ring-primary', 'ring-offset-2', 'scale-105', 'z-50');
-                    
-                    // Scroll the first matched node into view smoothly
-                    if (!highlightedAny) {
-                        node.scrollIntoView({ behavior: 'smooth', block: 'center' });
-                        highlightedAny = true;
-                    }
-                    
-                    // Remove highlight after 3 seconds
-                    setTimeout(() => {
-                        node.classList.remove('ring-4', 'ring-primary', 'ring-offset-2', 'scale-105', 'z-50');
-                    }, 3000);
-                }
-            });
-        }, 150);
-    }
-
     // Tab switching logic
     function switchTab(tabName) {
-        const secTeoria = document.getElementById('section-teoria');
         const secMapa = document.getElementById('section-mapa');
         const secAsistente = document.getElementById('section-asistente');
         
-        const tabTeoria = document.getElementById('tab-teoria');
         const tabMapa = document.getElementById('tab-mapa');
         const tabAsistente = document.getElementById('tab-asistente');
         
         // Reset all sections
-        secTeoria.classList.add('hidden');
         secMapa.classList.add('hidden');
         if(secAsistente) secAsistente.classList.add('hidden');
         
         // Reset all tabs
         const inactiveTabClass = "text-secondary font-medium hover:text-primary border-b-2 border-transparent h-full flex items-center px-1 text-xs md:text-sm lg:text-base transition-all duration-200 focus:outline-none";
-        tabTeoria.className = inactiveTabClass;
         tabMapa.className = inactiveTabClass;
         if(tabAsistente) tabAsistente.className = inactiveTabClass;
         
         const activeTabClass = "text-primary font-bold border-b-2 border-primary h-full flex items-center px-1 text-xs md:text-sm lg:text-base transition-all duration-200 focus:outline-none";
         
-        if (tabName === 'teoria') {
-            secTeoria.classList.remove('hidden');
-            tabTeoria.className = activeTabClass;
-        } else if (tabName === 'mapa') {
+        if (tabName === 'mapa') {
             secMapa.classList.remove('hidden');
             tabMapa.className = activeTabClass;
         } else if (tabName === 'asistente') {
@@ -1127,13 +900,29 @@
         }
         else if (wizardState.step === 4) {
             const act = wizardData.actividades[wizardState.comp][wizardState.actIndex];
+            const compKey = wizardState.comp.toLowerCase().replace('ó', 'o').replace('í', 'i').replace(' ', '-');
             html += `<div class="bg-surface-bright border border-outline rounded-xl p-6 mb-8">
                 <span class="text-[10px] uppercase font-bold text-secondary mb-1 block">Actividad Seleccionada</span>
                 <h2 class="text-xl font-bold text-on-surface mb-4">${act.id}</h2>
-                <div class="flex gap-6">
+                <div class="flex flex-col gap-2 mb-4">
                     <div><span class="text-xs text-secondary block">Lugar</span><span class="font-semibold text-sm text-on-surface">${wizardState.mun}, ${wizardState.depto}</span></div>
-                    <div><span class="text-xs text-secondary block">Meta Doble</span><span class="font-bold text-sm text-primary">${act.doble}</span></div>
-                    <div><span class="text-xs text-secondary block">Meta Única</span><span class="font-bold text-sm text-secondary">${act.unica}</span></div>
+                    <div class="flex gap-4 text-xs text-secondary font-medium mt-1">
+                        <span class="flex items-center gap-1.5">
+                            <span class="w-1.5 h-1.5 rounded-full bg-primary"></span>
+                            Meta Doble: <strong class="text-on-surface font-semibold">${act.doble}</strong>
+                        </span>
+                        <span class="text-outline-variant">|</span>
+                        <span class="flex items-center gap-1.5">
+                            <span class="w-1.5 h-1.5 rounded-full bg-secondary"></span>
+                            Meta Única: <strong class="text-on-surface font-semibold">${act.unica}</strong>
+                        </span>
+                    </div>
+                </div>
+                <div class="pt-4 border-t border-outline flex justify-start">
+                    <button onclick="openComponentDrawer('${compKey}')" class="text-xs text-primary hover:text-primary-container font-semibold flex items-center gap-1.5 transition-colors focus:outline-none focus:ring-0">
+                        <span class="material-symbols-outlined text-sm">info</span>
+                        Ver ficha de componente e indicadores de OCHA
+                    </button>
                 </div>
             </div>`;
             

@@ -676,7 +676,14 @@
             html += `<h2 class="text-2xl font-bold mb-2">Selecciona el Componente</h2>`;
             html += `<p class="text-secondary mb-8">¿De qué área es la actividad que deseas reportar?</p>`;
             html += `<div class="grid grid-cols-1 gap-4">`;
-            wizardData.componentes.forEach(c => {
+            
+            // Filter components that have targets for the selected municipality
+            const filteredComps = wizardData.componentes.filter(c => {
+                const acts = wizardData.actividades[c] || [];
+                return acts.some(a => a.targets && a.targets[wizardState.mun]);
+            });
+
+            filteredComps.forEach(c => {
                 html += `<button onclick="wizardSelect('comp', '${c}')" class="flex justify-between items-center p-5 rounded-xl border border-outline hover:border-primary hover:bg-surface-bright transition-all group">
                     <span class="block font-semibold text-on-surface group-hover:text-primary">${c}</span>
                     <svg class="w-5 h-5 text-outline-variant group-hover:text-primary" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"></path></svg>

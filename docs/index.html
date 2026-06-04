@@ -972,6 +972,9 @@
         panel.classList.remove('translate-x-0');
         panel.classList.add('translate-x-full');
 
+        setTimeout(() => {
+            drawer.classList.add('hidden');
+        }, 300);
     }
 
     function openFormatPreview(title, filename) {

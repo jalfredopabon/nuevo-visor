@@ -156,10 +156,10 @@
             <img alt="CARE Logo" class="h-10 w-auto object-contain" src="care_horizontal.webp"/>
         </div>
         
-        <!-- Navigation Tabs (Always Visible) -->
+         <!-- Navigation Tabs (Always Visible) -->
         <nav class="flex items-center gap-4 md:gap-8 h-full" id="nav-tabs">
             <button onclick="switchTab('mapa')" id="tab-mapa" class="text-primary font-bold border-b-2 border-primary h-full flex items-center px-1 text-xs md:text-sm lg:text-base transition-all duration-200 focus:outline-none focus:ring-0">
-                Mapa Operativo
+                Ruta de intervención
             </button>
             <button onclick="switchTab('asistente')" id="tab-asistente" class="text-secondary font-medium hover:text-primary border-b-2 border-transparent h-full flex items-center px-1 text-xs md:text-sm lg:text-base transition-all duration-200 focus:outline-none focus:ring-0">
                 Asistente de Carga
@@ -170,35 +170,180 @@
 
 <!-- Main Container -->
 <main class="flex-grow px-margin-mobile md:px-margin-desktop py-12 max-w-container-max mx-auto w-full">
-    <!-- ================= TAB: MAPA OPERATIVO ================= -->
+    <!-- ================= TAB: RUTA DE INTERVENCIÓN ================= -->
     <section id="section-mapa" class="block transition-all duration-300">
         <!-- Header Section -->
         <div class="flex flex-col md:flex-row justify-between items-start gap-6 mb-12">
             <div>
-                <h1 class="font-display-lg text-display-lg text-on-background mb-2">Mapa Operativo</h1>
-                <p class="text-secondary max-w-xl">Organización estructural y despliegue del proyecto ConEsperanza por zonas geográficas o áreas técnicas.</p>
-            </div>
-            <!-- View Toggle -->
-            <div class="flex bg-surface-bright rounded-full p-1 border border-outline self-start">
-                <button onclick="switchToggleView('geografica')" id="btn-geo" class="flex items-center gap-2 px-6 py-2 rounded-full bg-primary text-on-primary font-label-md text-label-md transition-all focus:outline-none">
-                    <span class="material-symbols-outlined text-lg leading-none">pin_drop</span> Mapa de proyecto
-                </button>
-                <button onclick="switchToggleView('componente')" id="btn-comp" class="flex items-center gap-2 px-6 py-2 rounded-full text-secondary hover:text-on-surface font-label-md text-label-md transition-all focus:outline-none">
-                    <span class="material-symbols-outlined text-lg leading-none">schema</span> Ruta de Intervención
-                </button>
+                <h1 class="font-display-lg text-display-lg text-on-background mb-2">Ruta de Intervención</h1>
+                <p class="text-secondary max-w-2xl">Ruta estratégica y flujo metodológico del proyecto ConEsperanza: desde las acciones de sensibilización comunitaria hasta las atenciones integrales en protección, salud y transferencias monetarias multipropósito.</p>
             </div>
         </div>
         
-        <!-- Tree Diagram Canvas -->
-        <div id="map-canvas-container" class="min-h-[600px] overflow-x-auto relative w-full pt-8 cursor-grab select-none">
-            
-                                                <div id="tree-geografica" class="min-w-[1400px] flex items-center justify-start py-10 px-4">
-                                                    <!-- Mapa mental vacío listo -->
-                                                </div>
-            
-            <div id="tree-componente" class="min-w-[1400px] hidden items-center justify-start py-10 px-4">
-                <!-- Mapa mental vacío listo -->
+        <!-- Ruta de Intervención Diagram Container -->
+        <div class="w-full overflow-x-auto py-8">
+            <div class="min-w-[1000px] max-w-5xl mx-auto bg-surface-bright border border-outline rounded-2xl p-8 relative flex flex-col gap-12 shadow-sm select-none">
+                
+                <!-- SVG Connections Overlay (Drawn behind nodes) -->
+                <svg class="absolute inset-0 w-full h-full pointer-events-none" style="z-index: 1;">
+                    <!-- Marker for Arrows -->
+                    <defs>
+                        <marker id="arrow" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+                            <path d="M 0 1.5 L 10 5 L 0 8.5 z" fill="#E36F1E"/>
+                        </marker>
+                        <marker id="arrow-red" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+                            <path d="M 0 1.5 L 10 5 L 0 8.5 z" fill="#dc2626"/>
+                        </marker>
+                    </defs>
+
+                    <!-- Sensibilización to Protección -->
+                    <line x1="50%" y1="76" x2="33.3%" y2="128" stroke="#E36F1E" stroke-width="2" marker-end="url(#arrow)"/>
+                    
+                    <!-- Sensibilización to Cash Multipropósito (Dashed link) -->
+                    <path d="M 58% 50 Q 80% 60 83.3% 128" stroke="#191c1d" stroke-width="1.5" stroke-dasharray="4,4" fill="none" marker-end="url(#arrow)"/>
+                    <text x="73%" y="75" fill="#5f5e5e" font-size="11px" font-weight="500">requiere sensibiliz.</text>
+
+                    <!-- Gestión de Casos to Cash Protección -->
+                    <line x1="22%" y1="230" x2="16%" y2="278" stroke="#E36F1E" stroke-width="2" marker-end="url(#arrow)"/>
+
+                    <!-- Gestión de Casos to Atención Médica VBG -->
+                    <line x1="28%" y1="230" x2="34%" y2="278" stroke="#E36F1E" stroke-width="2" marker-end="url(#arrow)"/>
+
+                    <!-- Consultas Primarias to Kits Postparto -->
+                    <line x1="55.5%" y1="506" x2="55.5%" y2="558" stroke="#E36F1E" stroke-width="2" marker-end="url(#arrow)"/>
+
+                    <!-- Red Dashed Arrow (Traslape: Atención Médica VBG under Protección -> Atención VBG under Salud) -->
+                    <path d="M 38% 320 Q 42% 380 48% 446" stroke="#dc2626" stroke-width="1.5" stroke-dasharray="4,4" fill="none" marker-end="url(#arrow-red)"/>
+                    <text x="43%" y="380" fill="#dc2626" font-size="11px" font-weight="600">mismas personas</text>
+                </svg>
+
+                <div class="relative flex flex-col gap-10" style="z-index: 10;">
+                    
+                    <!-- ROW 1: ROOT NODE (SENSIBILIZACIÓN) -->
+                    <div class="flex justify-center w-full">
+                        <div class="bg-primary text-on-primary rounded-xl px-8 py-4 text-center w-80 shadow-md">
+                            <span class="text-[9px] uppercase tracking-wider font-bold opacity-85 block mb-0.5">Actividad Sombrilla</span>
+                            <h2 class="text-base font-bold">SENSIBILIZACIÓN <span class="text-xs opacity-90">(Ind 74)</span></h2>
+                            <p class="text-xs mt-0.5 opacity-90">8.000 personas únicas</p>
+                        </div>
+                    </div>
+
+                    <!-- ROW 2: MAIN SECTORS (PROTECCIÓN & CASH MP) -->
+                    <div class="grid grid-cols-3 gap-8 items-start w-full">
+                        <!-- Column 1: Protección -->
+                        <div class="flex flex-col items-center gap-6">
+                            <div class="bg-primary text-on-primary font-bold px-6 py-3 rounded-lg w-72 text-center shadow-xs">
+                                PROTECCIÓN
+                            </div>
+                            
+                            <!-- Actividades Protección -->
+                            <div class="flex gap-4 w-[340px]">
+                                <!-- Gestión de Casos -->
+                                <div class="bg-[#FFF5F0] border border-[#FFE4D6] rounded-lg p-3 text-center flex-1 shadow-2xs">
+                                    <h4 class="text-xs font-bold text-primary-container">Gestión de casos</h4>
+                                    <p class="text-[10px] text-secondary mt-0.5">1.152 personas (Ind 65)</p>
+                                </div>
+                                <!-- Kits CARE Package -->
+                                <div class="bg-[#FFF5F0] border border-[#FFE4D6] rounded-lg p-3 text-center flex-1 shadow-2xs">
+                                    <h4 class="text-xs font-bold text-primary-container">Kit CARE Package</h4>
+                                    <p class="text-[10px] text-secondary mt-0.5">7.200 únicos (Ind 74)</p>
+                                </div>
+                            </div>
+
+                            <!-- Sub-actividades de Gestión de Casos -->
+                            <div class="flex gap-4 w-[340px] mt-2">
+                                <!-- Cash Protección -->
+                                <div class="bg-[#FFF5F0] border border-[#FFE4D6] rounded-lg p-3 text-center flex-1 shadow-2xs">
+                                    <h4 class="text-xs font-bold text-primary-container">Cash protección</h4>
+                                    <p class="text-[10px] text-secondary mt-0.5">403 (Ind C-CA16)</p>
+                                </div>
+                                <!-- Atención Médica VBG -->
+                                <div class="bg-[#FFF5F0] border border-[#FFE4D6] rounded-lg p-3 text-center flex-1 shadow-2xs">
+                                    <h4 class="text-xs font-bold text-primary-container">Atención médica</h4>
+                                    <p class="text-[10px] text-secondary mt-0.5">VBG 576 (Ind 43)</p>
+                                </div>
+                            </div>
+
+                            <!-- Actividad Paralela: Espacios Seguros -->
+                            <div class="border-2 border-dashed border-primary/50 bg-white rounded-lg p-4 text-center w-72 mt-4 shadow-3xs">
+                                <span class="text-[9px] uppercase tracking-wider font-bold text-primary/80 block mb-0.5">Actividad Paralela</span>
+                                <h4 class="text-xs font-bold text-on-surface">Espacios seguros (paralelo)</h4>
+                                <p class="text-[10px] text-secondary mt-0.5">5.400 estimados — no sensibilizados directos</p>
+                            </div>
+                        </div>
+
+                        <!-- Column 2: Salud -->
+                        <div class="flex flex-col items-center gap-6 mt-16">
+                            <div class="bg-primary text-on-primary font-bold px-6 py-3 rounded-lg w-72 text-center shadow-xs">
+                                SALUD
+                            </div>
+                            
+                            <!-- Actividades Salud -->
+                            <div class="flex gap-4 w-[340px]">
+                                <!-- Consultas Primarias -->
+                                <div class="bg-[#FFF5F0] border border-[#FFE4D6] rounded-lg p-3 text-center flex-1 shadow-2xs">
+                                    <h4 class="text-xs font-bold text-primary-container">Consultas primarias</h4>
+                                    <p class="text-[10px] text-secondary mt-0.5">1.211 únicos (Ind 28)</p>
+                                </div>
+                                <!-- Atención VBG -->
+                                <div class="bg-[#FFF5F0] border border-[#FFE4D6] rounded-lg p-3 text-center flex-1 shadow-2xs">
+                                    <h4 class="text-xs font-bold text-primary-container">Atención VBG</h4>
+                                    <p class="text-[10px] text-secondary mt-0.5">576 = gest. casos</p>
+                                </div>
+                            </div>
+
+                            <!-- Sub-actividad: Kits Postparto -->
+                            <div class="w-[340px] flex justify-start pl-6 mt-2">
+                                <div class="bg-[#FFF5F0] border border-[#FFE4D6] rounded-lg p-3 text-center w-40 shadow-2xs">
+                                    <h4 class="text-xs font-bold text-primary-container">Kits postparto</h4>
+                                    <p class="text-[10px] text-secondary mt-0.5">140 gestantes (Ind 28)</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Column 3: Cash Multipropósito -->
+                        <div class="flex flex-col items-center gap-6">
+                            <div class="bg-primary text-on-primary font-bold px-6 py-3 rounded-lg w-72 text-center shadow-xs">
+                                CASH MULTIPROPÓSITO
+                            </div>
+                            
+                            <!-- Actividades Cash -->
+                            <div class="bg-[#FFF5F0] border border-[#FFE4D6] rounded-lg p-3 text-center w-72 shadow-2xs">
+                                <h4 class="text-xs font-bold text-primary-container">Cash MPC</h4>
+                                <p class="text-[10px] text-secondary mt-0.5">1.440 únicos / 576 hogares</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- LEYENDA (Colocada al final) -->
+                    <div class="mt-8 flex justify-end w-full">
+                        <div class="bg-surface border border-outline rounded-xl p-4 w-72 shadow-xs text-xs">
+                            <h5 class="font-bold text-on-surface mb-2 uppercase tracking-wider text-[10px]">Leyenda</h5>
+                            <div class="space-y-2">
+                                <div class="flex items-center gap-2">
+                                    <span class="w-4 h-4 bg-primary rounded border border-primary/20"></span>
+                                    <span class="font-medium text-secondary">Sector / sombrilla</span>
+                                </div>
+                                <div class="flex items-center gap-2">
+                                    <span class="w-4 h-4 bg-[#FFF5F0] rounded border border-[#FFE4D6]"></span>
+                                    <span class="font-medium text-secondary">Actividad / servicio</span>
+                                </div>
+                                <div class="flex items-center gap-2">
+                                    <span class="w-4 h-4 bg-white rounded border-2 border-dashed border-primary/60"></span>
+                                    <span class="font-medium text-secondary">Actividad paralela</span>
+                                </div>
+                                <div class="flex items-center gap-2">
+                                    <span class="w-4 h-0.5 bg-red-500 border-t border-dashed"></span>
+                                    <span class="font-medium text-secondary">Traslape entre sectores</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
             </div>
+        </div>
     </section>
 
     <!-- ================= TAB: ASISTENTE DE CARGA ================= -->
@@ -272,490 +417,6 @@
             if (wizardState.step === 0) startWizard();
         }
     }
-
-    // Toggle view between Geográfica and Componente
-    // ==========================================
-    // RENDER INTERACTIVO DEL MAPA DE PROYECTO
-    // ==========================================
-    const projectMapData = {
-        name: "ConEsperanza",
-        subtext: "CARE Colombia",
-        type: "root",
-        children: [
-            {
-                name: "Cauca",
-                type: "depto",
-                children: [
-                    {
-                        name: "Buenos Aires",
-                        type: "mun",
-                        children: [
-                            { name: "Protección", type: "comp", key: "proteccion" },
-                            { name: "Salud", type: "comp", key: "salud" },
-                            { name: "Cash Multipropósito", type: "comp", key: "cash-multiproposito" }
-                        ]
-                    },
-                    {
-                        name: "Morales",
-                        type: "mun",
-                        children: [
-                            { name: "Protección", type: "comp", key: "proteccion" },
-                            { name: "Salud", type: "comp", key: "salud" },
-                            { name: "Cash Multipropósito", type: "comp", key: "cash-multiproposito" }
-                        ]
-                    },
-                    {
-                        name: "Padilla",
-                        type: "mun",
-                        children: [
-                            { name: "Protección", type: "comp", key: "proteccion" },
-                            { name: "Salud", type: "comp", key: "salud" },
-                            { name: "Cash Multipropósito", type: "comp", key: "cash-multiproposito" }
-                        ]
-                    }
-                ]
-            },
-            {
-                name: "Norte de Santander",
-                type: "depto",
-                children: [
-                    {
-                        name: "Cúcuta",
-                        type: "mun",
-                        children: [
-                            { name: "Protección", type: "comp", key: "proteccion" }
-                        ]
-                    },
-                    {
-                        name: "Villa del Rosario",
-                        type: "mun",
-                        children: [
-                            { name: "Protección", type: "comp", key: "proteccion" }
-                        ]
-                    },
-                    {
-                        name: "Ocaña",
-                        type: "mun",
-                        children: [
-                            { name: "Protección", type: "comp", key: "proteccion" }
-                        ]
-                    },
-                    {
-                        name: "Hacarí",
-                        type: "mun",
-                        children: [
-                            { name: "Protección", type: "comp", key: "proteccion" }
-                        ]
-                    },
-                    {
-                        name: "Teorama",
-                        type: "mun",
-                        children: [
-                            { name: "Protección", type: "comp", key: "proteccion" }
-                        ]
-                    },
-                    {
-                        name: "La Playa de Belén",
-                        type: "mun",
-                        children: [
-                            { name: "Protección", type: "comp", key: "proteccion" }
-                        ]
-                    },
-                    {
-                        name: "Convención",
-                        type: "mun",
-                        children: [
-                            { name: "Protección", type: "comp", key: "proteccion" }
-                        ]
-                    }
-                ]
-            }
-        ]
-    };
-
-    // Tracking expansion states
-    let expandedNodes = {
-        "root": true
-    };
-
-    function toggleNode(nodeId) {
-        expandedNodes[nodeId] = !expandedNodes[nodeId];
-        renderProjectMap();
-        
-        // Centrar el nodo cliqueado en la pantalla
-        setTimeout(() => {
-            const nodeElement = document.getElementById(`node-container-${nodeId}`);
-            if (nodeElement) {
-                nodeElement.scrollIntoView({
-                    behavior: 'smooth',
-                    block: 'center',
-                    inline: 'center'
-                });
-            }
-        }, 100);
-    }
-
-    function renderProjectMap() {
-        const container = document.getElementById('tree-geografica');
-        if (!container) return;
-
-        const isRootExpanded = !!expandedNodes["root"];
-
-        // Render root
-        let html = `
-        <div class="flex items-center justify-start py-6 px-2 gap-0 relative">
-            <!-- Root Node Container -->
-            <div id="node-container-root" class="flex items-center gap-2 z-10 shrink-0">
-                <!-- Root Node -->
-                <div onclick="toggleNode('root')" class="tree-node bg-[#FFF5F0] text-primary rounded-xl px-7 py-5 border border-primary/40 hover:border-primary transition-all duration-200 cursor-pointer w-56 text-center shadow-sm">
-                    <div class="text-left">
-                        <span class="font-headline-md text-headline-md block font-bold leading-tight">${projectMapData.name}</span>
-                        <span class="text-xs text-primary/70 block mt-1">${projectMapData.subtext}</span>
-                    </div>
-                </div>
-                <!-- External Chevron Button -->
-                <button onclick="toggleNode('root')" class="w-8 h-8 rounded-full border border-primary/30 bg-[#FFF5F0] text-primary flex items-center justify-center hover:bg-primary hover:text-on-primary transition-all duration-200 shadow-xs shrink-0 focus:outline-none">
-                    <span class="material-symbols-outlined text-lg transition-transform duration-200 select-none ${isRootExpanded ? 'rotate-90' : ''}">chevron_right</span>
-                </button>
-            </div>
-        `;
-
-        if (isRootExpanded) {
-            html += `
-            <div class="w-10 h-[2px] bg-outline-variant shrink-0 relative self-center"></div>
-            <div class="flex flex-col relative shrink-0">
-            `;
-
-            projectMapData.children.forEach((depto, dIdx) => {
-                const deptoId = `depto-${dIdx}`;
-                const isDeptoExpanded = !!expandedNodes[deptoId];
-                const isLastDepto = dIdx === projectMapData.children.length - 1;
-                const isFirstDepto = dIdx === 0;
-
-                html += `
-                <div class="flex items-center relative py-6">
-                    <!-- Vertical Line Connector -->
-                    <div class="absolute left-0 w-[2px] bg-outline-variant" style="
-                        top: ${isFirstDepto ? '50%' : '0px'};
-                        bottom: ${isLastDepto ? '50%' : '0px'};
-                    "></div>
-                    <!-- Horizontal Line Connector to Depto -->
-                    <div class="absolute left-0 top-1/2 w-8 h-[2px] bg-outline-variant -translate-y-1/2"></div>
-                    
-                    <!-- Depto Node Container -->
-                    <div id="node-container-${deptoId}" class="ml-8 z-10 shrink-0 flex items-center gap-2">
-                        <!-- Depto Node -->
-                        <div onclick="toggleNode('${deptoId}')" class="tree-node bg-[#F0F5FF] text-[#0040C1] rounded-lg px-4 py-3 border border-[#D6E4FF] hover:border-[#0040C1] transition-all duration-200 cursor-pointer w-48 shadow-xs">
-                            <div class="text-left">
-                                <span class="font-body-md text-body-md block font-bold leading-tight">${depto.name}</span>
-                                <span class="text-[10px] text-[#0040C1]/70 block mt-0.5 leading-tight">Departamento</span>
-                            </div>
-                        </div>
-                        <!-- External Chevron Button -->
-                        <button onclick="toggleNode('${deptoId}')" class="w-7 h-7 rounded-full border border-[#D6E4FF] bg-[#F0F5FF] text-[#0040C1] flex items-center justify-center hover:bg-[#0040C1] hover:text-white transition-all duration-200 shadow-xs focus:outline-none">
-                            <span class="material-symbols-outlined text-base transition-transform duration-200 select-none ${isDeptoExpanded ? 'rotate-90' : ''}">chevron_right</span>
-                        </button>
-                    </div>
-                `;
-
-                if (isDeptoExpanded) {
-                    html += `
-                    <div class="w-8 h-[2px] bg-outline-variant shrink-0"></div>
-                    <div class="flex flex-col relative shrink-0">
-                    `;
-
-                    depto.children.forEach((mun, mIdx) => {
-                        const munId = `mun-${dIdx}-${mIdx}`;
-                        const isMunExpanded = !!expandedNodes[munId];
-                        const isLastMun = mIdx === depto.children.length - 1;
-                        const isFirstMun = mIdx === 0;
-
-                        // Check if municipality has multiple components or just one
-                        const hasChildren = mun.children && mun.children.length > 0;
-
-                        html += `
-                        <div class="flex items-center relative py-3">
-                            <!-- Vertical Line Connector -->
-                            <div class="absolute left-0 w-[2px] bg-outline-variant" style="
-                                top: ${isFirstMun ? '50%' : '0px'};
-                                bottom: ${isLastMun ? '50%' : '0px'};
-                            "></div>
-                            <!-- Horizontal Line Connector to Mun -->
-                            <div class="absolute left-0 top-1/2 w-6 h-[2px] bg-outline-variant -translate-y-1/2"></div>
-                            
-                            <!-- Mun Node Container -->
-                            <div id="node-container-${munId}" class="ml-6 z-10 shrink-0 flex items-center gap-2">
-                                <!-- Mun Node -->
-                                <div onclick="${hasChildren ? `toggleNode('${munId}')` : ''}" class="tree-node bg-surface text-on-surface rounded-lg px-4 py-3 border border-outline hover:border-secondary transition-all duration-200 cursor-pointer w-44 shadow-xs">
-                                    <div class="text-left">
-                                        <span class="font-body-md text-body-md block font-semibold leading-tight">${mun.name}</span>
-                                        <span class="text-[10px] text-secondary/70 block mt-0.5 leading-tight">Municipio</span>
-                                    </div>
-                                </div>
-                                ${hasChildren ? `
-                                <!-- External Chevron Button -->
-                                <button onclick="toggleNode('${munId}')" class="w-7 h-7 rounded-full border border-outline bg-surface text-secondary flex items-center justify-center hover:bg-secondary hover:text-white transition-all duration-200 shadow-xs focus:outline-none">
-                                    <span class="material-symbols-outlined text-base transition-transform duration-200 select-none ${isMunExpanded ? 'rotate-90' : ''}">chevron_right</span>
-                                </button>
-                                ` : ''}
-                            </div>
-                        `;
-
-                        if (isMunExpanded && hasChildren) {
-                            html += `
-                            <div class="w-6 h-[2px] bg-outline-variant shrink-0"></div>
-                            <div class="flex flex-col relative shrink-0">
-                            `;
-
-                            mun.children.forEach((comp, cIdx) => {
-                                const compId = `comp-${dIdx}-${mIdx}-${cIdx}`;
-                                const isCompExpanded = !!expandedNodes[compId];
-                                const isLastComp = cIdx === mun.children.length - 1;
-                                const isFirstComp = cIdx === 0;
-
-                                // Colors based on component type
-                                let compBg = "bg-surface-bright";
-                                let compBorder = "border-outline";
-                                let compText = "text-secondary";
-                                let btnHoverBg = "hover:bg-secondary hover:text-white";
-                                if (comp.key === "proteccion") {
-                                    compBg = "bg-[#FFF5F0]";
-                                    compBorder = "border-[#FFE4D6]";
-                                    compText = "text-primary";
-                                    btnHoverBg = "hover:bg-primary hover:text-white";
-                                } else if (comp.key === "salud") {
-                                    compBg = "bg-[#F0FAFA]";
-                                    compBorder = "border-[#D1F0F0]";
-                                    compText = "text-[#006666]";
-                                    btnHoverBg = "hover:bg-[#006666] hover:text-white";
-                                } else if (comp.key === "cash-multiproposito") {
-                                    compBg = "bg-[#F0F5FF]";
-                                    compBorder = "border-[#D6E4FF]";
-                                    compText = "text-[#0040C1]";
-                                    btnHoverBg = "hover:bg-[#0040C1] hover:text-white";
-                                }
-
-                                const details = componentDetails[comp.key];
-                                const hasCompChildren = details && details.subcomponents && details.subcomponents.length > 0;
-
-                                html += `
-                                <div class="flex items-center relative py-2">
-                                    <!-- Vertical Line Connector -->
-                                    <div class="absolute left-0 w-[2px] bg-outline-variant" style="
-                                        top: ${isFirstComp ? '50%' : '0px'};
-                                        bottom: ${isLastComp ? '50%' : '0px'};
-                                    "></div>
-                                    <!-- Horizontal Line Connector to Comp -->
-                                    <div class="absolute left-0 top-1/2 w-6 h-[2px] bg-outline-variant -translate-y-1/2"></div>
-                                    
-                                    <!-- Comp Node Container -->
-                                    <div id="node-container-${compId}" class="ml-6 z-10 shrink-0 flex items-center gap-2">
-                                        <!-- Comp Node -->
-                                        <div onclick="${hasCompChildren ? `toggleNode('${compId}')` : `openComponentDrawer('${comp.key}')`}" class="tree-node ${compBg} ${compText} rounded-lg px-4 py-3 border ${compBorder} hover:opacity-95 hover:shadow-xs transition-all duration-200 cursor-pointer w-44 shadow-xs">
-                                            <span class="font-body-md text-body-md block font-medium leading-tight text-left">${comp.name}</span>
-                                        </div>
-                                        ${hasCompChildren ? `
-                                        <!-- External Chevron Button -->
-                                        <button onclick="toggleNode('${compId}')" class="w-7 h-7 rounded-full border ${compBorder} ${compBg} ${compText} flex items-center justify-center ${btnHoverBg} transition-all duration-200 shadow-xs focus:outline-none">
-                                            <span class="material-symbols-outlined text-base transition-transform duration-200 select-none ${isCompExpanded ? 'rotate-90' : ''}">chevron_right</span>
-                                        </button>
-                                        ` : `
-                                        <button onclick="openComponentDrawer('${comp.key}')" class="w-7 h-7 rounded-full border ${compBorder} ${compBg} ${compText} flex items-center justify-center hover:opacity-85 transition-all duration-200 shadow-xs focus:outline-none">
-                                            <span class="material-symbols-outlined text-base">info</span>
-                                        </button>
-                                        `}
-                                    </div>
-                                `;
-
-                                if (isCompExpanded && hasCompChildren) {
-                                    html += `
-                                    <div class="w-6 h-[2px] bg-outline-variant shrink-0"></div>
-                                    <div class="flex flex-col relative shrink-0">
-                                    `;
-
-                                    details.subcomponents.forEach((sub, sIdx) => {
-                                        const subId = `sub-${dIdx}-${mIdx}-${cIdx}-${sIdx}`;
-                                        const isSubExpanded = !!expandedNodes[subId];
-                                        const isLastSub = sIdx === details.subcomponents.length - 1;
-                                        const isFirstSub = sIdx === 0;
-
-                                        const hasSubChildren = sub.actions && sub.actions.length > 0;
-
-                                        html += `
-                                        <div class="flex items-center relative py-3">
-                                            <!-- Vertical Line Connector -->
-                                            <div class="absolute left-0 w-[2px] bg-outline-variant" style="
-                                                top: ${isFirstSub ? '50%' : '0px'};
-                                                bottom: ${isLastSub ? '50%' : '0px'};
-                                            "></div>
-                                            <!-- Horizontal Line to Sub -->
-                                            <div class="absolute left-0 top-1/2 w-6 h-[2px] bg-outline-variant -translate-y-1/2"></div>
-                                            
-                                            <!-- Subcomponent Node Container -->
-                                            <div id="node-container-${subId}" class="ml-6 z-10 shrink-0 flex items-center gap-2">
-                                                <!-- Subcomponent Node -->
-                                                <div onclick="${hasSubChildren ? `toggleNode('${subId}')` : ''}" class="tree-node bg-surface border border-outline hover:border-secondary transition-all duration-200 rounded-lg px-4 py-3 cursor-pointer w-56 shadow-xs">
-                                                    <span class="font-body-md text-xs block font-medium text-on-surface leading-tight text-left">${sub.name}</span>
-                                                </div>
-                                                ${hasSubChildren ? `
-                                                <!-- External Chevron Button -->
-                                                <button onclick="toggleNode('${subId}')" class="w-7 h-7 rounded-full border border-outline bg-surface text-secondary flex items-center justify-center hover:bg-secondary hover:text-white transition-all duration-200 shadow-xs focus:outline-none">
-                                                    <span class="material-symbols-outlined text-xs transition-transform duration-200 select-none ${isSubExpanded ? 'rotate-90' : ''}">chevron_right</span>
-                                                </button>
-                                                ` : ''}
-                                            </div>
-                                        `;
-
-                                        if (isSubExpanded && hasSubChildren) {
-                                            html += `
-                                            <div class="w-6 h-[2px] bg-outline-variant shrink-0"></div>
-                                            <div class="flex flex-col relative shrink-0">
-                                            `;
-
-                                            sub.actions.forEach((act, aIdx) => {
-                                                const isLastAct = aIdx === sub.actions.length - 1;
-                                                const isFirstAct = aIdx === 0;
-
-                                                html += `
-                                                <div class="flex items-center relative py-1.5">
-                                                    <!-- Vertical Line Connector -->
-                                                    <div class="absolute left-0 w-[2px] bg-outline-variant" style="
-                                                        top: ${isFirstAct ? '50%' : '0px'};
-                                                        bottom: ${isLastAct ? '50%' : '0px'};
-                                                    "></div>
-                                                    <!-- Horizontal Line to Act -->
-                                                    <div class="absolute left-0 top-1/2 w-4 h-[2px] bg-outline-variant -translate-y-1/2"></div>
-                                                    
-                                                    <!-- Activity Node Container (Opens detail drawer) -->
-                                                    <div class="ml-4 z-10 shrink-0 flex items-center gap-1.5">
-                                                        <!-- Activity Node -->
-                                                        <div onclick="openComponentDrawer('${comp.key}')" class="tree-node bg-surface border border-outline hover:border-primary transition-all duration-150 rounded-lg px-3 py-2 cursor-pointer w-48 shadow-xs">
-                                                            <span class="text-[11px] text-secondary font-medium block leading-tight text-left">${act}</span>
-                                                        </div>
-                                                        <button onclick="openComponentDrawer('${comp.key}')" class="w-6 h-6 rounded-full border border-outline bg-surface text-primary/80 flex items-center justify-center hover:bg-primary hover:text-white transition-all duration-150 shadow-xs focus:outline-none">
-                                                            <span class="material-symbols-outlined text-xs">info</span>
-                                                        </button>
-                                                    </div>
-                                                </div>
-                                                `;
-                                            });
-
-                                            html += `</div>`;
-                                        }
-
-                                        html += `</div>`;
-                                    });
-
-                                    html += `</div>`;
-                                }
-
-                                html += `</div>`;
-                            });
-
-                            html += `</div>`;
-                        }
-
-                        html += `</div>`;
-                    });
-
-                    html += `</div>`;
-                }
-
-                html += `</div>`;
-            });
-
-            html += `
-            </div>
-            `;
-        }
-
-        html += `</div>`;
-        container.innerHTML = html;
-    }
-
-    function switchToggleView(viewName) {
-        const btnGeo = document.getElementById('btn-geo');
-        const btnComp = document.getElementById('btn-comp');
-        const treeGeo = document.getElementById('tree-geografica');
-        const treeComp = document.getElementById('tree-componente');
-        
-        if (viewName === 'geografica') {
-            treeGeo.classList.remove('hidden');
-            treeGeo.classList.add('flex');
-            treeComp.classList.add('hidden');
-            treeComp.classList.remove('flex');
-            
-            btnGeo.className = "flex items-center gap-2 px-6 py-2 rounded-full bg-primary text-on-primary font-label-md text-label-md transition-all focus:outline-none";
-            btnComp.className = "flex items-center gap-2 px-6 py-2 rounded-full text-secondary hover:text-on-surface font-label-md text-label-md transition-all focus:outline-none";
-            
-            renderProjectMap();
-        } else {
-            treeGeo.classList.add('hidden');
-            treeGeo.classList.remove('flex');
-            treeComp.classList.remove('hidden');
-            treeComp.classList.add('flex');
-            
-            btnGeo.className = "flex items-center gap-2 px-6 py-2 rounded-full text-secondary hover:text-on-surface font-label-md text-label-md transition-all focus:outline-none";
-            btnComp.className = "flex items-center gap-2 px-6 py-2 rounded-full bg-primary text-on-primary font-label-md text-label-md transition-all focus:outline-none";
-            
-            renderInterventionRoute();
-        }
-    }
-
-    function renderInterventionRoute() {
-        const container = document.getElementById('tree-componente');
-        if (!container) return;
-
-        container.innerHTML = `
-        <div class="flex flex-col items-center justify-center py-20 text-secondary">
-            <span class="material-symbols-outlined text-4xl mb-2">schema</span>
-            <p class="font-medium text-sm">Pendiente por cargar la estructura definitiva...</p>
-        </div>
-        `;
-    }
-
-    // Call render initially on load
-    window.addEventListener('DOMContentLoaded', () => {
-        renderProjectMap();
-        
-        // Drag to scroll logic for map canvas
-        const slider = document.getElementById('map-canvas-container');
-        if (slider) {
-            let isDown = false;
-            let startX;
-            let scrollLeft;
-
-            slider.addEventListener('mousedown', (e) => {
-                // Evitar el arrastre si es clic derecho o si se hace clic en botones/nodos
-                if (e.target.closest('button') || e.target.closest('.tree-node') || e.button !== 0) return;
-                isDown = true;
-                slider.classList.remove('cursor-grab');
-                slider.classList.add('cursor-grabbing');
-                startX = e.pageX - slider.offsetLeft;
-                scrollLeft = slider.scrollLeft;
-            });
-
-            slider.addEventListener('mouseleave', () => {
-                isDown = false;
-                slider.classList.remove('cursor-grabbing');
-                slider.classList.add('cursor-grab');
-            });
-
-            slider.addEventListener('mouseup', () => {
-                isDown = false;
-                slider.classList.remove('cursor-grabbing');
-                slider.classList.add('cursor-grab');
-            });
-
-            slider.addEventListener('mousemove', (e) => {
-                if (!isDown) return;
-                e.preventDefault();
-                const x = e.pageX - slider.offsetLeft;
-                const walk = (x - startX) * 1.8; // Velocidad de arrastre
-                slider.scrollLeft = scrollLeft - walk;
-            });
-        }
-    });
 
     // Simple scroll effect on header
     window.addEventListener('scroll', () => {
@@ -1059,7 +720,7 @@
         }
         else if (wizardState.step === 4) {
             html += `<h2 class="text-2xl font-bold mb-2">Selecciona el Profesional</h2>`;
-            html += `<p class="text-secondary mb-8">¿Quién realizó el reporte de la actividad?</p>`;
+            html += `<p class="text-secondary mb-8">Revisar actividades</p>`;
             
             const deptoKey = wizardState.depto;
             const compKey = wizardState.comp;
@@ -1124,14 +785,26 @@
             </div>`;
             
             html += `<h3 class="font-bold text-on-surface mb-4">Medios de Verificación Requeridos</h3>`;
-            html += `<div class="flex flex-col gap-4">`;
+            html += `<div class="flex flex-col gap-6">`;
             act.medios.forEach(m => {
-                html += `<div class="flex justify-between items-center p-4 border-b border-outline hover:bg-surface-bright transition-colors">
-                    <span class="text-sm font-medium text-on-surface w-2/3">${m}</span>
-                    <span class="inline-flex items-center gap-1 bg-[#FFF9F2] border border-[#FFE4D6] text-primary px-3 py-1.5 rounded text-[11px] font-semibold">
-                        <svg class="w-3.5 h-3.5 text-primary" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"></path></svg>
-                        Próximamente links de evidencia
-                    </span>
+                const webpName = m.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "").replace(/[^a-z0-9]/g, "_") + ".webp";
+                html += `<div class="flex flex-col items-start p-5 bg-surface rounded-xl border border-outline hover:border-secondary transition-all gap-3 shadow-xs">
+                    <!-- 1. Document Title -->
+                    <span class="text-base font-bold text-on-surface">${m}</span>
+                    
+                    <div class="flex flex-wrap items-center gap-3 w-full mt-1">
+                        <!-- 2. Format Example -->
+                        <button onclick="openFormatPreview('${m}', '${webpName}')" class="inline-flex items-center gap-1.5 px-4 py-2 text-xs font-bold text-primary bg-white border border-primary rounded-full hover:bg-primary hover:text-white transition-all duration-300 focus:outline-none focus:ring-0">
+                            <span class="material-symbols-outlined text-sm leading-none">visibility</span>
+                            Ver formato de ejemplo
+                        </button>
+                        
+                        <!-- 3. Evidence Link -->
+                        <a href="#" class="inline-flex items-center gap-1.5 px-4 py-2 text-xs font-bold text-primary bg-white border border-primary rounded-full hover:bg-primary hover:text-white transition-all duration-300 focus:outline-none focus:ring-0" onclick="event.preventDefault(); alert('Link de evidencia próximamente disponible en este territorio.');">
+                            <span class="material-symbols-outlined text-sm leading-none">link</span>
+                            Link de evidencia
+                        </a>
+                    </div>
                 </div>`;
             });
             html += `</div>`;
@@ -1292,8 +965,51 @@
         panel.classList.remove('translate-x-0');
         panel.classList.add('translate-x-full');
 
+    }
+
+    function openFormatPreview(title, filename) {
+        const modal = document.getElementById('format-preview-modal');
+        const backdrop = document.getElementById('format-preview-backdrop');
+        const panel = document.getElementById('format-preview-panel');
+        const modalTitle = document.getElementById('format-preview-title');
+        const img = document.getElementById('format-preview-img');
+        const placeholder = document.getElementById('format-preview-placeholder');
+        const filenameText = document.getElementById('format-preview-filename');
+
+        modalTitle.innerText = `Ejemplo de formato: ${title}`;
+        filenameText.innerText = `Archivo esperado: ${filename}`;
+        
+        img.src = `formatos/${filename}`;
+        img.onload = function() {
+            img.classList.remove('hidden');
+            placeholder.classList.add('hidden');
+        };
+        img.onerror = function() {
+            img.classList.add('hidden');
+            placeholder.classList.remove('hidden');
+        };
+
+        modal.classList.remove('hidden');
         setTimeout(() => {
-            drawer.classList.add('hidden');
+            backdrop.classList.remove('opacity-0');
+            backdrop.classList.add('opacity-100');
+            panel.classList.remove('scale-95', 'opacity-0');
+            panel.classList.add('scale-100', 'opacity-100');
+        }, 10);
+    }
+
+    function closeFormatPreview() {
+        const modal = document.getElementById('format-preview-modal');
+        const backdrop = document.getElementById('format-preview-backdrop');
+        const panel = document.getElementById('format-preview-panel');
+
+        backdrop.classList.remove('opacity-100');
+        backdrop.classList.add('opacity-0');
+        panel.classList.remove('scale-100', 'opacity-100');
+        panel.classList.add('scale-95', 'opacity-0');
+
+        setTimeout(() => {
+            modal.classList.add('hidden');
         }, 300);
     }
 </script>
@@ -1335,6 +1051,34 @@
                 <button onclick="closeComponentDrawer()" class="bg-primary text-on-primary font-bold text-sm px-6 py-2.5 rounded-full hover:opacity-90 transition-opacity">
                     Cerrar Detalle
                 </button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Format Preview Lightbox Modal -->
+<div id="format-preview-modal" class="fixed inset-0 z-50 overflow-hidden hidden" role="dialog" aria-modal="true">
+    <!-- Backdrop -->
+    <div id="format-preview-backdrop" onclick="closeFormatPreview()" class="absolute inset-0 bg-[#090015]/60 backdrop-blur-sm transition-opacity duration-300 opacity-0"></div>
+    
+    <!-- Modal Panel -->
+    <div class="fixed inset-0 flex items-center justify-center p-4 pointer-events-none">
+        <div id="format-preview-panel" class="bg-background border border-outline rounded-2xl max-w-3xl w-full max-h-[85vh] shadow-2xl flex flex-col pointer-events-auto transform scale-95 opacity-0 transition-all duration-300">
+            <!-- Header -->
+            <div class="px-6 py-4 border-b border-outline flex justify-between items-center bg-surface-bright rounded-t-2xl">
+                <h3 id="format-preview-title" class="font-bold text-on-surface"></h3>
+                <button onclick="closeFormatPreview()" class="rounded-lg p-1 text-secondary hover:text-on-surface hover:bg-surface-container transition-colors">
+                    <span class="material-symbols-outlined">close</span>
+                </button>
+            </div>
+            <!-- Body (Image container) -->
+            <div class="flex-grow p-6 overflow-y-auto flex items-center justify-center bg-surface-container-lowest">
+                <img id="format-preview-img" src="" alt="Format Preview" class="max-w-full max-h-[60vh] object-contain rounded border border-outline hidden"/>
+                <div id="format-preview-placeholder" class="flex flex-col items-center justify-center py-12 text-secondary">
+                    <span class="material-symbols-outlined text-5xl text-primary/80 mb-2">image_not_supported</span>
+                    <p class="font-semibold text-sm">Vista previa de formato próximamente disponible</p>
+                    <p class="text-xs text-secondary/70 mt-1" id="format-preview-filename"></p>
+                </div>
             </div>
         </div>
     </div>

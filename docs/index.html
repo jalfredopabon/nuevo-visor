@@ -776,27 +776,161 @@
             "Norte de Santander": ["Ocaña", "Abrego", "Hacarí", "Teorama", "La Playa de Belén", "Convención"]
         },
         "componentes": ["Protección", "Salud", "Cash Multipropósito"],
+        "profesionales": {
+            "Cauca": {
+                "Protección": [
+                    { "name": "Oficial Psicosocial 1", "role": "Psicosocial" },
+                    { "name": "Oficial Psicosocial 2", "role": "Psicosocial" },
+                    { "name": "Oficial Legal 1", "role": "Legal" },
+                    { "name": "Gestor Comunitario 1", "role": "Gestoría Comunitaria" },
+                    { "name": "Gestor Comunitario 2", "role": "Gestoría Comunitaria" }
+                ],
+                "Salud": [
+                    { "name": "Oficial de Salud 1", "role": "Salud" }
+                ],
+                "Cash Multipropósito": [
+                    { "name": "Oficial CASH 1", "role": "Cash" }
+                ]
+            },
+            "Norte de Santander": {
+                "Protección": [
+                    { "name": "Oficial Psicosocial 1", "role": "Psicosocial" },
+                    { "name": "Oficial Psicosocial 2", "role": "Psicosocial" },
+                    { "name": "Oficial Psicosocial 3", "role": "Psicosocial" },
+                    { "name": "Oficial Legal 1", "role": "Legal" },
+                    { "name": "Oficial Legal 2", "role": "Legal" },
+                    { "name": "Oficial Legal 3", "role": "Legal" },
+                    { "name": "Gestor Comunitario 1", "role": "Gestoría Comunitaria" },
+                    { "name": "Gestor Comunitario 2", "role": "Gestoría Comunitaria" },
+                    { "name": "Gestor Comunitario 3", "role": "Gestoría Comunitaria" }
+                ],
+                "Salud": [],
+                "Cash Multipropósito": []
+            }
+        },
         "actividades": {
             "Protección": [
-                { "cat": "Prevención y mitigación de riesgos", "id": "1.1 Sensibilización comunitaria y campañas de comunicación", "doble": 8000, "unica": 8000, "medios": ["Listados de Asistencia", "Actas de actividad (espacios masivos)", "Registro en CommCare", "BBDD sistema de monitoreo CARE COL", "Archivo seguimiento eventos masivos"] },
-                { "cat": "Prevención y mitigación de riesgos", "id": "1.4 Entrega de kits CARE Package", "doble": 9600, "unica": 7200, "medios": ["Registro entrega de kits en el sistema de monitoreo", "Listados de distribución de kits", "BBDD sistema de monitoreo CARE COL"] },
-                { "cat": "Prevención y mitigación de riesgos", "id": "1.5 Fortalecimiento protección en espacios seguros", "doble": 5400, "unica": 5400, "medios": ["Mapeo y diagnóstico", "Plan de trabajo", "Acta de entrega (dotación - mejoras)", "Actas de seguimiento", "Archivo consolidado de seguimiento"] },
-                { "cat": "Apoyo psicosocial y gestión de casos", "id": "1.2 Gestión de casos para víctimas de violencia", "doble": 1152, "unica": 0, "medios": ["Registro de todo el ciclo de la Gestión de Caso en el sistema de monitoreo de CARE COL", "BBDD sistema de monitoreo CARE COL"] },
-                { "cat": "Apoyo psicosocial y gestión de casos", "id": "1.3 Entrega de cash a personas en situación de riesgo", "doble": 403, "unica": 0, "medios": ["Registro entrega de priorización y entrega de cash en el sistema de monitoreo", "Tirillas de entrega del cash - proveedor de servicios financieros / BBDD proveedor", "BBDD sistema de monitoreo CARE COL", "BBDD seguimiento coordinación PTM"] }
+                { 
+                    "cat": "Prevención y mitigación de riesgos", 
+                    "id": "1.1 Sensibilización comunitaria y campañas de comunicación", 
+                    "targets": {
+                        "Buenos Aires": { "doble": 1200, "unica": 1200 },
+                        "Morales": { "doble": 1200, "unica": 1200 },
+                        "Ocaña": { "doble": 1200, "unica": 1200 },
+                        "Abrego": { "doble": 1200, "unica": 1200 },
+                        "Convención": { "doble": 800, "unica": 800 },
+                        "Teorama": { "doble": 800, "unica": 800 },
+                        "Hacarí": { "doble": 800, "unica": 800 },
+                        "La Playa de Belén": { "doble": 800, "unica": 800 }
+                    },
+                    "medios": ["Listados de Asistencia", "Actas de actividad (espacios masivos)", "Registro en CommCare", "BBDD sistema de monitoreo CARE COL", "Archivo seguimiento eventos masivos"] 
+                },
+                { 
+                    "cat": "Prevención y mitigación de riesgos", 
+                    "id": "1.4 Entrega de kits CARE Package", 
+                    "targets": {
+                        "Buenos Aires": { "doble": 1200, "unica": 900 },
+                        "Morales": { "doble": 1200, "unica": 900 },
+                        "Ocaña": { "doble": 1200, "unica": 900 },
+                        "Abrego": { "doble": 1200, "unica": 900 },
+                        "Convención": { "doble": 1200, "unica": 900 },
+                        "Teorama": { "doble": 1200, "unica": 900 },
+                        "Hacarí": { "doble": 1200, "unica": 900 },
+                        "La Playa de Belén": { "doble": 1200, "unica": 900 }
+                    },
+                    "medios": ["Registro entrega de kits en el sistema de monitoreo", "Listados de distribución de kits", "BBDD sistema de monitoreo CARE COL"] 
+                },
+                { 
+                    "cat": "Prevención y mitigación de riesgos", 
+                    "id": "1.5 Fortalecimiento protección en espacios seguros", 
+                    "targets": {
+                        "Buenos Aires": { "doble": 900, "unica": 900 },
+                        "Morales": { "doble": 900, "unica": 900 },
+                        "Ocaña": { "doble": 900, "unica": 900 },
+                        "Abrego": { "doble": 900, "unica": 900 },
+                        "Convención": { "doble": 450, "unica": 450 },
+                        "Teorama": { "doble": 450, "unica": 450 },
+                        "Hacarí": { "doble": 450, "unica": 450 },
+                        "La Playa de Belén": { "doble": 450, "unica": 450 }
+                    },
+                    "medios": ["Mapeo y diagnóstico", "Plan de trabajo", "Acta de entrega (dotación - mejoras)", "Actas de seguimiento", "Archivo consolidado de seguimiento"] 
+                },
+                { 
+                    "cat": "Apoyo psicosocial y gestión de casos", 
+                    "id": "1.2 Gestión de casos para víctimas de violencia", 
+                    "targets": {
+                        "Buenos Aires": { "doble": 288, "unica": 0 },
+                        "Morales": { "doble": 288, "unica": 0 },
+                        "Ocaña": { "doble": 96, "unica": 0 },
+                        "Abrego": { "doble": 96, "unica": 0 },
+                        "Convención": { "doble": 96, "unica": 0 },
+                        "Teorama": { "doble": 96, "unica": 0 },
+                        "Hacarí": { "doble": 96, "unica": 0 },
+                        "La Playa de Belén": { "doble": 96, "unica": 0 }
+                    },
+                    "medios": ["Registro de todo el ciclo de la Gestión de Caso en el sistema de monitoreo de CARE COL", "BBDD sistema de monitoreo CARE COL"] 
+                },
+                { 
+                    "cat": "Apoyo psicosocial y gestión de casos", 
+                    "id": "1.3 Entrega de cash a personas en situación de riesgo", 
+                    "targets": {
+                        "Buenos Aires": { "doble": 115, "unica": 0 },
+                        "Morales": { "doble": 115, "unica": 0 },
+                        "Ocaña": { "doble": 29, "unica": 0 },
+                        "Abrego": { "doble": 29, "unica": 0 },
+                        "Convención": { "doble": 29, "unica": 0 },
+                        "Teorama": { "doble": 28, "unica": 0 },
+                        "Hacarí": { "doble": 29, "unica": 0 },
+                        "La Playa de Belén": { "doble": 29, "unica": 0 }
+                    },
+                    "medios": ["Registro entrega de priorización y entrega de cash en el sistema de monitoreo", "Tirillas de entrega del cash - proveedor de servicios financieros / BBDD proveedor", "BBDD sistema de monitoreo CARE COL", "BBDD seguimiento coordinación PTM"] 
+                }
             ],
             "Salud": [
-                { "cat": "Acceso a atención primaria en salud", "id": "2.1 Prestación de servicios de atención primaria de salud", "doble": 1345, "unica": 1211, "medios": ["Voucher de salud en el sistema de monitoreo", "BBDD sistema de monitoreo CARE COL", "BBDD proveedor de servicios"] },
-                { "cat": "Acceso a atención primaria en salud", "id": "2.2 Entrega de kits postparto", "doble": 140, "unica": 0, "medios": ["Registro entrega de kits en el sistema de monitoreo", "Listados de distribución de kits", "BBDD sistema de monitoreo CARE COL"] },
-                { "cat": "Asistencia a sobrevivientes de violencia", "id": "2.3 Prestación de servicios de atención medica a sobrevivientes", "doble": 576, "unica": 0, "medios": ["Voucher de salud en el sistema de monitoreo", "BBDD sistema de monitoreo CARE COL", "BBDD proveedor de servicios"] }
+                { 
+                    "cat": "Acceso a atención primaria en salud", 
+                    "id": "2.1 Prestación de servicios de atención primaria de salud", 
+                    "targets": {
+                        "Buenos Aires": { "doble": 1345, "unica": 673 },
+                        "Morales": { "doble": 1345, "unica": 672 }
+                    },
+                    "medios": ["Voucher de salud en el sistema de monitoreo", "BBDD sistema de monitoreo CARE COL", "BBDD proveedor de servicios"] 
+                },
+                { 
+                    "cat": "Acceso a atención primaria en salud", 
+                    "id": "2.2 Entrega de kits postparto", 
+                    "targets": {
+                        "Buenos Aires": { "doble": 70, "unica": 0 },
+                        "Morales": { "doble": 70, "unica": 0 }
+                    },
+                    "medios": ["Registro entrega de kits en el sistema de monitoreo", "Listados de distribución de kits", "BBDD sistema de monitoreo CARE COL"] 
+                },
+                { 
+                    "cat": "Asistencia a sobrevivientes de violencia", 
+                    "id": "2.3 Prestación de servicios de atención medica a sobrevivientes", 
+                    "targets": {
+                        "Buenos Aires": { "doble": 288, "unica": 0 },
+                        "Morales": { "doble": 288, "unica": 0 }
+                    },
+                    "medios": ["Voucher de salud en el sistema de monitoreo", "BBDD sistema de monitoreo CARE COL", "BBDD proveedor de servicios"] 
+                }
             ],
             "Cash Multipropósito": [
-                { "cat": "Transferencias monetarias de emergencia", "id": "3.1 Cash Multipropósito", "doble": 2016, "unica": 1440, "medios": ["Registro en CommCare", "BBDD entrega Cash", "Tirillas entrega del proveedor de serivicio / BBDD proveedor", "BBDD seguimiento coordinación PTM"] }
+                { 
+                    "cat": "Transferencias monetarias de emergencia", 
+                    "id": "3.1 Cash Multipropósito", 
+                    "targets": {
+                        "Buenos Aires": { "doble": 1008, "unica": 288 },
+                        "Morales": { "doble": 1008, "unica": 288 }
+                    },
+                    "medios": ["Registro en CommCare", "BBDD entrega Cash", "Tirillas entrega del proveedor de serivicio / BBDD proveedor", "BBDD seguimiento coordinación PTM"] 
+                }
             ]
         }
     };
 
-    let wizardState = { step: 0, depto: null, mun: null, comp: null, actIndex: null };
-    const stepNames = ["Departamento", "Municipio", "Componente", "Actividad", "Carga Evidencia"];
+    let wizardState = { step: 0, depto: null, mun: null, comp: null, actIndex: null, profesional: null };
+    const stepNames = ["Departamento", "Municipio", "Componente", "Actividad", "Profesional", "Carga Evidencia"];
 
     function renderWizardSidebar() {
         const sidebar = document.getElementById('wizard-steps');
@@ -823,6 +957,11 @@
             if(i==0 && wizardState.depto) subtitle = wizardState.depto;
             if(i==1 && wizardState.mun) subtitle = wizardState.mun;
             if(i==2 && wizardState.comp) subtitle = wizardState.comp;
+            if(i==3 && wizardState.actIndex !== null) {
+                const actObj = wizardData.actividades[wizardState.comp][wizardState.actIndex];
+                subtitle = actObj.id.substring(0, 25) + "...";
+            }
+            if(i==4 && wizardState.profesional) subtitle = wizardState.profesional;
             
             html += `
             <li class="mb-8 ml-6">
@@ -835,7 +974,7 @@
     }
 
     function startWizard() {
-        wizardState = { step: 0, depto: null, mun: null, comp: null, actIndex: null };
+        wizardState = { step: 0, depto: null, mun: null, comp: null, actIndex: null, profesional: null };
         renderWizardSidebar();
         renderWizardStep();
     }
@@ -889,34 +1028,92 @@
             html += `<h2 class="text-2xl font-bold mb-2">Selecciona la Actividad</h2>`;
             html += `<p class="text-secondary mb-8">Actividades de ${wizardState.comp}.</p>`;
             html += `<div class="flex flex-col gap-3">`;
-            wizardData.actividades[wizardState.comp].forEach((a, index) => {
-                html += `<button onclick="wizardSelect('actIndex', ${index})" class="text-left p-5 rounded-xl border border-outline hover:border-primary hover:bg-surface-bright transition-all group">
-                    <span class="text-[10px] uppercase font-bold text-secondary mb-1 block">${a.cat}</span>
-                    <span class="block font-medium text-on-surface group-hover:text-primary">${a.id}</span>
-                </button>`;
-            });
+            const acts = wizardData.actividades[wizardState.comp] || [];
+            
+            // Filter activities that have targets for the selected municipality
+            const filteredActs = acts.filter(a => a.targets && a.targets[wizardState.mun]);
+            
+            if(filteredActs.length === 0) {
+                html += `<p class="text-secondary italic">No hay actividades configuradas para ${wizardState.mun} en el componente de ${wizardState.comp}.</p>`;
+            } else {
+                filteredActs.forEach((a) => {
+                    const actIndex = acts.indexOf(a);
+                    const t = a.targets[wizardState.mun];
+                    let targetText = "";
+                    if (t) {
+                        if (t.unica > 0) {
+                            targetText = `🎯 Meta en ${wizardState.mun}: ${t.doble} (Doble) / ${t.unica} (Única)`;
+                        } else {
+                            targetText = `🎯 Meta en ${wizardState.mun}: ${t.doble} (Doble)`;
+                        }
+                    }
+                    html += `<button onclick="wizardSelect('actIndex', ${actIndex})" class="text-left p-5 rounded-xl border border-outline hover:border-primary hover:bg-surface-bright transition-all group">
+                        <span class="text-[10px] uppercase font-bold text-secondary mb-1 block">${a.cat}</span>
+                        <span class="block font-medium text-on-surface group-hover:text-primary mb-2">${a.id}</span>
+                        <span class="block text-xs text-secondary font-medium">${targetText}</span>
+                    </button>`;
+                });
+            }
             html += `</div>`;
             html += `<button onclick="wizardBack()" class="mt-8 text-secondary hover:text-on-surface text-sm underline flex items-center gap-1"><span class="material-symbols-outlined text-sm">arrow_back</span>Volver a componente</button>`;
         }
         else if (wizardState.step === 4) {
+            html += `<h2 class="text-2xl font-bold mb-2">Selecciona el Profesional</h2>`;
+            html += `<p class="text-secondary mb-8">¿Quién realizó el reporte de la actividad?</p>`;
+            
+            const deptoKey = wizardState.depto;
+            const compKey = wizardState.comp;
+            const list = (wizardData.profesionales[deptoKey] && wizardData.profesionales[deptoKey][compKey]) || [];
+            
+            if (list.length === 0) {
+                html += `<p class="text-secondary italic">No hay profesionales registrados para este componente en ${deptoKey}.</p>`;
+                html += `<div class="mt-4"><button onclick="wizardSelect('profesional', 'Sin asignar')" class="bg-primary text-on-primary px-6 py-2 rounded-full font-bold text-sm hover:opacity-90">Continuar sin asignar</button></div>`;
+            } else {
+                html += `<div class="grid grid-cols-1 md:grid-cols-2 gap-4">`;
+                list.forEach(p => {
+                    html += `<button onclick="wizardSelect('profesional', '${p.name}')" class="text-left p-5 rounded-xl border border-outline hover:border-primary hover:bg-surface-bright transition-all group flex flex-col justify-center">
+                        <span class="block font-semibold text-on-surface group-hover:text-primary">${p.name}</span>
+                        <span class="text-xs text-secondary mt-1">${p.role}</span>
+                    </button>`;
+                });
+                html += `</div>`;
+            }
+            html += `<button onclick="wizardBack()" class="mt-8 text-secondary hover:text-on-surface text-sm underline flex items-center gap-1"><span class="material-symbols-outlined text-sm">arrow_back</span>Volver a actividad</button>`;
+        }
+        else if (wizardState.step === 5) {
             const act = wizardData.actividades[wizardState.comp][wizardState.actIndex];
             const compKey = wizardState.comp.toLowerCase().replace('ó', 'o').replace('í', 'i').replace(' ', '-');
+            const actTarget = act.targets && act.targets[wizardState.mun];
+            
+            const deptoKey = wizardState.depto;
+            const sameRoleList = (wizardData.profesionales[deptoKey] && wizardData.profesionales[deptoKey][wizardState.comp]) || [];
+            const selectedProf = sameRoleList.find(p => p.name === wizardState.profesional);
+            const roleCount = selectedProf ? sameRoleList.filter(p => p.role === selectedProf.role).length : 1;
+            
+            const doubleTotal = actTarget ? actTarget.doble : 0;
+            const uniqueTotal = actTarget ? actTarget.unica : 0;
+            const doubleIndiv = Math.round(doubleTotal / (roleCount || 1));
+            const uniqueIndiv = Math.round(uniqueTotal / (roleCount || 1));
+            
             html += `<div class="bg-surface-bright border border-outline rounded-xl p-6 mb-8">
                 <span class="text-[10px] uppercase font-bold text-secondary mb-1 block">Actividad Seleccionada</span>
-                <h2 class="text-xl font-bold text-on-surface mb-4">${act.id}</h2>
+                <h2 class="text-xl font-bold text-on-surface mb-2">${act.id}</h2>
+                <span class="text-xs text-secondary font-medium block mb-4">Reportado por: <strong class="text-on-surface font-semibold">${wizardState.profesional}</strong></span>
                 <div class="flex flex-col gap-2 mb-4">
                     <div><span class="text-xs text-secondary block">Lugar</span><span class="font-semibold text-sm text-on-surface">${wizardState.mun}, ${wizardState.depto}</span></div>
                     <div class="flex gap-4 text-xs text-secondary font-medium mt-1">
                         <span class="flex items-center gap-1.5">
                             <span class="w-1.5 h-1.5 rounded-full bg-primary"></span>
-                            Meta Doble: <strong class="text-on-surface font-semibold">${act.doble}</strong>
-                        </span>
-                        <span class="text-outline-variant">|</span>
-                        <span class="flex items-center gap-1.5">
-                            <span class="w-1.5 h-1.5 rounded-full bg-secondary"></span>
-                            Meta Única: <strong class="text-on-surface font-semibold">${act.unica}</strong>
+                            Meta Colectiva: <strong class="text-on-surface font-semibold">${doubleTotal} (Doble) ${uniqueTotal > 0 ? `/ ${uniqueTotal} (Única)` : ''}</strong>
                         </span>
                     </div>
+                    ${doubleIndiv > 0 ? `
+                    <div class="flex gap-4 text-xs text-secondary font-medium">
+                        <span class="flex items-center gap-1.5">
+                            <span class="w-1.5 h-1.5 rounded-full bg-secondary"></span>
+                            Meta Indiv. Estimada (${selectedProf ? selectedProf.role : 'Rol'}): <strong class="text-on-surface font-semibold">${doubleIndiv} (Doble) ${uniqueIndiv > 0 ? `/ ${uniqueIndiv} (Única)` : ''}</strong>
+                        </span>
+                    </div>` : ''}
                 </div>
                 <div class="pt-4 border-t border-outline flex justify-start">
                     <button onclick="openComponentDrawer('${compKey}')" class="text-xs text-primary hover:text-primary-container font-semibold flex items-center gap-1.5 transition-colors focus:outline-none focus:ring-0">
@@ -939,7 +1136,7 @@
             });
             html += `</div>`;
             html += `<div class="mt-10 flex justify-between">
-                <button onclick="wizardBack()" class="text-secondary hover:text-on-surface text-sm underline flex items-center gap-1"><span class="material-symbols-outlined text-sm">arrow_back</span>Volver a actividad</button>
+                <button onclick="wizardBack()" class="text-secondary hover:text-on-surface text-sm underline flex items-center gap-1"><span class="material-symbols-outlined text-sm">arrow_back</span>Volver a profesional</button>
                 <button onclick="resetWizard()" class="bg-primary text-on-primary px-6 py-2 rounded-full font-bold text-sm hover:opacity-90">Terminar y Cargar Otra</button>
             </div>`;
         }

@@ -360,7 +360,7 @@
             <!-- View Toggle -->
             <div class="flex bg-surface-bright rounded-full p-1 border border-outline self-start">
                 <button onclick="switchToggleView('geografica')" id="btn-geo" class="flex items-center gap-2 px-6 py-2 rounded-full bg-primary text-on-primary font-label-md text-label-md transition-all focus:outline-none">
-                    <span class="material-symbols-outlined text-lg leading-none">pin_drop</span> Vista geográfica
+                    <span class="material-symbols-outlined text-lg leading-none">pin_drop</span> Mapa de proyecto
                 </button>
                 <button onclick="switchToggleView('componente')" id="btn-comp" class="flex items-center gap-2 px-6 py-2 rounded-full text-secondary hover:text-on-surface font-label-md text-label-md transition-all focus:outline-none">
                     <span class="material-symbols-outlined text-lg leading-none">extension</span> Vista Estratégica
@@ -369,497 +369,15 @@
         </div>
         
         <!-- Tree Diagram Canvas -->
-        <div class="min-h-[600px] overflow-x-auto relative w-full pt-8">
+        <div id="map-canvas-container" class="min-h-[600px] overflow-x-auto relative w-full pt-8 cursor-grab select-none">
             
                                                 <div id="tree-geografica" class="min-w-[1400px] flex items-center justify-start py-10 px-4">
-<div class="tree-node bg-[#FFF5F0] text-primary rounded-lg px-8 py-6 border-2 border-[#FFE4D6]/70 hover:border-primary transition-all duration-300 cursor-pointer w-64 text-center z-10 shrink-0">
-        <span class="font-headline-md text-headline-md block font-bold">ConEsperanza</span>
-        <span class="text-xs text-primary/70 block mt-1">CARE Colombia</span>
-    </div>
-<div class="w-12 h-[2px] bg-outline-variant shrink-0"></div>
-<div class="flex flex-col relative shrink-0">
-<div class="flex items-center relative py-8">
-<div class="absolute left-0 top-1/2 bottom-0 w-[2px] bg-outline-variant"></div>
-<div class="absolute left-0 top-1/2 w-12 h-[2px] bg-outline-variant"></div>
-<div class="ml-12 z-10 shrink-0"><div class="tree-node bg-[#F0F5FF] text-[#0040C1] rounded-lg px-6 py-4 border-2 border-[#D6E4FF]/70 hover:border-[#0040C1] transition-all duration-300 cursor-pointer w-56 text-center z-10 shrink-0">
-        <span class="font-body-md text-body-md block font-bold leading-tight">Cauca</span>
-        <span class="text-[10px] text-[#0040C1]/70 block mt-1 leading-tight">Departamento</span>
-    </div></div>
-<div class="w-12 h-[2px] bg-outline-variant shrink-0"></div>
-<div class="flex flex-col relative shrink-0">
-<div class="flex items-center relative py-4">
-<div class="absolute left-0 top-1/2 bottom-0 w-[2px] bg-outline-variant"></div>
-<div class="absolute left-0 top-1/2 w-8 h-[2px] bg-outline-variant"></div>
-<div class="ml-8 z-10 shrink-0"><div class="tree-node bg-surface text-on-surface rounded-lg px-6 py-4 border-2 border-outline hover:border-secondary transition-colors cursor-pointer w-56 text-center z-10 shrink-0">
-        <span class="font-body-md text-body-md block font-medium leading-tight">Buenos Aires</span>
-        <span class="text-[10px] opacity-80 block mt-1 leading-tight">Municipio</span>
-    </div></div>
-<div class="w-8 h-[2px] bg-outline-variant shrink-0"></div>
-<div class="flex flex-col relative shrink-0">
-<div class="flex items-center relative py-2">
-<div class="absolute left-0 top-1/2 bottom-0 w-[2px] bg-outline-variant"></div>
-<div class="absolute left-0 top-1/2 w-6 h-[2px] bg-outline-variant"></div>
-<div class="ml-6 z-10 shrink-0"><div class="tree-node bg-surface-bright text-secondary rounded-lg px-6 py-4 border border-outline-variant hover:border-secondary transition-colors cursor-pointer w-56 text-center z-10 shrink-0">
-        <span class="font-body-md text-body-md block font-medium leading-tight">Protección</span>
-        
-    </div></div>
-</div>
-<div class="flex items-center relative py-2">
-<div class="absolute left-0 top-0 bottom-0 w-[2px] bg-outline-variant"></div>
-<div class="absolute left-0 top-1/2 w-6 h-[2px] bg-outline-variant"></div>
-<div class="ml-6 z-10 shrink-0"><div class="tree-node bg-surface-bright text-secondary rounded-lg px-6 py-4 border border-outline-variant hover:border-secondary transition-colors cursor-pointer w-56 text-center z-10 shrink-0">
-        <span class="font-body-md text-body-md block font-medium leading-tight">Salud</span>
-        
-    </div></div>
-</div>
-<div class="flex items-center relative py-2">
-<div class="absolute left-0 top-0 bottom-1/2 w-[2px] bg-outline-variant"></div>
-<div class="absolute left-0 top-1/2 w-6 h-[2px] bg-outline-variant"></div>
-<div class="ml-6 z-10 shrink-0"><div class="tree-node bg-surface-bright text-secondary rounded-lg px-6 py-4 border border-outline-variant hover:border-secondary transition-colors cursor-pointer w-56 text-center z-10 shrink-0">
-        <span class="font-body-md text-body-md block font-medium leading-tight">Cash Multipropósito</span>
-        
-    </div></div>
-</div>
-</div>
-</div>
-<div class="flex items-center relative py-4">
-<div class="absolute left-0 top-0 bottom-1/2 w-[2px] bg-outline-variant"></div>
-<div class="absolute left-0 top-1/2 w-8 h-[2px] bg-outline-variant"></div>
-<div class="ml-8 z-10 shrink-0"><div class="tree-node bg-surface text-on-surface rounded-lg px-6 py-4 border-2 border-outline hover:border-secondary transition-colors cursor-pointer w-56 text-center z-10 shrink-0">
-        <span class="font-body-md text-body-md block font-medium leading-tight">Morales</span>
-        <span class="text-[10px] opacity-80 block mt-1 leading-tight">Municipio</span>
-    </div></div>
-<div class="w-8 h-[2px] bg-outline-variant shrink-0"></div>
-<div class="flex flex-col relative shrink-0">
-<div class="flex items-center relative py-2">
-<div class="absolute left-0 top-1/2 bottom-0 w-[2px] bg-outline-variant"></div>
-<div class="absolute left-0 top-1/2 w-6 h-[2px] bg-outline-variant"></div>
-<div class="ml-6 z-10 shrink-0"><div class="tree-node bg-surface-bright text-secondary rounded-lg px-6 py-4 border border-outline-variant hover:border-secondary transition-colors cursor-pointer w-56 text-center z-10 shrink-0">
-        <span class="font-body-md text-body-md block font-medium leading-tight">Protección</span>
-        
-    </div></div>
-</div>
-<div class="flex items-center relative py-2">
-<div class="absolute left-0 top-0 bottom-0 w-[2px] bg-outline-variant"></div>
-<div class="absolute left-0 top-1/2 w-6 h-[2px] bg-outline-variant"></div>
-<div class="ml-6 z-10 shrink-0"><div class="tree-node bg-surface-bright text-secondary rounded-lg px-6 py-4 border border-outline-variant hover:border-secondary transition-colors cursor-pointer w-56 text-center z-10 shrink-0">
-        <span class="font-body-md text-body-md block font-medium leading-tight">Salud</span>
-        
-    </div></div>
-</div>
-<div class="flex items-center relative py-2">
-<div class="absolute left-0 top-0 bottom-1/2 w-[2px] bg-outline-variant"></div>
-<div class="absolute left-0 top-1/2 w-6 h-[2px] bg-outline-variant"></div>
-<div class="ml-6 z-10 shrink-0"><div class="tree-node bg-surface-bright text-secondary rounded-lg px-6 py-4 border border-outline-variant hover:border-secondary transition-colors cursor-pointer w-56 text-center z-10 shrink-0">
-        <span class="font-body-md text-body-md block font-medium leading-tight">Cash Multipropósito</span>
-        
-    </div></div>
-</div>
-</div>
-</div>
-</div>
-</div>
-<div class="flex items-center relative py-8">
-<div class="absolute left-0 top-0 bottom-1/2 w-[2px] bg-outline-variant"></div>
-<div class="absolute left-0 top-1/2 w-12 h-[2px] bg-outline-variant"></div>
-<div class="ml-12 z-10 shrink-0"><div class="tree-node bg-[#F0F5FF] text-[#0040C1] rounded-lg px-6 py-4 border-2 border-[#D6E4FF]/70 hover:border-[#0040C1] transition-all duration-300 cursor-pointer w-56 text-center z-10 shrink-0">
-        <span class="font-body-md text-body-md block font-bold leading-tight">Norte de Santander</span>
-        <span class="text-[10px] text-[#0040C1]/70 block mt-1 leading-tight">Departamento</span>
-    </div></div>
-<div class="w-12 h-[2px] bg-outline-variant shrink-0"></div>
-<div class="flex flex-col relative shrink-0">
-<div class="flex items-center relative py-4">
-<div class="absolute left-0 top-1/2 bottom-0 w-[2px] bg-outline-variant"></div>
-<div class="absolute left-0 top-1/2 w-8 h-[2px] bg-outline-variant"></div>
-<div class="ml-8 z-10 shrink-0"><div class="tree-node bg-surface text-on-surface rounded-lg px-6 py-4 border-2 border-outline hover:border-secondary transition-colors cursor-pointer w-56 text-center z-10 shrink-0">
-        <span class="font-body-md text-body-md block font-medium leading-tight">Ocaña</span>
-        <span class="text-[10px] opacity-80 block mt-1 leading-tight">Municipio</span>
-    </div></div>
-<div class="w-8 h-[2px] bg-outline-variant shrink-0"></div>
-<div class="flex flex-col relative shrink-0">
-<div class="flex items-center relative py-2">
-<div class="absolute left-0 top-1/2 bottom-0 w-[2px] bg-outline-variant"></div>
-<div class="absolute left-0 top-1/2 w-6 h-[2px] bg-outline-variant"></div>
-<div class="ml-6 z-10 shrink-0"><div class="tree-node bg-surface-bright text-secondary rounded-lg px-6 py-4 border border-outline-variant hover:border-secondary transition-colors cursor-pointer w-56 text-center z-10 shrink-0">
-        <span class="font-body-md text-body-md block font-medium leading-tight">Protección</span>
-        
-    </div></div>
-</div>
-<div class="flex items-center relative py-2">
-<div class="absolute left-0 top-0 bottom-0 w-[2px] bg-outline-variant"></div>
-<div class="absolute left-0 top-1/2 w-6 h-[2px] bg-outline-variant"></div>
-<div class="ml-6 z-10 shrink-0"><div class="tree-node bg-surface-bright text-secondary rounded-lg px-6 py-4 border border-outline-variant hover:border-secondary transition-colors cursor-pointer w-56 text-center z-10 shrink-0">
-        <span class="font-body-md text-body-md block font-medium leading-tight">Salud</span>
-        
-    </div></div>
-</div>
-<div class="flex items-center relative py-2">
-<div class="absolute left-0 top-0 bottom-1/2 w-[2px] bg-outline-variant"></div>
-<div class="absolute left-0 top-1/2 w-6 h-[2px] bg-outline-variant"></div>
-<div class="ml-6 z-10 shrink-0"><div class="tree-node bg-surface-bright text-secondary rounded-lg px-6 py-4 border border-outline-variant hover:border-secondary transition-colors cursor-pointer w-56 text-center z-10 shrink-0">
-        <span class="font-body-md text-body-md block font-medium leading-tight">Cash Multipropósito</span>
-        
-    </div></div>
-</div>
-</div>
-</div>
-<div class="flex items-center relative py-4">
-<div class="absolute left-0 top-0 bottom-0 w-[2px] bg-outline-variant"></div>
-<div class="absolute left-0 top-1/2 w-8 h-[2px] bg-outline-variant"></div>
-<div class="ml-8 z-10 shrink-0"><div class="tree-node bg-surface text-on-surface rounded-lg px-6 py-4 border-2 border-outline hover:border-secondary transition-colors cursor-pointer w-56 text-center z-10 shrink-0">
-        <span class="font-body-md text-body-md block font-medium leading-tight">Abrego</span>
-        <span class="text-[10px] opacity-80 block mt-1 leading-tight">Municipio</span>
-    </div></div>
-<div class="w-8 h-[2px] bg-outline-variant shrink-0"></div>
-<div class="flex flex-col relative shrink-0">
-<div class="flex items-center relative py-2">
-<div class="absolute left-0 top-1/2 bottom-0 w-[2px] bg-outline-variant"></div>
-<div class="absolute left-0 top-1/2 w-6 h-[2px] bg-outline-variant"></div>
-<div class="ml-6 z-10 shrink-0"><div class="tree-node bg-surface-bright text-secondary rounded-lg px-6 py-4 border border-outline-variant hover:border-secondary transition-colors cursor-pointer w-56 text-center z-10 shrink-0">
-        <span class="font-body-md text-body-md block font-medium leading-tight">Protección</span>
-        
-    </div></div>
-</div>
-<div class="flex items-center relative py-2">
-<div class="absolute left-0 top-0 bottom-0 w-[2px] bg-outline-variant"></div>
-<div class="absolute left-0 top-1/2 w-6 h-[2px] bg-outline-variant"></div>
-<div class="ml-6 z-10 shrink-0"><div class="tree-node bg-surface-bright text-secondary rounded-lg px-6 py-4 border border-outline-variant hover:border-secondary transition-colors cursor-pointer w-56 text-center z-10 shrink-0">
-        <span class="font-body-md text-body-md block font-medium leading-tight">Salud</span>
-        
-    </div></div>
-</div>
-<div class="flex items-center relative py-2">
-<div class="absolute left-0 top-0 bottom-1/2 w-[2px] bg-outline-variant"></div>
-<div class="absolute left-0 top-1/2 w-6 h-[2px] bg-outline-variant"></div>
-<div class="ml-6 z-10 shrink-0"><div class="tree-node bg-surface-bright text-secondary rounded-lg px-6 py-4 border border-outline-variant hover:border-secondary transition-colors cursor-pointer w-56 text-center z-10 shrink-0">
-        <span class="font-body-md text-body-md block font-medium leading-tight">Cash Multipropósito</span>
-        
-    </div></div>
-</div>
-</div>
-</div>
-<div class="flex items-center relative py-4">
-<div class="absolute left-0 top-0 bottom-0 w-[2px] bg-outline-variant"></div>
-<div class="absolute left-0 top-1/2 w-8 h-[2px] bg-outline-variant"></div>
-<div class="ml-8 z-10 shrink-0"><div class="tree-node bg-surface text-on-surface rounded-lg px-6 py-4 border-2 border-outline hover:border-secondary transition-colors cursor-pointer w-56 text-center z-10 shrink-0">
-        <span class="font-body-md text-body-md block font-medium leading-tight">Harací</span>
-        <span class="text-[10px] opacity-80 block mt-1 leading-tight">Municipio</span>
-    </div></div>
-<div class="w-8 h-[2px] bg-outline-variant shrink-0"></div>
-<div class="flex flex-col relative shrink-0">
-<div class="flex items-center relative py-2">
-<div class="absolute left-0 top-1/2 bottom-0 w-[2px] bg-outline-variant"></div>
-<div class="absolute left-0 top-1/2 w-6 h-[2px] bg-outline-variant"></div>
-<div class="ml-6 z-10 shrink-0"><div class="tree-node bg-surface-bright text-secondary rounded-lg px-6 py-4 border border-outline-variant hover:border-secondary transition-colors cursor-pointer w-56 text-center z-10 shrink-0">
-        <span class="font-body-md text-body-md block font-medium leading-tight">Protección</span>
-        
-    </div></div>
-</div>
-<div class="flex items-center relative py-2">
-<div class="absolute left-0 top-0 bottom-0 w-[2px] bg-outline-variant"></div>
-<div class="absolute left-0 top-1/2 w-6 h-[2px] bg-outline-variant"></div>
-<div class="ml-6 z-10 shrink-0"><div class="tree-node bg-surface-bright text-secondary rounded-lg px-6 py-4 border border-outline-variant hover:border-secondary transition-colors cursor-pointer w-56 text-center z-10 shrink-0">
-        <span class="font-body-md text-body-md block font-medium leading-tight">Salud</span>
-        
-    </div></div>
-</div>
-<div class="flex items-center relative py-2">
-<div class="absolute left-0 top-0 bottom-1/2 w-[2px] bg-outline-variant"></div>
-<div class="absolute left-0 top-1/2 w-6 h-[2px] bg-outline-variant"></div>
-<div class="ml-6 z-10 shrink-0"><div class="tree-node bg-surface-bright text-secondary rounded-lg px-6 py-4 border border-outline-variant hover:border-secondary transition-colors cursor-pointer w-56 text-center z-10 shrink-0">
-        <span class="font-body-md text-body-md block font-medium leading-tight">Cash Multipropósito</span>
-        
-    </div></div>
-</div>
-</div>
-</div>
-<div class="flex items-center relative py-4">
-<div class="absolute left-0 top-0 bottom-0 w-[2px] bg-outline-variant"></div>
-<div class="absolute left-0 top-1/2 w-8 h-[2px] bg-outline-variant"></div>
-<div class="ml-8 z-10 shrink-0"><div class="tree-node bg-surface text-on-surface rounded-lg px-6 py-4 border-2 border-outline hover:border-secondary transition-colors cursor-pointer w-56 text-center z-10 shrink-0">
-        <span class="font-body-md text-body-md block font-medium leading-tight">Teorama</span>
-        <span class="text-[10px] opacity-80 block mt-1 leading-tight">Municipio</span>
-    </div></div>
-<div class="w-8 h-[2px] bg-outline-variant shrink-0"></div>
-<div class="flex flex-col relative shrink-0">
-<div class="flex items-center relative py-2">
-<div class="absolute left-0 top-1/2 bottom-0 w-[2px] bg-outline-variant"></div>
-<div class="absolute left-0 top-1/2 w-6 h-[2px] bg-outline-variant"></div>
-<div class="ml-6 z-10 shrink-0"><div class="tree-node bg-surface-bright text-secondary rounded-lg px-6 py-4 border border-outline-variant hover:border-secondary transition-colors cursor-pointer w-56 text-center z-10 shrink-0">
-        <span class="font-body-md text-body-md block font-medium leading-tight">Protección</span>
-        
-    </div></div>
-</div>
-<div class="flex items-center relative py-2">
-<div class="absolute left-0 top-0 bottom-0 w-[2px] bg-outline-variant"></div>
-<div class="absolute left-0 top-1/2 w-6 h-[2px] bg-outline-variant"></div>
-<div class="ml-6 z-10 shrink-0"><div class="tree-node bg-surface-bright text-secondary rounded-lg px-6 py-4 border border-outline-variant hover:border-secondary transition-colors cursor-pointer w-56 text-center z-10 shrink-0">
-        <span class="font-body-md text-body-md block font-medium leading-tight">Salud</span>
-        
-    </div></div>
-</div>
-<div class="flex items-center relative py-2">
-<div class="absolute left-0 top-0 bottom-1/2 w-[2px] bg-outline-variant"></div>
-<div class="absolute left-0 top-1/2 w-6 h-[2px] bg-outline-variant"></div>
-<div class="ml-6 z-10 shrink-0"><div class="tree-node bg-surface-bright text-secondary rounded-lg px-6 py-4 border border-outline-variant hover:border-secondary transition-colors cursor-pointer w-56 text-center z-10 shrink-0">
-        <span class="font-body-md text-body-md block font-medium leading-tight">Cash Multipropósito</span>
-        
-    </div></div>
-</div>
-</div>
-</div>
-<div class="flex items-center relative py-4">
-<div class="absolute left-0 top-0 bottom-0 w-[2px] bg-outline-variant"></div>
-<div class="absolute left-0 top-1/2 w-8 h-[2px] bg-outline-variant"></div>
-<div class="ml-8 z-10 shrink-0"><div class="tree-node bg-surface text-on-surface rounded-lg px-6 py-4 border-2 border-outline hover:border-secondary transition-colors cursor-pointer w-56 text-center z-10 shrink-0">
-        <span class="font-body-md text-body-md block font-medium leading-tight">La Playa de Belén</span>
-        <span class="text-[10px] opacity-80 block mt-1 leading-tight">Municipio</span>
-    </div></div>
-<div class="w-8 h-[2px] bg-outline-variant shrink-0"></div>
-<div class="flex flex-col relative shrink-0">
-<div class="flex items-center relative py-2">
-<div class="absolute left-0 top-1/2 bottom-0 w-[2px] bg-outline-variant"></div>
-<div class="absolute left-0 top-1/2 w-6 h-[2px] bg-outline-variant"></div>
-<div class="ml-6 z-10 shrink-0"><div class="tree-node bg-surface-bright text-secondary rounded-lg px-6 py-4 border border-outline-variant hover:border-secondary transition-colors cursor-pointer w-56 text-center z-10 shrink-0">
-        <span class="font-body-md text-body-md block font-medium leading-tight">Protección</span>
-        
-    </div></div>
-</div>
-<div class="flex items-center relative py-2">
-<div class="absolute left-0 top-0 bottom-0 w-[2px] bg-outline-variant"></div>
-<div class="absolute left-0 top-1/2 w-6 h-[2px] bg-outline-variant"></div>
-<div class="ml-6 z-10 shrink-0"><div class="tree-node bg-surface-bright text-secondary rounded-lg px-6 py-4 border border-outline-variant hover:border-secondary transition-colors cursor-pointer w-56 text-center z-10 shrink-0">
-        <span class="font-body-md text-body-md block font-medium leading-tight">Salud</span>
-        
-    </div></div>
-</div>
-<div class="flex items-center relative py-2">
-<div class="absolute left-0 top-0 bottom-1/2 w-[2px] bg-outline-variant"></div>
-<div class="absolute left-0 top-1/2 w-6 h-[2px] bg-outline-variant"></div>
-<div class="ml-6 z-10 shrink-0"><div class="tree-node bg-surface-bright text-secondary rounded-lg px-6 py-4 border border-outline-variant hover:border-secondary transition-colors cursor-pointer w-56 text-center z-10 shrink-0">
-        <span class="font-body-md text-body-md block font-medium leading-tight">Cash Multipropósito</span>
-        
-    </div></div>
-</div>
-</div>
-</div>
-<div class="flex items-center relative py-4">
-<div class="absolute left-0 top-0 bottom-1/2 w-[2px] bg-outline-variant"></div>
-<div class="absolute left-0 top-1/2 w-8 h-[2px] bg-outline-variant"></div>
-<div class="ml-8 z-10 shrink-0"><div class="tree-node bg-surface text-on-surface rounded-lg px-6 py-4 border-2 border-outline hover:border-secondary transition-colors cursor-pointer w-56 text-center z-10 shrink-0">
-        <span class="font-body-md text-body-md block font-medium leading-tight">Convención</span>
-        <span class="text-[10px] opacity-80 block mt-1 leading-tight">Municipio</span>
-    </div></div>
-<div class="w-8 h-[2px] bg-outline-variant shrink-0"></div>
-<div class="flex flex-col relative shrink-0">
-<div class="flex items-center relative py-2">
-<div class="absolute left-0 top-1/2 bottom-0 w-[2px] bg-outline-variant"></div>
-<div class="absolute left-0 top-1/2 w-6 h-[2px] bg-outline-variant"></div>
-<div class="ml-6 z-10 shrink-0"><div class="tree-node bg-surface-bright text-secondary rounded-lg px-6 py-4 border border-outline-variant hover:border-secondary transition-colors cursor-pointer w-56 text-center z-10 shrink-0">
-        <span class="font-body-md text-body-md block font-medium leading-tight">Protección</span>
-        
-    </div></div>
-</div>
-<div class="flex items-center relative py-2">
-<div class="absolute left-0 top-0 bottom-0 w-[2px] bg-outline-variant"></div>
-<div class="absolute left-0 top-1/2 w-6 h-[2px] bg-outline-variant"></div>
-<div class="ml-6 z-10 shrink-0"><div class="tree-node bg-surface-bright text-secondary rounded-lg px-6 py-4 border border-outline-variant hover:border-secondary transition-colors cursor-pointer w-56 text-center z-10 shrink-0">
-        <span class="font-body-md text-body-md block font-medium leading-tight">Salud</span>
-        
-    </div></div>
-</div>
-<div class="flex items-center relative py-2">
-<div class="absolute left-0 top-0 bottom-1/2 w-[2px] bg-outline-variant"></div>
-<div class="absolute left-0 top-1/2 w-6 h-[2px] bg-outline-variant"></div>
-<div class="ml-6 z-10 shrink-0"><div class="tree-node bg-surface-bright text-secondary rounded-lg px-6 py-4 border border-outline-variant hover:border-secondary transition-colors cursor-pointer w-56 text-center z-10 shrink-0">
-        <span class="font-body-md text-body-md block font-medium leading-tight">Cash Multipropósito</span>
-        
-    </div></div>
-</div>
-</div>
-</div>
-</div>
-</div>
-</div>
-</div>
+                                                    <!-- Mapa mental vacío listo -->
+                                                </div>
             
             <div id="tree-componente" class="min-w-[1400px] hidden items-center justify-start py-10 px-4">
-<div class="tree-node bg-[#FFF5F0] text-primary rounded-lg px-8 py-6 border-2 border-[#FFE4D6]/70 hover:border-primary transition-all duration-300 cursor-pointer w-72 text-center z-10 shrink-0">
-        <span class="font-headline-md text-headline-md block font-bold leading-tight">Proyecto ConEsperanza</span>
-        <span class="text-xs text-primary/70 block mt-1">Resumen Ejecutivo y Contexto</span>
-    </div>
-<div class="w-12 h-[2px] bg-outline-variant shrink-0"></div>
-<div class="flex flex-col relative shrink-0">
-<div class="flex items-center relative py-8">
-<div class="absolute left-0 top-1/2 bottom-0 w-[2px] bg-outline-variant"></div>
-<div class="absolute left-0 top-1/2 w-12 h-[2px] bg-outline-variant"></div>
-<div class="ml-12 z-10 shrink-0"><div class="tree-node bg-[#FFF5F0] text-primary rounded-lg px-6 py-4 border-2 border-[#FFE4D6]/70 hover:border-primary transition-all duration-300 cursor-pointer w-56 text-center z-10 shrink-0">
-        <span class="font-body-md text-body-md block font-bold leading-tight">Protección</span>
-        <span class="text-[10px] text-primary/70 block mt-1 leading-tight">Componente</span>
-    </div></div>
-<div class="w-12 h-[2px] bg-outline-variant shrink-0"></div>
-<div class="flex flex-col relative shrink-0">
-<div class="flex items-center relative py-4">
-<div class="absolute left-0 top-1/2 bottom-0 w-[2px] bg-outline-variant"></div>
-<div class="absolute left-0 top-1/2 w-8 h-[2px] bg-outline-variant"></div>
-<div class="ml-8 z-10 shrink-0"><div class="tree-node bg-surface-bright text-on-surface rounded-lg px-6 py-4 border-2 border-outline hover:border-secondary transition-colors cursor-pointer w-56 text-center z-10 shrink-0">
-        <span class="font-body-md text-body-md block font-medium leading-tight">Prevención y Mitigación de Riesgos</span>
-        <span class="text-[10px] opacity-80 block mt-1 leading-tight">(Ind 74)</span>
-    </div></div>
-<div class="w-8 h-[2px] bg-outline-variant shrink-0"></div>
-<div class="flex flex-col relative shrink-0">
-<div class="flex items-center relative py-2">
-<div class="absolute left-0 top-1/2 bottom-0 w-[2px] bg-outline-variant"></div>
-<div class="absolute left-0 top-1/2 w-6 h-[2px] bg-outline-variant"></div>
-<div class="ml-6 z-10 shrink-0"><div class="tree-node bg-surface text-secondary rounded-lg px-6 py-4 border border-outline hover:border-secondary transition-colors cursor-pointer w-56 text-center z-10 shrink-0">
-        <span class="font-body-md text-body-md block font-medium leading-tight">Sensibilización comunitaria sobre mecanismos</span>
-        
-    </div></div>
-</div>
-<div class="flex items-center relative py-2">
-<div class="absolute left-0 top-0 bottom-1/2 w-[2px] bg-outline-variant"></div>
-<div class="absolute left-0 top-1/2 w-6 h-[2px] bg-outline-variant"></div>
-<div class="ml-6 z-10 shrink-0"><div class="tree-node bg-surface text-secondary rounded-lg px-6 py-4 border border-outline hover:border-secondary transition-colors cursor-pointer w-56 text-center z-10 shrink-0">
-        <span class="font-body-md text-body-md block font-medium leading-tight">Entrega de kits CARE Package a hogares</span>
-        
-    </div></div>
-</div>
-</div>
-</div>
-<div class="flex items-center relative py-4">
-<div class="absolute left-0 top-0 bottom-0 w-[2px] bg-outline-variant"></div>
-<div class="absolute left-0 top-1/2 w-8 h-[2px] bg-outline-variant"></div>
-<div class="ml-8 z-10 shrink-0"><div class="tree-node bg-surface-bright text-on-surface rounded-lg px-6 py-4 border-2 border-outline hover:border-secondary transition-colors cursor-pointer w-56 text-center z-10 shrink-0">
-        <span class="font-body-md text-body-md block font-medium leading-tight">Apoyo Psicosocial y Espacios Seguros</span>
-        <span class="text-[10px] opacity-80 block mt-1 leading-tight">(Ind 65)</span>
-    </div></div>
-<div class="w-8 h-[2px] bg-outline-variant shrink-0"></div>
-<div class="flex flex-col relative shrink-0">
-<div class="flex items-center relative py-2">
-<div class="absolute left-0 top-1/2 bottom-0 w-[2px] bg-outline-variant"></div>
-<div class="absolute left-0 top-1/2 w-6 h-[2px] bg-outline-variant"></div>
-<div class="ml-6 z-10 shrink-0"><div class="tree-node bg-surface text-secondary rounded-lg px-6 py-4 border border-outline hover:border-secondary transition-colors cursor-pointer w-56 text-center z-10 shrink-0">
-        <span class="font-body-md text-body-md block font-medium leading-tight">Gestión de casos para víctimas de violencia</span>
-        
-    </div></div>
-</div>
-<div class="flex items-center relative py-2">
-<div class="absolute left-0 top-0 bottom-1/2 w-[2px] bg-outline-variant"></div>
-<div class="absolute left-0 top-1/2 w-6 h-[2px] bg-outline-variant"></div>
-<div class="ml-6 z-10 shrink-0"><div class="tree-node bg-surface text-secondary rounded-lg px-6 py-4 border border-outline hover:border-secondary transition-colors cursor-pointer w-56 text-center z-10 shrink-0">
-        <span class="font-body-md text-body-md block font-medium leading-tight">Fortalecimiento de espacios seguros</span>
-        
-    </div></div>
-</div>
-</div>
-</div>
-<div class="flex items-center relative py-4">
-<div class="absolute left-0 top-0 bottom-1/2 w-[2px] bg-outline-variant"></div>
-<div class="absolute left-0 top-1/2 w-8 h-[2px] bg-outline-variant"></div>
-<div class="ml-8 z-10 shrink-0"><div class="tree-node bg-surface-bright text-on-surface rounded-lg px-6 py-4 border-2 border-outline hover:border-secondary transition-colors cursor-pointer w-56 text-center z-10 shrink-0">
-        <span class="font-body-md text-body-md block font-medium leading-tight">Asistencia Monetaria</span>
-        <span class="text-[10px] opacity-80 block mt-1 leading-tight">(Ind C-CA16)</span>
-    </div></div>
-<div class="w-8 h-[2px] bg-outline-variant shrink-0"></div>
-<div class="flex flex-col relative shrink-0">
-<div class="flex items-center relative py-2">
-<div class="absolute left-0 top-1/2 w-6 h-[2px] bg-outline-variant"></div>
-<div class="ml-6 z-10 shrink-0"><div class="tree-node bg-surface text-secondary rounded-lg px-6 py-4 border border-outline hover:border-secondary transition-colors cursor-pointer w-56 text-center z-10 shrink-0">
-        <span class="font-body-md text-body-md block font-medium leading-tight">Entrega de cash a personas en riesgo</span>
-        
-    </div></div>
-</div>
-</div>
-</div>
-</div>
-</div>
-<div class="flex items-center relative py-8">
-<div class="absolute left-0 top-0 bottom-0 w-[2px] bg-outline-variant"></div>
-<div class="absolute left-0 top-1/2 w-12 h-[2px] bg-outline-variant"></div>
-<div class="ml-12 z-10 shrink-0"><div class="tree-node bg-[#EFF6FF] text-[#1D4ED8] rounded-lg px-6 py-4 border-2 border-[#BFDBFE]/70 hover:border-[#1D4ED8] transition-all duration-300 cursor-pointer w-56 text-center z-10 shrink-0">
-        <span class="font-body-md text-body-md block font-bold leading-tight">Salud</span>
-        <span class="text-[10px] text-[#1D4ED8]/70 block mt-1 leading-tight">Componente</span>
-    </div></div>
-<div class="w-12 h-[2px] bg-outline-variant shrink-0"></div>
-<div class="flex flex-col relative shrink-0">
-<div class="flex items-center relative py-4">
-<div class="absolute left-0 top-1/2 bottom-0 w-[2px] bg-outline-variant"></div>
-<div class="absolute left-0 top-1/2 w-8 h-[2px] bg-outline-variant"></div>
-<div class="ml-8 z-10 shrink-0"><div class="tree-node bg-surface-bright text-on-surface rounded-lg px-6 py-4 border-2 border-outline hover:border-secondary transition-colors cursor-pointer w-56 text-center z-10 shrink-0">
-        <span class="font-body-md text-body-md block font-medium leading-tight">Acceso a Atención Primaria</span>
-        <span class="text-[10px] opacity-80 block mt-1 leading-tight">(Ind 28)</span>
-    </div></div>
-<div class="w-8 h-[2px] bg-outline-variant shrink-0"></div>
-<div class="flex flex-col relative shrink-0">
-<div class="flex items-center relative py-2">
-<div class="absolute left-0 top-1/2 bottom-0 w-[2px] bg-outline-variant"></div>
-<div class="absolute left-0 top-1/2 w-6 h-[2px] bg-outline-variant"></div>
-<div class="ml-6 z-10 shrink-0"><div class="tree-node bg-surface text-secondary rounded-lg px-6 py-4 border border-outline hover:border-secondary transition-colors cursor-pointer w-56 text-center z-10 shrink-0">
-        <span class="font-body-md text-body-md block font-medium leading-tight">Prestación de consultas médicas</span>
-        
-    </div></div>
-</div>
-<div class="flex items-center relative py-2">
-<div class="absolute left-0 top-0 bottom-1/2 w-[2px] bg-outline-variant"></div>
-<div class="absolute left-0 top-1/2 w-6 h-[2px] bg-outline-variant"></div>
-<div class="ml-6 z-10 shrink-0"><div class="tree-node bg-surface text-secondary rounded-lg px-6 py-4 border border-outline hover:border-secondary transition-colors cursor-pointer w-56 text-center z-10 shrink-0">
-        <span class="font-body-md text-body-md block font-medium leading-tight">Entrega de kits postparto</span>
-        
-    </div></div>
-</div>
-</div>
-</div>
-<div class="flex items-center relative py-4">
-<div class="absolute left-0 top-0 bottom-1/2 w-[2px] bg-outline-variant"></div>
-<div class="absolute left-0 top-1/2 w-8 h-[2px] bg-outline-variant"></div>
-<div class="ml-8 z-10 shrink-0"><div class="tree-node bg-surface-bright text-on-surface rounded-lg px-6 py-4 border-2 border-outline hover:border-secondary transition-colors cursor-pointer w-56 text-center z-10 shrink-0">
-        <span class="font-body-md text-body-md block font-medium leading-tight">Asistencia a Sobrevivientes</span>
-        <span class="text-[10px] opacity-80 block mt-1 leading-tight">(Ind 43)</span>
-    </div></div>
-<div class="w-8 h-[2px] bg-outline-variant shrink-0"></div>
-<div class="flex flex-col relative shrink-0">
-<div class="flex items-center relative py-2">
-<div class="absolute left-0 top-1/2 w-6 h-[2px] bg-outline-variant"></div>
-<div class="ml-6 z-10 shrink-0"><div class="tree-node bg-surface text-secondary rounded-lg px-6 py-4 border border-outline hover:border-secondary transition-colors cursor-pointer w-56 text-center z-10 shrink-0">
-        <span class="font-body-md text-body-md block font-medium leading-tight">Servicios médicos a víctimas VBG</span>
-        
-    </div></div>
-</div>
-</div>
-</div>
-</div>
-</div>
-<div class="flex items-center relative py-8">
-<div class="absolute left-0 top-0 bottom-1/2 w-[2px] bg-outline-variant"></div>
-<div class="absolute left-0 top-1/2 w-12 h-[2px] bg-outline-variant"></div>
-<div class="ml-12 z-10 shrink-0"><div class="tree-node bg-[#F0FDF4] text-[#166534] rounded-lg px-6 py-4 border-2 border-[#DCFCE7]/70 hover:border-[#166534] transition-all duration-300 cursor-pointer w-56 text-center z-10 shrink-0">
-        <span class="font-body-md text-body-md block font-bold leading-tight">Cash Multipropósito</span>
-        <span class="text-[10px] text-[#166534]/70 block mt-1 leading-tight">Componente</span>
-    </div></div>
-<div class="w-12 h-[2px] bg-outline-variant shrink-0"></div>
-<div class="flex flex-col relative shrink-0">
-<div class="flex items-center relative py-4">
-<div class="absolute left-0 top-1/2 w-8 h-[2px] bg-outline-variant"></div>
-<div class="ml-8 z-10 shrink-0"><div class="tree-node bg-surface-bright text-on-surface rounded-lg px-6 py-4 border-2 border-outline hover:border-secondary transition-colors cursor-pointer w-56 text-center z-10 shrink-0">
-        <span class="font-body-md text-body-md block font-medium leading-tight">Transferencias Monetarias</span>
-        <span class="text-[10px] opacity-80 block mt-1 leading-tight">(Ind 117)</span>
-    </div></div>
-<div class="w-8 h-[2px] bg-outline-variant shrink-0"></div>
-<div class="flex flex-col relative shrink-0">
-<div class="flex items-center relative py-2">
-<div class="absolute left-0 top-1/2 w-6 h-[2px] bg-outline-variant"></div>
-<div class="ml-6 z-10 shrink-0"><div class="tree-node bg-surface text-secondary rounded-lg px-6 py-4 border border-outline hover:border-secondary transition-colors cursor-pointer w-56 text-center z-10 shrink-0">
-        <span class="font-body-md text-body-md block font-medium leading-tight">Provisión y entrega de Cash</span>
-        
-    </div></div>
-</div>
-</div>
-</div>
-</div>
-</div>
-</div>
-</div>
-        </div>
+                <!-- Mapa mental vacío listo -->
+            </div>
     </section>
 
     <!-- ================= TAB: MATRIZ DE EVIDENCIAS ================= -->
@@ -1276,6 +794,393 @@
     }
 
     // Toggle view between Geográfica and Componente
+    // ==========================================
+    // RENDER INTERACTIVO DEL MAPA DE PROYECTO
+    // ==========================================
+    const projectMapData = {
+        name: "ConEsperanza",
+        subtext: "CARE Colombia",
+        type: "root",
+        children: [
+            {
+                name: "Cauca",
+                type: "depto",
+                children: [
+                    {
+                        name: "Buenos Aires",
+                        type: "mun",
+                        children: [
+                            { name: "Protección", type: "comp", key: "proteccion" },
+                            { name: "Salud", type: "comp", key: "salud" },
+                            { name: "Cash Multipropósito", type: "comp", key: "cash-multiproposito" }
+                        ]
+                    },
+                    {
+                        name: "Morales",
+                        type: "mun",
+                        children: [
+                            { name: "Protección", type: "comp", key: "proteccion" },
+                            { name: "Salud", type: "comp", key: "salud" },
+                            { name: "Cash Multipropósito", type: "comp", key: "cash-multiproposito" }
+                        ]
+                    },
+                    {
+                        name: "Padilla",
+                        type: "mun",
+                        children: [
+                            { name: "Protección", type: "comp", key: "proteccion" },
+                            { name: "Salud", type: "comp", key: "salud" },
+                            { name: "Cash Multipropósito", type: "comp", key: "cash-multiproposito" }
+                        ]
+                    }
+                ]
+            },
+            {
+                name: "Norte de Santander",
+                type: "depto",
+                children: [
+                    {
+                        name: "Cúcuta",
+                        type: "mun",
+                        children: [
+                            { name: "Protección", type: "comp", key: "proteccion" }
+                        ]
+                    },
+                    {
+                        name: "Villa del Rosario",
+                        type: "mun",
+                        children: [
+                            { name: "Protección", type: "comp", key: "proteccion" }
+                        ]
+                    },
+                    {
+                        name: "Ocaña",
+                        type: "mun",
+                        children: [
+                            { name: "Protección", type: "comp", key: "proteccion" }
+                        ]
+                    },
+                    {
+                        name: "Hacarí",
+                        type: "mun",
+                        children: [
+                            { name: "Protección", type: "comp", key: "proteccion" }
+                        ]
+                    },
+                    {
+                        name: "Teorama",
+                        type: "mun",
+                        children: [
+                            { name: "Protección", type: "comp", key: "proteccion" }
+                        ]
+                    },
+                    {
+                        name: "La Playa de Belén",
+                        type: "mun",
+                        children: [
+                            { name: "Protección", type: "comp", key: "proteccion" }
+                        ]
+                    },
+                    {
+                        name: "Convención",
+                        type: "mun",
+                        children: [
+                            { name: "Protección", type: "comp", key: "proteccion" }
+                        ]
+                    }
+                ]
+            }
+        ]
+    };
+
+    // Tracking expansion states
+    let expandedNodes = {
+        "root": true
+    };
+
+    function toggleNode(nodeId) {
+        expandedNodes[nodeId] = !expandedNodes[nodeId];
+        renderProjectMap();
+    }
+
+    function renderProjectMap() {
+        const container = document.getElementById('tree-geografica');
+        if (!container) return;
+
+        const isRootExpanded = !!expandedNodes["root"];
+
+        // Render root
+        let html = `
+        <div class="flex items-center justify-start py-6 px-2 gap-0 relative">
+            <!-- Root Node Container -->
+            <div class="flex items-center gap-2 z-10 shrink-0">
+                <!-- Root Node -->
+                <div onclick="toggleNode('root')" class="tree-node bg-[#FFF5F0] text-primary rounded-xl px-7 py-5 border border-primary/40 hover:border-primary transition-all duration-200 cursor-pointer w-56 text-center shadow-sm">
+                    <div class="text-left">
+                        <span class="font-headline-md text-headline-md block font-bold leading-tight">${projectMapData.name}</span>
+                        <span class="text-xs text-primary/70 block mt-1">${projectMapData.subtext}</span>
+                    </div>
+                </div>
+                <!-- External Chevron Button -->
+                <button onclick="toggleNode('root')" class="w-8 h-8 rounded-full border border-primary/30 bg-[#FFF5F0] text-primary flex items-center justify-center hover:bg-primary hover:text-on-primary transition-all duration-200 shadow-xs shrink-0 focus:outline-none">
+                    <span class="material-symbols-outlined text-lg transition-transform duration-200 select-none ${isRootExpanded ? 'rotate-90' : ''}">chevron_right</span>
+                </button>
+            </div>
+        `;
+
+        if (isRootExpanded) {
+            html += `
+            <div class="w-10 h-[2px] bg-outline-variant shrink-0 relative self-center"></div>
+            <div class="flex flex-col relative shrink-0">
+            `;
+
+            projectMapData.children.forEach((depto, dIdx) => {
+                const deptoId = `depto-${dIdx}`;
+                const isDeptoExpanded = !!expandedNodes[deptoId];
+                const isLastDepto = dIdx === projectMapData.children.length - 1;
+                const isFirstDepto = dIdx === 0;
+
+                html += `
+                <div class="flex items-center relative py-6">
+                    <!-- Vertical Line Connector -->
+                    <div class="absolute left-0 w-[2px] bg-outline-variant" style="
+                        top: ${isFirstDepto ? '50%' : '0px'};
+                        bottom: ${isLastDepto ? '50%' : '0px'};
+                    "></div>
+                    <!-- Horizontal Line Connector to Depto -->
+                    <div class="absolute left-0 top-1/2 w-8 h-[2px] bg-outline-variant -translate-y-1/2"></div>
+                    
+                    <!-- Depto Node Container -->
+                    <div class="ml-8 z-10 shrink-0 flex items-center gap-2">
+                        <!-- Depto Node -->
+                        <div onclick="toggleNode('${deptoId}')" class="tree-node bg-[#F0F5FF] text-[#0040C1] rounded-lg px-4 py-3 border border-[#D6E4FF] hover:border-[#0040C1] transition-all duration-200 cursor-pointer w-48 shadow-xs">
+                            <div class="text-left">
+                                <span class="font-body-md text-body-md block font-bold leading-tight">${depto.name}</span>
+                                <span class="text-[10px] text-[#0040C1]/70 block mt-0.5 leading-tight">Departamento</span>
+                            </div>
+                        </div>
+                        <!-- External Chevron Button -->
+                        <button onclick="toggleNode('${deptoId}')" class="w-7 h-7 rounded-full border border-[#D6E4FF] bg-[#F0F5FF] text-[#0040C1] flex items-center justify-center hover:bg-[#0040C1] hover:text-white transition-all duration-200 shadow-xs focus:outline-none">
+                            <span class="material-symbols-outlined text-base transition-transform duration-200 select-none ${isDeptoExpanded ? 'rotate-90' : ''}">chevron_right</span>
+                        </button>
+                    </div>
+                `;
+
+                if (isDeptoExpanded) {
+                    html += `
+                    <div class="w-8 h-[2px] bg-outline-variant shrink-0"></div>
+                    <div class="flex flex-col relative shrink-0">
+                    `;
+
+                    depto.children.forEach((mun, mIdx) => {
+                        const munId = `mun-${dIdx}-${mIdx}`;
+                        const isMunExpanded = !!expandedNodes[munId];
+                        const isLastMun = mIdx === depto.children.length - 1;
+                        const isFirstMun = mIdx === 0;
+
+                        // Check if municipality has multiple components or just one
+                        const hasChildren = mun.children && mun.children.length > 0;
+
+                        html += `
+                        <div class="flex items-center relative py-3">
+                            <!-- Vertical Line Connector -->
+                            <div class="absolute left-0 w-[2px] bg-outline-variant" style="
+                                top: ${isFirstMun ? '50%' : '0px'};
+                                bottom: ${isLastMun ? '50%' : '0px'};
+                            "></div>
+                            <!-- Horizontal Line Connector to Mun -->
+                            <div class="absolute left-0 top-1/2 w-6 h-[2px] bg-outline-variant -translate-y-1/2"></div>
+                            
+                            <!-- Mun Node Container -->
+                            <div class="ml-6 z-10 shrink-0 flex items-center gap-2">
+                                <!-- Mun Node -->
+                                <div onclick="${hasChildren ? `toggleNode('${munId}')` : ''}" class="tree-node bg-surface text-on-surface rounded-lg px-4 py-3 border border-outline hover:border-secondary transition-all duration-200 cursor-pointer w-44 shadow-xs">
+                                    <div class="text-left">
+                                        <span class="font-body-md text-body-md block font-semibold leading-tight">${mun.name}</span>
+                                        <span class="text-[10px] text-secondary/70 block mt-0.5 leading-tight">Municipio</span>
+                                    </div>
+                                </div>
+                                ${hasChildren ? `
+                                <!-- External Chevron Button -->
+                                <button onclick="toggleNode('${munId}')" class="w-7 h-7 rounded-full border border-outline bg-surface text-secondary flex items-center justify-center hover:bg-secondary hover:text-white transition-all duration-200 shadow-xs focus:outline-none">
+                                    <span class="material-symbols-outlined text-base transition-transform duration-200 select-none ${isMunExpanded ? 'rotate-90' : ''}">chevron_right</span>
+                                </button>
+                                ` : ''}
+                            </div>
+                        `;
+
+                        if (isMunExpanded && hasChildren) {
+                            html += `
+                            <div class="w-6 h-[2px] bg-outline-variant shrink-0"></div>
+                            <div class="flex flex-col relative shrink-0">
+                            `;
+
+                            mun.children.forEach((comp, cIdx) => {
+                                const compId = `comp-${dIdx}-${mIdx}-${cIdx}`;
+                                const isCompExpanded = !!expandedNodes[compId];
+                                const isLastComp = cIdx === mun.children.length - 1;
+                                const isFirstComp = cIdx === 0;
+
+                                // Colors based on component type
+                                let compBg = "bg-surface-bright";
+                                let compBorder = "border-outline";
+                                let compText = "text-secondary";
+                                let btnHoverBg = "hover:bg-secondary hover:text-white";
+                                if (comp.key === "proteccion") {
+                                    compBg = "bg-[#FFF5F0]";
+                                    compBorder = "border-[#FFE4D6]";
+                                    compText = "text-primary";
+                                    btnHoverBg = "hover:bg-primary hover:text-white";
+                                } else if (comp.key === "salud") {
+                                    compBg = "bg-[#F0FAFA]";
+                                    compBorder = "border-[#D1F0F0]";
+                                    compText = "text-[#006666]";
+                                    btnHoverBg = "hover:bg-[#006666] hover:text-white";
+                                } else if (comp.key === "cash-multiproposito") {
+                                    compBg = "bg-[#F0F5FF]";
+                                    compBorder = "border-[#D6E4FF]";
+                                    compText = "text-[#0040C1]";
+                                    btnHoverBg = "hover:bg-[#0040C1] hover:text-white";
+                                }
+
+                                const details = componentDetails[comp.key];
+                                const hasCompChildren = details && details.subcomponents && details.subcomponents.length > 0;
+
+                                html += `
+                                <div class="flex items-center relative py-2">
+                                    <!-- Vertical Line Connector -->
+                                    <div class="absolute left-0 w-[2px] bg-outline-variant" style="
+                                        top: ${isFirstComp ? '50%' : '0px'};
+                                        bottom: ${isLastComp ? '50%' : '0px'};
+                                    "></div>
+                                    <!-- Horizontal Line Connector to Comp -->
+                                    <div class="absolute left-0 top-1/2 w-6 h-[2px] bg-outline-variant -translate-y-1/2"></div>
+                                    
+                                    <!-- Comp Node Container -->
+                                    <div class="ml-6 z-10 shrink-0 flex items-center gap-2">
+                                        <!-- Comp Node -->
+                                        <div onclick="${hasCompChildren ? `toggleNode('${compId}')` : `openComponentDrawer('${comp.key}')`}" class="tree-node ${compBg} ${compText} rounded-lg px-4 py-3 border ${compBorder} hover:opacity-95 hover:shadow-xs transition-all duration-200 cursor-pointer w-44 shadow-xs">
+                                            <span class="font-body-md text-body-md block font-medium leading-tight text-left">${comp.name}</span>
+                                        </div>
+                                        ${hasCompChildren ? `
+                                        <!-- External Chevron Button -->
+                                        <button onclick="toggleNode('${compId}')" class="w-7 h-7 rounded-full border ${compBorder} ${compBg} ${compText} flex items-center justify-center ${btnHoverBg} transition-all duration-200 shadow-xs focus:outline-none">
+                                            <span class="material-symbols-outlined text-base transition-transform duration-200 select-none ${isCompExpanded ? 'rotate-90' : ''}">chevron_right</span>
+                                        </button>
+                                        ` : `
+                                        <button onclick="openComponentDrawer('${comp.key}')" class="w-7 h-7 rounded-full border ${compBorder} ${compBg} ${compText} flex items-center justify-center hover:opacity-85 transition-all duration-200 shadow-xs focus:outline-none">
+                                            <span class="material-symbols-outlined text-base">info</span>
+                                        </button>
+                                        `}
+                                    </div>
+                                `;
+
+                                if (isCompExpanded && hasCompChildren) {
+                                    html += `
+                                    <div class="w-6 h-[2px] bg-outline-variant shrink-0"></div>
+                                    <div class="flex flex-col relative shrink-0">
+                                    `;
+
+                                    details.subcomponents.forEach((sub, sIdx) => {
+                                        const subId = `sub-${dIdx}-${mIdx}-${cIdx}-${sIdx}`;
+                                        const isSubExpanded = !!expandedNodes[subId];
+                                        const isLastSub = sIdx === details.subcomponents.length - 1;
+                                        const isFirstSub = sIdx === 0;
+
+                                        const hasSubChildren = sub.actions && sub.actions.length > 0;
+
+                                        html += `
+                                        <div class="flex items-center relative py-3">
+                                            <!-- Vertical Line Connector -->
+                                            <div class="absolute left-0 w-[2px] bg-outline-variant" style="
+                                                top: ${isFirstSub ? '50%' : '0px'};
+                                                bottom: ${isLastSub ? '50%' : '0px'};
+                                            "></div>
+                                            <!-- Horizontal Line to Sub -->
+                                            <div class="absolute left-0 top-1/2 w-6 h-[2px] bg-outline-variant -translate-y-1/2"></div>
+                                            
+                                            <!-- Subcomponent Node Container -->
+                                            <div class="ml-6 z-10 shrink-0 flex items-center gap-2">
+                                                <!-- Subcomponent Node -->
+                                                <div onclick="${hasSubChildren ? `toggleNode('${subId}')` : ''}" class="tree-node bg-surface border border-outline hover:border-secondary transition-all duration-200 rounded-lg px-4 py-3 cursor-pointer w-56 shadow-xs">
+                                                    <span class="font-body-md text-xs block font-medium text-on-surface leading-tight text-left">${sub.name}</span>
+                                                </div>
+                                                ${hasSubChildren ? `
+                                                <!-- External Chevron Button -->
+                                                <button onclick="toggleNode('${subId}')" class="w-7 h-7 rounded-full border border-outline bg-surface text-secondary flex items-center justify-center hover:bg-secondary hover:text-white transition-all duration-200 shadow-xs focus:outline-none">
+                                                    <span class="material-symbols-outlined text-xs transition-transform duration-200 select-none ${isSubExpanded ? 'rotate-90' : ''}">chevron_right</span>
+                                                </button>
+                                                ` : ''}
+                                            </div>
+                                        `;
+
+                                        if (isSubExpanded && hasSubChildren) {
+                                            html += `
+                                            <div class="w-6 h-[2px] bg-outline-variant shrink-0"></div>
+                                            <div class="flex flex-col relative shrink-0">
+                                            `;
+
+                                            sub.actions.forEach((act, aIdx) => {
+                                                const isLastAct = aIdx === sub.actions.length - 1;
+                                                const isFirstAct = aIdx === 0;
+
+                                                html += `
+                                                <div class="flex items-center relative py-1.5">
+                                                    <!-- Vertical Line Connector -->
+                                                    <div class="absolute left-0 w-[2px] bg-outline-variant" style="
+                                                        top: ${isFirstAct ? '50%' : '0px'};
+                                                        bottom: ${isLastAct ? '50%' : '0px'};
+                                                    "></div>
+                                                    <!-- Horizontal Line to Act -->
+                                                    <div class="absolute left-0 top-1/2 w-4 h-[2px] bg-outline-variant -translate-y-1/2"></div>
+                                                    
+                                                    <!-- Activity Node Container (Opens detail drawer) -->
+                                                    <div class="ml-4 z-10 shrink-0 flex items-center gap-1.5">
+                                                        <!-- Activity Node -->
+                                                        <div onclick="openComponentDrawer('${comp.key}')" class="tree-node bg-surface border border-outline hover:border-primary transition-all duration-150 rounded-lg px-3 py-2 cursor-pointer w-48 shadow-xs">
+                                                            <span class="text-[11px] text-secondary font-medium block leading-tight text-left">${act}</span>
+                                                        </div>
+                                                        <button onclick="openComponentDrawer('${comp.key}')" class="w-6 h-6 rounded-full border border-outline bg-surface text-primary/80 flex items-center justify-center hover:bg-primary hover:text-white transition-all duration-150 shadow-xs focus:outline-none">
+                                                            <span class="material-symbols-outlined text-xs">info</span>
+                                                        </button>
+                                                    </div>
+                                                </div>
+                                                `;
+                                            });
+
+                                            html += `</div>`;
+                                        }
+
+                                        html += `</div>`;
+                                    });
+
+                                    html += `</div>`;
+                                }
+
+                                html += `</div>`;
+                            });
+
+                            html += `</div>`;
+                        }
+
+                        html += `</div>`;
+                    });
+
+                    html += `</div>`;
+                }
+
+                html += `</div>`;
+            });
+
+            html += `
+            </div>
+            `;
+        }
+
+        html += `</div>`;
+        container.innerHTML = html;
+    }
+
     function switchToggleView(viewName) {
         const btnGeo = document.getElementById('btn-geo');
         const btnComp = document.getElementById('btn-comp');
@@ -1290,6 +1195,8 @@
             
             btnGeo.className = "flex items-center gap-2 px-6 py-2 rounded-full bg-primary text-on-primary font-label-md text-label-md transition-all focus:outline-none";
             btnComp.className = "flex items-center gap-2 px-6 py-2 rounded-full text-secondary hover:text-on-surface font-label-md text-label-md transition-all focus:outline-none";
+            
+            renderProjectMap();
         } else {
             treeGeo.classList.add('hidden');
             treeGeo.classList.remove('flex');
@@ -1300,6 +1207,49 @@
             btnComp.className = "flex items-center gap-2 px-6 py-2 rounded-full bg-primary text-on-primary font-label-md text-label-md transition-all focus:outline-none";
         }
     }
+
+    // Call render initially on load
+    window.addEventListener('DOMContentLoaded', () => {
+        renderProjectMap();
+        
+        // Drag to scroll logic for map canvas
+        const slider = document.getElementById('map-canvas-container');
+        if (slider) {
+            let isDown = false;
+            let startX;
+            let scrollLeft;
+
+            slider.addEventListener('mousedown', (e) => {
+                // Evitar el arrastre si es clic derecho o si se hace clic en botones/nodos
+                if (e.target.closest('button') || e.target.closest('.tree-node') || e.button !== 0) return;
+                isDown = true;
+                slider.classList.remove('cursor-grab');
+                slider.classList.add('cursor-grabbing');
+                startX = e.pageX - slider.offsetLeft;
+                scrollLeft = slider.scrollLeft;
+            });
+
+            slider.addEventListener('mouseleave', () => {
+                isDown = false;
+                slider.classList.remove('cursor-grabbing');
+                slider.classList.add('cursor-grab');
+            });
+
+            slider.addEventListener('mouseup', () => {
+                isDown = false;
+                slider.classList.remove('cursor-grabbing');
+                slider.classList.add('cursor-grab');
+            });
+
+            slider.addEventListener('mousemove', (e) => {
+                if (!isDown) return;
+                e.preventDefault();
+                const x = e.pageX - slider.offsetLeft;
+                const walk = (x - startX) * 1.8; // Velocidad de arrastre
+                slider.scrollLeft = scrollLeft - walk;
+            });
+        }
+    });
 
     // Simple scroll effect on header
     window.addEventListener('scroll', () => {
@@ -1489,6 +1439,186 @@
             renderWizardStep();
         }
     }
+
+    // ==========================================
+    // LOGICA DEL DRAWER INTERACTIVO (VISTA GEOGRÁFICA)
+    // ==========================================
+    const componentDetails = {
+        'proteccion': {
+            title: 'Protección',
+            colorClass: 'bg-[#FFF5F0] text-primary border border-[#FFE4D6]',
+            iconColorClass: 'bg-[#FFF5F0] text-primary border border-[#FFE4D6]',
+            icon: 'shield',
+            description: 'Fortalecer entornos de protección comunitaria, brindar apoyo psicosocial y mitigar riesgos asociados a violencias basadas en género (VBG).',
+            subcomponents: [
+                {
+                    name: 'Prevención y Mitigación de Riesgos (Ind 74)',
+                    actions: [
+                        'Sensibilización comunitaria sobre mecanismos',
+                        'Entrega de kits CARE Package a hogares'
+                    ]
+                },
+                {
+                    name: 'Apoyo Psicosocial y Espacios Seguros (Ind 65)',
+                    actions: [
+                        'Gestión de casos para víctimas de violencia',
+                        'Fortalecimiento de espacios seguros'
+                    ]
+                },
+                {
+                    name: 'Asistencia Monetaria (Ind C-CA16)',
+                    actions: [
+                        'Entrega de cash a personas en riesgo'
+                    ]
+                }
+            ]
+        },
+        'salud': {
+            title: 'Salud',
+            colorClass: 'bg-[#F0FAFA] text-[#006666] border border-[#D1F0F0]',
+            iconColorClass: 'bg-[#F0FAFA] text-[#006666] border border-[#D1F0F0]',
+            icon: 'medical_services',
+            description: 'Garantizar que las poblaciones vulnerables accedan oportunamente y sin barreras a la red de protección y servicios de Salud Sexual y Reproductiva (SSR).',
+            subcomponents: [
+                {
+                    name: 'Puntos de Atención SSR',
+                    actions: [
+                        'Entrega de kits de dignidad SSR',
+                        'Orientación en salud reproductiva'
+                    ]
+                }
+            ]
+        },
+        'cash-multiproposito': {
+            title: 'Cash Multipropósito',
+            colorClass: 'bg-[#F0F5FF] text-[#0040C1] border border-[#D6E4FF]',
+            iconColorClass: 'bg-[#F0F5FF] text-[#0040C1] border border-[#D6E4FF]',
+            icon: 'payments',
+            description: 'Asistencia monetaria directa y multipropósito para cubrir necesidades inmediatas de hogares vulnerables.',
+            subcomponents: [
+                {
+                    name: 'Transferencias Monetarias de Emergencia',
+                    actions: [
+                        'Entrega de asistencia en efectivo',
+                        'Monitoreo de mercado y uso de fondos'
+                    ]
+                }
+            ]
+        }
+    };
+
+    function openComponentDrawer(key) {
+        const details = componentDetails[key];
+        if (!details) return;
+
+        const drawer = document.getElementById('component-drawer');
+        const backdrop = document.getElementById('drawer-backdrop');
+        const panel = document.getElementById('drawer-panel');
+        const title = document.getElementById('drawer-title');
+        const desc = document.getElementById('drawer-description');
+        const icon = document.getElementById('drawer-icon');
+        const subcontainer = document.getElementById('drawer-subcomponents');
+
+        // Populate details
+        title.innerText = details.title;
+        desc.innerText = details.description;
+        icon.innerText = details.icon;
+        
+        // Icon classes
+        icon.className = `material-symbols-outlined text-2xl p-2 rounded-lg ${details.iconColorClass}`;
+
+        // Populate subcomponents and actions
+        let html = '';
+        details.subcomponents.forEach(sub => {
+            html += `
+            <div class="border border-outline rounded-xl p-4 bg-surface-bright shadow-sm">
+                <h4 class="text-sm font-bold text-on-surface mb-3 flex items-start gap-2">
+                    <span class="material-symbols-outlined text-sm text-primary mt-0.5">label</span>
+                    ${sub.name}
+                </h4>
+                <ul class="space-y-2">
+            `;
+            sub.actions.forEach(action => {
+                html += `
+                    <li class="text-xs text-secondary font-medium flex items-center gap-2 pl-2">
+                        <span class="w-1.5 h-1.5 rounded-full bg-secondary shrink-0"></span>
+                        ${action}
+                    </li>
+                `;
+            });
+            html += `
+                </ul>
+            </div>
+            `;
+        });
+        subcontainer.innerHTML = html;
+
+        // Open Drawer Animations
+        drawer.classList.remove('hidden');
+        setTimeout(() => {
+            backdrop.classList.remove('opacity-0');
+            backdrop.classList.add('opacity-100');
+            panel.classList.remove('translate-x-full');
+            panel.classList.add('translate-x-0');
+        }, 10);
+    }
+
+    function closeComponentDrawer() {
+        const backdrop = document.getElementById('drawer-backdrop');
+        const panel = document.getElementById('drawer-panel');
+        const drawer = document.getElementById('component-drawer');
+
+        backdrop.classList.remove('opacity-100');
+        backdrop.classList.add('opacity-0');
+        panel.classList.remove('translate-x-0');
+        panel.classList.add('translate-x-full');
+
+        setTimeout(() => {
+            drawer.classList.add('hidden');
+        }, 300);
+    }
 </script>
+
+<!-- Component Detail Drawer (Slide-over panel) -->
+<div id="component-drawer" class="fixed inset-0 z-50 overflow-hidden hidden" aria-labelledby="slide-over-title" role="dialog" aria-modal="true">
+    <!-- Backdrop overlay -->
+    <div id="drawer-backdrop" onclick="closeComponentDrawer()" class="absolute inset-0 bg-[#090015]/40 backdrop-blur-sm transition-opacity duration-300 opacity-0"></div>
+
+    <div class="pointer-events-none fixed inset-y-0 right-0 flex max-w-full pl-10">
+        <!-- Panel content -->
+        <div id="drawer-panel" class="pointer-events-auto w-screen max-w-md transform translate-x-full transition-transform duration-300 ease-in-out bg-background border-l border-outline shadow-2xl flex flex-col h-full">
+            <!-- Header -->
+            <div class="px-6 py-5 border-b border-outline flex justify-between items-center bg-surface-bright">
+                <div class="flex items-center gap-3">
+                    <span id="drawer-icon" class="material-symbols-outlined text-2xl p-2 rounded-lg"></span>
+                    <h2 id="drawer-title" class="text-xl font-bold text-on-surface"></h2>
+                </div>
+                <button onclick="closeComponentDrawer()" class="rounded-lg p-1 text-secondary hover:text-on-surface hover:bg-surface-container transition-colors">
+                    <span class="material-symbols-outlined">close</span>
+                </button>
+            </div>
+            
+            <!-- Content -->
+            <div class="flex-1 overflow-y-auto px-6 py-6 space-y-8">
+                <div>
+                    <span class="text-[10px] uppercase font-bold text-secondary tracking-wider block mb-2">Descripción General</span>
+                    <p id="drawer-description" class="text-sm text-secondary leading-relaxed font-medium"></p>
+                </div>
+                
+                <div>
+                    <span class="text-[10px] uppercase font-bold text-secondary tracking-wider block mb-4">Desglose Estratégico (Subcomponentes / Acciones)</span>
+                    <div id="drawer-subcomponents" class="space-y-6"></div>
+                </div>
+            </div>
+            
+            <!-- Footer -->
+            <div class="px-6 py-4 border-t border-outline bg-surface-container-low flex justify-end">
+                <button onclick="closeComponentDrawer()" class="bg-primary text-on-primary font-bold text-sm px-6 py-2.5 rounded-full hover:opacity-90 transition-opacity">
+                    Cerrar Detalle
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
 </body>
 </html>

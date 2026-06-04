@@ -164,9 +164,6 @@
             <button onclick="switchTab('mapa')" id="tab-mapa" class="text-secondary font-medium hover:text-primary border-b-2 border-transparent h-full flex items-center px-1 text-xs md:text-sm lg:text-base transition-all duration-200 focus:outline-none focus:ring-0">
                 Mapa Operativo
             </button>
-            <button onclick="switchTab('evidencias')" id="tab-evidencias" class="text-secondary font-medium hover:text-primary border-b-2 border-transparent h-full flex items-center px-1 text-xs md:text-sm lg:text-base transition-all duration-200 focus:outline-none focus:ring-0">
-                Matriz de Evidencias
-            </button>
             <button onclick="switchTab('asistente')" id="tab-asistente" class="text-secondary font-medium hover:text-primary border-b-2 border-transparent h-full flex items-center px-1 text-xs md:text-sm lg:text-base transition-all duration-200 focus:outline-none focus:ring-0">
                 Asistente de Carga
             </button>
@@ -363,7 +360,7 @@
                     <span class="material-symbols-outlined text-lg leading-none">pin_drop</span> Mapa de proyecto
                 </button>
                 <button onclick="switchToggleView('componente')" id="btn-comp" class="flex items-center gap-2 px-6 py-2 rounded-full text-secondary hover:text-on-surface font-label-md text-label-md transition-all focus:outline-none">
-                    <span class="material-symbols-outlined text-lg leading-none">extension</span> Vista Estratégica
+                    <span class="material-symbols-outlined text-lg leading-none">schema</span> Ruta de Intervención
                 </button>
             </div>
         </div>
@@ -378,289 +375,6 @@
             <div id="tree-componente" class="min-w-[1400px] hidden items-center justify-start py-10 px-4">
                 <!-- Mapa mental vacío listo -->
             </div>
-    </section>
-
-    <!-- ================= TAB: MATRIZ DE EVIDENCIAS ================= -->
-    <section id="section-evidencias" class="hidden transition-all duration-300">
-        <!-- Header Text -->
-        <div class="mb-12 text-left">
-            <h1 class="font-display-lg text-display-lg text-on-background mb-4">Matriz de Evidencias</h1>
-            <p class="font-body-lg text-body-lg text-secondary max-w-3xl">
-                Repositorio centralizado para el seguimiento de indicadores, recolección de evidencias y trazabilidad de metas.
-            </p>
-        </div>
-        
-        <!-- Search and Filters (Placeholder) -->
-        <div class="flex flex-col md:flex-row justify-between items-center gap-4 mb-8">
-            <div class="relative w-full md:w-96">
-                <input type="text" placeholder="Buscar por componente o indicador..." class="w-full bg-surface-bright border border-outline px-4 py-3 rounded-full text-on-surface focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition-all">
-                <div class="absolute right-4 top-1/2 transform -translate-y-1/2 text-outline-variant">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
-                </div>
-            </div>
-            <div class="flex gap-2">
-                <button class="bg-surface-bright border border-outline text-on-surface px-4 py-2 rounded-full hover:bg-outline-variant hover:text-white transition-colors text-sm font-medium">Filtrar por Componente</button>
-            </div>
-        </div>
-
-        <!-- Table Container -->
-        <div class="bg-surface rounded-2xl shadow-sm border border-outline overflow-hidden">
-            <div class="overflow-x-auto">
-                <table class="w-full text-left border-collapse" id="evidences-table">
-                    <thead>
-                        <tr class="bg-surface-bright border-b border-outline">
-                            <th class="py-4 px-6 font-semibold text-secondary text-sm">Componente / resultado</th>
-                            <th class="py-4 px-6 font-semibold text-secondary text-sm">Indicador</th>
-                            <th class="py-4 px-6 font-semibold text-secondary text-sm text-center">Metas</th>
-                            <th class="py-4 px-6 font-semibold text-secondary text-sm">Medio de verificación</th>
-                            <th class="py-4 px-6 font-semibold text-secondary text-sm text-center">Evidencia / link</th>
-                        </tr>
-                    </thead>
-                    <tbody class="divide-y divide-outline" id="evidences-tbody">
-
-        <tr class="hover:bg-surface-bright/50 transition-colors group">
-            <td class="py-4 px-6 border-b border-outline">
-                <div class="flex flex-col gap-2 items-start">
-                    <span class="px-2 py-1 text-[10px] font-bold uppercase rounded border bg-primary text-on-primary border-transparent">Global</span>
-                    <span class="text-sm font-medium text-on-surface">Objetivo General</span>
-                </div>
-            </td>
-            <td class="py-4 px-6 border-b border-outline">
-                <span class="text-xs text-secondary line-clamp-3" title="% de participantes que afirman que la ayuda humanitaria se presta de manera segura, accesible, responsable y participativa">% de participantes que afirman que la ayuda humanitaria se presta de manera segura, accesible, responsable y participativa</span>
-            </td>
-            <td class="py-4 px-6 border-b border-outline min-w-[120px]">
-                Meta: 80%<br><span class='text-[10px] text-secondary'>(Aplica porcentaje general)</span>
-            </td>
-            <td class="py-4 px-6 border-b border-outline">
-                <span class="text-xs text-secondary">Encuestas de Satisfacción y PDM</span>
-            </td>
-            <td class="py-4 px-6 border-b border-outline text-center">
-                <span class="inline-flex items-center gap-1 bg-[#FFF9F2] border border-[#FFE4D6] text-primary px-3 py-1.5 rounded text-[11px] font-semibold whitespace-nowrap">
-                    <svg class="w-3.5 h-3.5 text-primary" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"></path></svg>
-                    Próximamente links de evidencia
-                </span>
-            </td>
-        </tr>
-
-        <tr class="hover:bg-surface-bright/50 transition-colors group">
-            <td class="py-4 px-6 border-b border-outline">
-                <div class="flex flex-col gap-2 items-start">
-                    <span class="px-2 py-1 text-[10px] font-bold uppercase rounded border bg-[#FFF5F0] text-primary border-[#FFE4D6]">Protección</span>
-                    <span class="text-sm font-medium text-on-surface">1.1 Sensibilización comunitaria y prevención de riesgos</span>
-                </div>
-            </td>
-            <td class="py-4 px-6 border-b border-outline">
-                <span class="text-xs text-secondary line-clamp-3" title="C-CA19. INDICATOR 74: Number of individuals who received life‑saving protection support...">C-CA19. INDICATOR 74: Number of individuals who received life‑saving protection support...</span>
-            </td>
-            <td class="py-4 px-6 border-b border-outline min-w-[120px]">
-                <div class='flex flex-col gap-1'><div class='flex justify-between'><span class='text-xs'>Doble:</span><span class='font-semibold text-primary'>8.000</span></div><div class='flex justify-between'><span class='text-xs'>Únicos:</span><span class='font-semibold text-secondary'>8.000</span></div></div>
-            </td>
-            <td class="py-4 px-6 border-b border-outline">
-                <span class="text-xs text-secondary">Listados de asistencia, actas de actividad masiva, registro en CommCare, BBDD CARE COL, archivo eventos</span>
-            </td>
-            <td class="py-4 px-6 border-b border-outline text-center">
-                <span class="inline-flex items-center gap-1 bg-[#FFF9F2] border border-[#FFE4D6] text-primary px-3 py-1.5 rounded text-[11px] font-semibold whitespace-nowrap">
-                    <svg class="w-3.5 h-3.5 text-primary" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"></path></svg>
-                    Próximamente links de evidencia
-                </span>
-            </td>
-        </tr>
-
-        <tr class="hover:bg-surface-bright/50 transition-colors group">
-            <td class="py-4 px-6 border-b border-outline">
-                <div class="flex flex-col gap-2 items-start">
-                    <span class="px-2 py-1 text-[10px] font-bold uppercase rounded border bg-[#FFF5F0] text-primary border-[#FFE4D6]">Protección</span>
-                    <span class="text-sm font-medium text-on-surface">1.2 Gestión de casos para víctimas de violencia</span>
-                </div>
-            </td>
-            <td class="py-4 px-6 border-b border-outline">
-                <span class="text-xs text-secondary line-clamp-3" title="C-CA11. INDICATOR 65. Number of people receiving violence psycho-social support and/or violence case management">C-CA11. INDICATOR 65. Number of people receiving violence psycho-social support and/or violence case management</span>
-            </td>
-            <td class="py-4 px-6 border-b border-outline min-w-[120px]">
-                <div class='flex flex-col gap-1'><div class='flex justify-between'><span class='text-xs'>Doble:</span><span class='font-semibold text-primary'>1.152</span></div><div class='flex justify-between'><span class='text-xs'>Únicos:</span><span class='font-semibold text-secondary'>0</span></div></div>
-            </td>
-            <td class="py-4 px-6 border-b border-outline">
-                <span class="text-xs text-secondary">Registro de ciclo de gestión de caso y BBDD monitoreo CARE COL</span>
-            </td>
-            <td class="py-4 px-6 border-b border-outline text-center">
-                <span class="inline-flex items-center gap-1 bg-[#FFF9F2] border border-[#FFE4D6] text-primary px-3 py-1.5 rounded text-[11px] font-semibold whitespace-nowrap">
-                    <svg class="w-3.5 h-3.5 text-primary" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"></path></svg>
-                    Próximamente links de evidencia
-                </span>
-            </td>
-        </tr>
-
-        <tr class="hover:bg-surface-bright/50 transition-colors group">
-            <td class="py-4 px-6 border-b border-outline">
-                <div class="flex flex-col gap-2 items-start">
-                    <span class="px-2 py-1 text-[10px] font-bold uppercase rounded border bg-[#FFF5F0] text-primary border-[#FFE4D6]">Protección</span>
-                    <span class="text-sm font-medium text-on-surface">1.3 Asistencia monetaria (Cash de protección)</span>
-                </div>
-            </td>
-            <td class="py-4 px-6 border-b border-outline">
-                <span class="text-xs text-secondary line-clamp-3" title="C-CA16. INDICATOR. Number of people affected benefiting from emergency cash assistance...">C-CA16. INDICATOR. Number of people affected benefiting from emergency cash assistance...</span>
-            </td>
-            <td class="py-4 px-6 border-b border-outline min-w-[120px]">
-                <div class='flex flex-col gap-1'><div class='flex justify-between'><span class='text-xs'>Doble:</span><span class='font-semibold text-primary'>403</span></div><div class='flex justify-between'><span class='text-xs'>Únicos:</span><span class='font-semibold text-secondary'>0</span></div></div>
-            </td>
-            <td class="py-4 px-6 border-b border-outline">
-                <span class="text-xs text-secondary">Registro de priorización, tirillas de proveedor financiero, BBDD monitoreo y coordinación PTM</span>
-            </td>
-            <td class="py-4 px-6 border-b border-outline text-center">
-                <span class="inline-flex items-center gap-1 bg-[#FFF9F2] border border-[#FFE4D6] text-primary px-3 py-1.5 rounded text-[11px] font-semibold whitespace-nowrap">
-                    <svg class="w-3.5 h-3.5 text-primary" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"></path></svg>
-                    Próximamente links de evidencia
-                </span>
-            </td>
-        </tr>
-
-        <tr class="hover:bg-surface-bright/50 transition-colors group">
-            <td class="py-4 px-6 border-b border-outline">
-                <div class="flex flex-col gap-2 items-start">
-                    <span class="px-2 py-1 text-[10px] font-bold uppercase rounded border bg-[#FFF5F0] text-primary border-[#FFE4D6]">Protección</span>
-                    <span class="text-sm font-medium text-on-surface">1.4 Entrega de kits CARE Package</span>
-                </div>
-            </td>
-            <td class="py-4 px-6 border-b border-outline">
-                <span class="text-xs text-secondary line-clamp-3" title="C-CA19. INDICATOR 74: Number of individuals who received life‑saving protection support...">C-CA19. INDICATOR 74: Number of individuals who received life‑saving protection support...</span>
-            </td>
-            <td class="py-4 px-6 border-b border-outline min-w-[120px]">
-                <div class='flex flex-col gap-1'><div class='flex justify-between'><span class='text-xs'>Doble:</span><span class='font-semibold text-primary'>9.600</span></div><div class='flex justify-between'><span class='text-xs'>Únicos:</span><span class='font-semibold text-secondary'>7.200</span></div></div>
-            </td>
-            <td class="py-4 px-6 border-b border-outline">
-                <span class="text-xs text-secondary">Registro en sistema, listados de distribución de kits, BBDD CARE COL</span>
-            </td>
-            <td class="py-4 px-6 border-b border-outline text-center">
-                <span class="inline-flex items-center gap-1 bg-[#FFF9F2] border border-[#FFE4D6] text-primary px-3 py-1.5 rounded text-[11px] font-semibold whitespace-nowrap">
-                    <svg class="w-3.5 h-3.5 text-primary" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"></path></svg>
-                    Próximamente links de evidencia
-                </span>
-            </td>
-        </tr>
-
-        <tr class="hover:bg-surface-bright/50 transition-colors group">
-            <td class="py-4 px-6 border-b border-outline">
-                <div class="flex flex-col gap-2 items-start">
-                    <span class="px-2 py-1 text-[10px] font-bold uppercase rounded border bg-[#FFF5F0] text-primary border-[#FFE4D6]">Protección</span>
-                    <span class="text-sm font-medium text-on-surface">1.5 Fortalecimiento de espacios seguros</span>
-                </div>
-            </td>
-            <td class="py-4 px-6 border-b border-outline">
-                <span class="text-xs text-secondary line-clamp-3" title="C-CA11. INDICATOR 65. Number of people receiving violence psycho-social support and/or violence case management">C-CA11. INDICATOR 65. Number of people receiving violence psycho-social support and/or violence case management</span>
-            </td>
-            <td class="py-4 px-6 border-b border-outline min-w-[120px]">
-                <div class='flex flex-col gap-1'><div class='flex justify-between'><span class='text-xs'>Doble:</span><span class='font-semibold text-primary'>5.400</span></div><div class='flex justify-between'><span class='text-xs'>Únicos:</span><span class='font-semibold text-secondary'>5.400</span></div></div>
-            </td>
-            <td class="py-4 px-6 border-b border-outline">
-                <span class="text-xs text-secondary">Mapeo/diagnóstico, plan de trabajo, actas de entrega (dotación/mejoras), actas de seguimiento</span>
-            </td>
-            <td class="py-4 px-6 border-b border-outline text-center">
-                <span class="inline-flex items-center gap-1 bg-[#FFF9F2] border border-[#FFE4D6] text-primary px-3 py-1.5 rounded text-[11px] font-semibold whitespace-nowrap">
-                    <svg class="w-3.5 h-3.5 text-primary" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"></path></svg>
-                    Próximamente links de evidencia
-                </span>
-            </td>
-        </tr>
-
-        <tr class="hover:bg-surface-bright/50 transition-colors group">
-            <td class="py-4 px-6 border-b border-outline">
-                <div class="flex flex-col gap-2 items-start">
-                    <span class="px-2 py-1 text-[10px] font-bold uppercase rounded border bg-[#EFF6FF] text-[#1D4ED8] border-[#BFDBFE]">Salud</span>
-                    <span class="text-sm font-medium text-on-surface">2.1 Prestación de atención primaria en salud</span>
-                </div>
-            </td>
-            <td class="py-4 px-6 border-b border-outline">
-                <span class="text-xs text-secondary line-clamp-3" title="C-CA1. INDICATOR 28: Number of primary healthcare consultations provided">C-CA1. INDICATOR 28: Number of primary healthcare consultations provided</span>
-            </td>
-            <td class="py-4 px-6 border-b border-outline min-w-[120px]">
-                <div class='flex flex-col gap-1'><div class='flex justify-between'><span class='text-xs'>Doble:</span><span class='font-semibold text-primary'>1.345</span></div><div class='flex justify-between'><span class='text-xs'>Únicos:</span><span class='font-semibold text-secondary'>1.211</span></div></div>
-            </td>
-            <td class="py-4 px-6 border-b border-outline">
-                <span class="text-xs text-secondary">Voucher de salud, BBDD CARE COL, BBDD proveedor de servicios</span>
-            </td>
-            <td class="py-4 px-6 border-b border-outline text-center">
-                <span class="inline-flex items-center gap-1 bg-[#FFF9F2] border border-[#FFE4D6] text-primary px-3 py-1.5 rounded text-[11px] font-semibold whitespace-nowrap">
-                    <svg class="w-3.5 h-3.5 text-primary" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"></path></svg>
-                    Próximamente links de evidencia
-                </span>
-            </td>
-        </tr>
-
-        <tr class="hover:bg-surface-bright/50 transition-colors group">
-            <td class="py-4 px-6 border-b border-outline">
-                <div class="flex flex-col gap-2 items-start">
-                    <span class="px-2 py-1 text-[10px] font-bold uppercase rounded border bg-[#EFF6FF] text-[#1D4ED8] border-[#BFDBFE]">Salud</span>
-                    <span class="text-sm font-medium text-on-surface">2.2 Entrega de kits postparto</span>
-                </div>
-            </td>
-            <td class="py-4 px-6 border-b border-outline">
-                <span class="text-xs text-secondary line-clamp-3" title="C-CA1. INDICATOR 28: Number of primary healthcare consultations provided">C-CA1. INDICATOR 28: Number of primary healthcare consultations provided</span>
-            </td>
-            <td class="py-4 px-6 border-b border-outline min-w-[120px]">
-                <div class='flex flex-col gap-1'><div class='flex justify-between'><span class='text-xs'>Doble:</span><span class='font-semibold text-primary'>140</span></div><div class='flex justify-between'><span class='text-xs'>Únicos:</span><span class='font-semibold text-secondary'>0</span></div></div>
-            </td>
-            <td class="py-4 px-6 border-b border-outline">
-                <span class="text-xs text-secondary">Registro entrega de kits, listados de distribución, BBDD CARE COL</span>
-            </td>
-            <td class="py-4 px-6 border-b border-outline text-center">
-                <span class="inline-flex items-center gap-1 bg-[#FFF9F2] border border-[#FFE4D6] text-primary px-3 py-1.5 rounded text-[11px] font-semibold whitespace-nowrap">
-                    <svg class="w-3.5 h-3.5 text-primary" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"></path></svg>
-                    Próximamente links de evidencia
-                </span>
-            </td>
-        </tr>
-
-        <tr class="hover:bg-surface-bright/50 transition-colors group">
-            <td class="py-4 px-6 border-b border-outline">
-                <div class="flex flex-col gap-2 items-start">
-                    <span class="px-2 py-1 text-[10px] font-bold uppercase rounded border bg-[#EFF6FF] text-[#1D4ED8] border-[#BFDBFE]">Salud</span>
-                    <span class="text-sm font-medium text-on-surface">2.3 Atención médica a sobrevivientes de violencia</span>
-                </div>
-            </td>
-            <td class="py-4 px-6 border-b border-outline">
-                <span class="text-xs text-secondary line-clamp-3" title="C-CA11. INDICATOR 43: Number of violence survivors receiving medical assistance...">C-CA11. INDICATOR 43: Number of violence survivors receiving medical assistance...</span>
-            </td>
-            <td class="py-4 px-6 border-b border-outline min-w-[120px]">
-                <div class='flex flex-col gap-1'><div class='flex justify-between'><span class='text-xs'>Doble:</span><span class='font-semibold text-primary'>576</span></div><div class='flex justify-between'><span class='text-xs'>Únicos:</span><span class='font-semibold text-secondary'>0</span></div></div>
-            </td>
-            <td class="py-4 px-6 border-b border-outline">
-                <span class="text-xs text-secondary">Voucher de salud, BBDD CARE COL, BBDD proveedor de servicios</span>
-            </td>
-            <td class="py-4 px-6 border-b border-outline text-center">
-                <span class="inline-flex items-center gap-1 bg-[#FFF9F2] border border-[#FFE4D6] text-primary px-3 py-1.5 rounded text-[11px] font-semibold whitespace-nowrap">
-                    <svg class="w-3.5 h-3.5 text-primary" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"></path></svg>
-                    Próximamente links de evidencia
-                </span>
-            </td>
-        </tr>
-
-        <tr class="hover:bg-surface-bright/50 transition-colors group">
-            <td class="py-4 px-6 border-b border-outline">
-                <div class="flex flex-col gap-2 items-start">
-                    <span class="px-2 py-1 text-[10px] font-bold uppercase rounded border bg-[#F0FDF4] text-[#166534] border-[#DCFCE7]">Cash Multipropósito</span>
-                    <span class="text-sm font-medium text-on-surface">3.1 Entrega de Cash Multipropósito</span>
-                </div>
-            </td>
-            <td class="py-4 px-6 border-b border-outline">
-                <span class="text-xs text-secondary line-clamp-3" title="C-CA1. INDICATOR 117: Number of households having received Multi-Purpose Cash (MPC)">C-CA1. INDICATOR 117: Number of households having received Multi-Purpose Cash (MPC)</span>
-            </td>
-            <td class="py-4 px-6 border-b border-outline min-w-[120px]">
-                <div class='flex flex-col gap-1'><div class='flex justify-between'><span class='text-xs'>Doble:</span><span class='font-semibold text-primary'>2.016</span></div><div class='flex justify-between'><span class='text-xs'>Únicos:</span><span class='font-semibold text-secondary'>1.440</span></div></div>
-            </td>
-            <td class="py-4 px-6 border-b border-outline">
-                <span class="text-xs text-secondary">Registro en CommCare, tirillas del proveedor, BBDD entrega de Cash y seguimiento PTM</span>
-            </td>
-            <td class="py-4 px-6 border-b border-outline text-center">
-                <span class="inline-flex items-center gap-1 bg-[#FFF9F2] border border-[#FFE4D6] text-primary px-3 py-1.5 rounded text-[11px] font-semibold whitespace-nowrap">
-                    <svg class="w-3.5 h-3.5 text-primary" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"></path></svg>
-                    Próximamente links de evidencia
-                </span>
-            </td>
-        </tr>
-                    </tbody>
-                </table>
-            </div>
-        </div>
     </section>
 
     <!-- ================= TAB: ASISTENTE DE CARGA ================= -->
@@ -753,25 +467,21 @@
     function switchTab(tabName) {
         const secTeoria = document.getElementById('section-teoria');
         const secMapa = document.getElementById('section-mapa');
-        const secEvidencias = document.getElementById('section-evidencias');
         const secAsistente = document.getElementById('section-asistente');
         
         const tabTeoria = document.getElementById('tab-teoria');
         const tabMapa = document.getElementById('tab-mapa');
-        const tabEvidencias = document.getElementById('tab-evidencias');
         const tabAsistente = document.getElementById('tab-asistente');
         
         // Reset all sections
         secTeoria.classList.add('hidden');
         secMapa.classList.add('hidden');
-        secEvidencias.classList.add('hidden');
         if(secAsistente) secAsistente.classList.add('hidden');
         
         // Reset all tabs
         const inactiveTabClass = "text-secondary font-medium hover:text-primary border-b-2 border-transparent h-full flex items-center px-1 text-xs md:text-sm lg:text-base transition-all duration-200 focus:outline-none";
         tabTeoria.className = inactiveTabClass;
         tabMapa.className = inactiveTabClass;
-        tabEvidencias.className = inactiveTabClass;
         if(tabAsistente) tabAsistente.className = inactiveTabClass;
         
         const activeTabClass = "text-primary font-bold border-b-2 border-primary h-full flex items-center px-1 text-xs md:text-sm lg:text-base transition-all duration-200 focus:outline-none";
@@ -782,9 +492,6 @@
         } else if (tabName === 'mapa') {
             secMapa.classList.remove('hidden');
             tabMapa.className = activeTabClass;
-        } else if (tabName === 'evidencias') {
-            secEvidencias.classList.remove('hidden');
-            tabEvidencias.className = activeTabClass;
         } else if (tabName === 'asistente') {
             secAsistente.classList.remove('hidden');
             tabAsistente.className = activeTabClass;
@@ -1205,7 +912,21 @@
             
             btnGeo.className = "flex items-center gap-2 px-6 py-2 rounded-full text-secondary hover:text-on-surface font-label-md text-label-md transition-all focus:outline-none";
             btnComp.className = "flex items-center gap-2 px-6 py-2 rounded-full bg-primary text-on-primary font-label-md text-label-md transition-all focus:outline-none";
+            
+            renderInterventionRoute();
         }
+    }
+
+    function renderInterventionRoute() {
+        const container = document.getElementById('tree-componente');
+        if (!container) return;
+
+        container.innerHTML = `
+        <div class="flex flex-col items-center justify-center py-20 text-secondary">
+            <span class="material-symbols-outlined text-4xl mb-2">schema</span>
+            <p class="font-medium text-sm">Pendiente por cargar la estructura definitiva...</p>
+        </div>
+        `;
     }
 
     // Call render initially on load

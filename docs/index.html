@@ -608,6 +608,18 @@
     function toggleNode(nodeId) {
         expandedNodes[nodeId] = !expandedNodes[nodeId];
         renderProjectMap();
+        
+        // Centrar el nodo cliqueado en la pantalla
+        setTimeout(() => {
+            const nodeElement = document.getElementById(`node-container-${nodeId}`);
+            if (nodeElement) {
+                nodeElement.scrollIntoView({
+                    behavior: 'smooth',
+                    block: 'center',
+                    inline: 'center'
+                });
+            }
+        }, 100);
     }
 
     function renderProjectMap() {
@@ -620,7 +632,7 @@
         let html = `
         <div class="flex items-center justify-start py-6 px-2 gap-0 relative">
             <!-- Root Node Container -->
-            <div class="flex items-center gap-2 z-10 shrink-0">
+            <div id="node-container-root" class="flex items-center gap-2 z-10 shrink-0">
                 <!-- Root Node -->
                 <div onclick="toggleNode('root')" class="tree-node bg-[#FFF5F0] text-primary rounded-xl px-7 py-5 border border-primary/40 hover:border-primary transition-all duration-200 cursor-pointer w-56 text-center shadow-sm">
                     <div class="text-left">
@@ -658,7 +670,7 @@
                     <div class="absolute left-0 top-1/2 w-8 h-[2px] bg-outline-variant -translate-y-1/2"></div>
                     
                     <!-- Depto Node Container -->
-                    <div class="ml-8 z-10 shrink-0 flex items-center gap-2">
+                    <div id="node-container-${deptoId}" class="ml-8 z-10 shrink-0 flex items-center gap-2">
                         <!-- Depto Node -->
                         <div onclick="toggleNode('${deptoId}')" class="tree-node bg-[#F0F5FF] text-[#0040C1] rounded-lg px-4 py-3 border border-[#D6E4FF] hover:border-[#0040C1] transition-all duration-200 cursor-pointer w-48 shadow-xs">
                             <div class="text-left">
@@ -699,7 +711,7 @@
                             <div class="absolute left-0 top-1/2 w-6 h-[2px] bg-outline-variant -translate-y-1/2"></div>
                             
                             <!-- Mun Node Container -->
-                            <div class="ml-6 z-10 shrink-0 flex items-center gap-2">
+                            <div id="node-container-${munId}" class="ml-6 z-10 shrink-0 flex items-center gap-2">
                                 <!-- Mun Node -->
                                 <div onclick="${hasChildren ? `toggleNode('${munId}')` : ''}" class="tree-node bg-surface text-on-surface rounded-lg px-4 py-3 border border-outline hover:border-secondary transition-all duration-200 cursor-pointer w-44 shadow-xs">
                                     <div class="text-left">
@@ -764,7 +776,7 @@
                                     <div class="absolute left-0 top-1/2 w-6 h-[2px] bg-outline-variant -translate-y-1/2"></div>
                                     
                                     <!-- Comp Node Container -->
-                                    <div class="ml-6 z-10 shrink-0 flex items-center gap-2">
+                                    <div id="node-container-${compId}" class="ml-6 z-10 shrink-0 flex items-center gap-2">
                                         <!-- Comp Node -->
                                         <div onclick="${hasCompChildren ? `toggleNode('${compId}')` : `openComponentDrawer('${comp.key}')`}" class="tree-node ${compBg} ${compText} rounded-lg px-4 py-3 border ${compBorder} hover:opacity-95 hover:shadow-xs transition-all duration-200 cursor-pointer w-44 shadow-xs">
                                             <span class="font-body-md text-body-md block font-medium leading-tight text-left">${comp.name}</span>
@@ -807,7 +819,7 @@
                                             <div class="absolute left-0 top-1/2 w-6 h-[2px] bg-outline-variant -translate-y-1/2"></div>
                                             
                                             <!-- Subcomponent Node Container -->
-                                            <div class="ml-6 z-10 shrink-0 flex items-center gap-2">
+                                            <div id="node-container-${subId}" class="ml-6 z-10 shrink-0 flex items-center gap-2">
                                                 <!-- Subcomponent Node -->
                                                 <div onclick="${hasSubChildren ? `toggleNode('${subId}')` : ''}" class="tree-node bg-surface border border-outline hover:border-secondary transition-all duration-200 rounded-lg px-4 py-3 cursor-pointer w-56 shadow-xs">
                                                     <span class="font-body-md text-xs block font-medium text-on-surface leading-tight text-left">${sub.name}</span>

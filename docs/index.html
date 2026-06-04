@@ -364,7 +364,7 @@
                     <ol class="relative border-l border-outline ml-3" id="wizard-steps">
                         <!-- Steps injected by JS -->
                     </ol>
-                    <button onclick="resetWizard()" class="mt-8 text-secondary hover:text-primary text-sm font-medium flex items-center gap-2 transition-colors">
+                    <button onclick="resetWizard()" class="mt-8 ml-3.5 text-secondary hover:text-primary text-sm font-medium flex items-center gap-2.5 transition-colors focus:outline-none focus:ring-0">
                         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8"></path><path d="M3 3v5h5"></path></svg>
                         Reiniciar asistente
                     </button>
@@ -598,7 +598,7 @@
         if(!sidebar) return;
         let html = '';
         for(let i=0; i<stepNames.length; i++){
-            let statusClass = "text-outline-variant";
+            let statusClass = "text-secondary/50";
             let dotClass = "bg-outline-variant";
             let lineClass = "";
             let checkmark = "";
@@ -670,7 +670,7 @@
                 </button>`;
             });
             html += `</div>`;
-            html += `<button onclick="wizardBack()" class="mt-8 text-secondary hover:text-on-surface text-sm underline flex items-center gap-1"><span class="material-symbols-outlined text-sm">arrow_back</span>Volver a departamento</button>`;
+            html += `<button onclick="wizardBack()" class="mt-8 text-secondary hover:text-on-surface text-sm flex items-center gap-1.5 focus:outline-none focus:ring-0 group"><span class="material-symbols-outlined text-sm transition-transform group-hover:-translate-x-0.5">arrow_back</span><span class="underline group-hover:no-underline">Volver a departamento</span></button>`;
         }
         else if (wizardState.step === 2) {
             html += `<h2 class="text-2xl font-bold mb-2">Selecciona el Componente</h2>`;
@@ -683,7 +683,7 @@
                 </button>`;
             });
             html += `</div>`;
-            html += `<button onclick="wizardBack()" class="mt-8 text-secondary hover:text-on-surface text-sm underline flex items-center gap-1"><span class="material-symbols-outlined text-sm">arrow_back</span>Volver a municipio</button>`;
+            html += `<button onclick="wizardBack()" class="mt-8 text-secondary hover:text-on-surface text-sm flex items-center gap-1.5 focus:outline-none focus:ring-0 group"><span class="material-symbols-outlined text-sm transition-transform group-hover:-translate-x-0.5">arrow_back</span><span class="underline group-hover:no-underline">Volver a municipio</span></button>`;
         }
         else if (wizardState.step === 3) {
             html += `<h2 class="text-2xl font-bold mb-2">Selecciona la Actividad</h2>`;
@@ -716,7 +716,7 @@
                 });
             }
             html += `</div>`;
-            html += `<button onclick="wizardBack()" class="mt-8 text-secondary hover:text-on-surface text-sm underline flex items-center gap-1"><span class="material-symbols-outlined text-sm">arrow_back</span>Volver a componente</button>`;
+            html += `<button onclick="wizardBack()" class="mt-8 text-secondary hover:text-on-surface text-sm flex items-center gap-1.5 focus:outline-none focus:ring-0 group"><span class="material-symbols-outlined text-sm transition-transform group-hover:-translate-x-0.5">arrow_back</span><span class="underline group-hover:no-underline">Volver a componente</span></button>`;
         }
         else if (wizardState.step === 4) {
             html += `<h2 class="text-2xl font-bold mb-2">Selecciona el Profesional</h2>`;
@@ -739,7 +739,7 @@
                 });
                 html += `</div>`;
             }
-            html += `<button onclick="wizardBack()" class="mt-8 text-secondary hover:text-on-surface text-sm underline flex items-center gap-1"><span class="material-symbols-outlined text-sm">arrow_back</span>Volver a actividad</button>`;
+            html += `<button onclick="wizardBack()" class="mt-8 text-secondary hover:text-on-surface text-sm flex items-center gap-1.5 focus:outline-none focus:ring-0 group"><span class="material-symbols-outlined text-sm transition-transform group-hover:-translate-x-0.5">arrow_back</span><span class="underline group-hover:no-underline">Volver a actividad</span></button>`;
         }
         else if (wizardState.step === 5) {
             const act = wizardData.actividades[wizardState.comp][wizardState.actIndex];
@@ -809,7 +809,7 @@
             });
             html += `</div>`;
             html += `<div class="mt-10 flex justify-between">
-                <button onclick="wizardBack()" class="text-secondary hover:text-on-surface text-sm underline flex items-center gap-1"><span class="material-symbols-outlined text-sm">arrow_back</span>Volver a profesional</button>
+                <button onclick="wizardBack()" class="text-secondary hover:text-on-surface text-sm flex items-center gap-1.5 focus:outline-none focus:ring-0 group"><span class="material-symbols-outlined text-sm transition-transform group-hover:-translate-x-0.5">arrow_back</span><span class="underline group-hover:no-underline">Volver a profesional</span></button>
                 <button onclick="resetWizard()" class="bg-primary text-on-primary px-6 py-2 rounded-full font-bold text-sm hover:opacity-90">Terminar y Cargar Otra</button>
             </div>`;
         }
